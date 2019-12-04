@@ -8,17 +8,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Material imports
 import { MatIconModule} from "@angular/material";
 import { MatCardModule } from '@angular/material/card';
+import {GmapsLocSearchComponent} from './gmaps/gmaps-loc-search/gmaps-loc-search.component';
+import {GmapsComponent} from './gmaps/gmaps.component';
+import {GooglePlaceModule} from 'ngx-google-places-autocomplete';
+import { ProjectInzienPageComponent } from './project-inzien-page/project-inzien-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RittenInzienPageComponent
+    RittenInzienPageComponent,
+    GmapsComponent,
+    GmapsLocSearchComponent,
+    ProjectInzienPageComponent
   ],
   imports: [
     BrowserModule,
     MatCardModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    GooglePlaceModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
