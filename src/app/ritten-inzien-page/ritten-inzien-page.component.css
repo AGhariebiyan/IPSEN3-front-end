@@ -10,12 +10,18 @@
   font-family: 'Lato', 'sans-serif', Roboto, "Helvetica Neue", sans-serif;
 }
 
+.top-left {
+  display: flex;
+  flex-direction: row;
+  font-size: 14pt;
+}
+
 .card-header {
-  margin-top: 25px;
+  margin: 25px 0 15px 0;
   color: #34495E;
 }
 
-hr {
+.card-header hr {
   border-color: black;
   margin: 0;
 }
@@ -25,18 +31,28 @@ hr {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  font-size: 14pt;
+  padding-bottom: 10px;
+}
+
+.trip-data:last-child {
+  padding: 0;
 }
 
 .trip-data p:last-child {
+  font-weight: bold;
+  margin-left: 50px;
   text-align: end;
 }
 
-.top-left {
-  display: flex;
-  flex-direction: row;
-  font-size: 14pt;
+.map {
+  border: 1px #1ABC9C solid;
+  padding: 200px 175px;
+  margin: 25px;
 }
 
 mat-card {
   margin: 50px;
+  display: flex;
+  flex-direction: row;
 }
