@@ -21,7 +21,7 @@ import { VehicleAddComponent } from './vehicles/vehicle-add/vehicle-add.componen
 
 import { TripsComponent } from './trips/trips.component';
 import {Trip} from './trips/trip.model';
-import { VoertuigenComponent } from './vehicle Delete/voertuigen.component';
+import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.component';
 
 
 @NgModule({
