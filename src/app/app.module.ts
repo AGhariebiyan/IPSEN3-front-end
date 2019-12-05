@@ -10,6 +10,8 @@ import {GmapsComponent} from './gmaps/gmaps.component';
 import {GooglePlaceModule} from 'ngx-google-places-autocomplete';
 import { ProjectInzienPageComponent } from './project-inzien-page/project-inzien-page.component';
 import { MaterialModule } from './material/material.module';
+import { VehiclesComponent } from './vehicles/vehicles.component';
+import { VehicleAddComponent } from './vehicles/vehicle-add/vehicle-add.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { MaterialModule } from './material/material.module';
     RittenInzienPageComponent,
     GmapsComponent,
     GmapsLocSearchComponent,
-    ProjectInzienPageComponent
+    ProjectInzienPageComponent,
+    VehiclesComponent,
+    VehicleAddComponent
   ],
   imports: [
     BrowserModule,
