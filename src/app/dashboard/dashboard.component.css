@@ -4,6 +4,10 @@
     align-items: center;
     width: 100%;
     height: 100%;
+    background-image: url("../../assets/imgs/homepageBackground.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
 }
 
 .content-item {
@@ -62,5 +66,5 @@
     left: 25px;
     font-size: 50px;
     cursor: pointer;
-    color: #14BD9C;
+    color: #52AE4F;
 }
