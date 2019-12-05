@@ -1,0 +1,56 @@
+table{
+  border-collapse: collapse;
+  text-align: center;
+  width: 750px;
+
+}
+table,th,td{
+  border: 1px ridge #E9E9E9;
+  color: black;
+
+}
+th,td{
+  padding: 1em 1em 1em 1em ;
+
+}
+.card{
+  background-color: white;
+  width: 750px;
+  margin: 15% auto auto;
+
+  z-index: 1;
+
+}
+
+.plusButtonImage{
+  position: absolute;
+  z-index: 2;
+  margin-top: -2%;
+  margin-left: 73.6% ;
+
+
+
+}
+
+mat-card-title{
+  font-size: 18px;
+}
+
+th{
+  background: linear-gradient(#e6e6e6,#b3b3b3);
+}
+
+tr:nth-child(even) td { background: #FEFEFE; }
+tr:nth-child(odd) td { background: #F1F1F1;}
+
+mat-card-title{
+  color: black;
+
+}
+
+mat-card-content{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
