@@ -1,30 +1,52 @@
-<form class="example-form">
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Kenteken" value="">
-    </mat-form-field>
+<div class="content">
 
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Merk" value="">
-    </mat-form-field>
+  <div class="title">
+    <h2>Voertuigen overzicht</h2>
+  </div>
 
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Type" value="">
-    </mat-form-field>
+  <mat-card>
+    
+      <div>
+        <div class="top-left">
+            <mat-icon>arrow_back_ios</mat-icon>
+            <i>Voertuigen overzicht</i>
+        </div>
+      </div>
 
-    <mat-form-field>
-      <mat-select placeholder="Brandstof type">
-        <mat-option value="benzine">Benzine</mat-option>
-        <mat-option value="diesel">Diesel</mat-option>
-        <mat-option value="elektrisch">Elektrisch</mat-option>
-        <mat-option value="gas">Gas</mat-option>
-      </mat-select>
-    </mat-form-field>
+      <form class="example-form">
+          <mat-form-field class="form-full-width">
+            <input matInput placeholder="Kenteken" value="">
+          </mat-form-field>
+      
+          <mat-form-field class="form-full-width">
+            <input matInput placeholder="Merk" value="">
+          </mat-form-field>
+      
+          <mat-form-field class="form-full-width">
+            <input matInput placeholder="Type" value="">
+          </mat-form-field>
+      
+          <mat-form-field>
+            <mat-select placeholder="Brandstof type">
+              <mat-option value="benzine">Benzine</mat-option>
+              <mat-option value="diesel">Diesel</mat-option>
+              <mat-option value="elektrisch">Elektrisch</mat-option>
+              <mat-option value="gas">Gas</mat-option>
+            </mat-select>
+          </mat-form-field>
+      
+          <mat-form-field>
+            <mat-select placeholder="Carrosserie">
+              <mat-option value="station">Station</mat-option>
+              <mat-option value="sedan">Sedan</mat-option>
+            </mat-select>
+          </mat-form-field>
 
-    <mat-form-field>
-      <mat-select placeholder="Carrosserie">
-        <mat-option value="station">Station</mat-option>
-        <mat-option value="sedan">Sedan</mat-option>
-      </mat-select>
-    </mat-form-field>
+          <div class="button-row">
+            <button mat-flat-button color="primary">Primary</button>
+          </div>
+        </form>
+        
+  </mat-card>
 
-  </form>
+</div>
