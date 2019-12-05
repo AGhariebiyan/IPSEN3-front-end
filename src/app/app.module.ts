@@ -13,6 +13,14 @@ import { MaterialModule } from './material/material.module';
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import { VehicleAddComponent } from './vehicles/vehicle-add/vehicle-add.component';
 
+// Material imports
+import { MatIconModule, MatToolbarModule, MatMenuModule, MatDividerModule, MatListModule} from "@angular/material";
+import { MatCardModule } from '@angular/material/card';
+import { HeaderComponent } from './header/header.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AppRoutingModule } from './app-routing.module';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,13 +29,22 @@ import { VehicleAddComponent } from './vehicles/vehicle-add/vehicle-add.componen
     GmapsLocSearchComponent,
     ProjectInzienPageComponent,
     VehiclesComponent,
-    VehicleAddComponent
+    VehicleAddComponent,
+    HeaderComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     GooglePlaceModule,
-    MaterialModule
+    MaterialModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatIconModule,
+    AppRoutingModule,
+    MatDividerModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
