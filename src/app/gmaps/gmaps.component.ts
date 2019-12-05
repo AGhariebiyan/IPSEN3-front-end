@@ -44,19 +44,32 @@ export class GmapsComponent implements OnInit, AfterViewInit  {
   setRoute() {
     // this.alertGmapService(60,"test");
     // return;
-    if (this.markerArray.lat.length > 1 && this.markerArray.lng.length > 1) {
+    let tempArrayLat = this.markerArray.lat.filter(function (el) {
+      return el != null;
+    });
+
+    let tempArrayLong = this.markerArray.lng.filter(function (el) {
+      return el != null;
+    });
+
+    if (tempArrayLong.length > 1 && tempArrayLat.length > 1) {
       const directionsService = new google.maps.DirectionsService();
       const waypointsLatLng = [];
       const start = new google.maps.LatLng(this.markerArray.lat[0], this.markerArray.lng[0]);
       const end = new google.maps.LatLng(this.markerArray.lat[this.markerArray.lat.length - 1], this.markerArray.lng[this.markerArray.lat.length - 1]);
-
       let request = {};
-
+      // console.log(this.markerArray);
       if (this.markerArray.lat.length > 2 && this.markerArray.lng.length > 2) {
         for (let i = 0; i < this.markerArray.lat.length; i++) {
+
           if (i === 0 || i === (this.markerArray.lng.length - 1) ) {
             continue;
           }
+
+          if (this.markerArray.lat[i] == null || this.markerArray.lng[i] == true) {
+            continue;
+          }
+
           waypointsLatLng.push({location: new google.maps.LatLng(this.markerArray.lat[i], this.markerArray.lng[i])});
         }
       }
@@ -64,7 +77,7 @@ export class GmapsComponent implements OnInit, AfterViewInit  {
 
       bounds.extend(start);
       bounds.extend(end);
-
+      // console.log(waypointsLatLng);
       if (waypointsLatLng.length > 0) {
         request = {
           origin: start,
