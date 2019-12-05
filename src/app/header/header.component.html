@@ -23,7 +23,7 @@
                     </a>
                 </li>
                 <li class="overlayed-dropdown-menu-item">
-                    <a routerLink="/dashboard" (click)="onOverlay()">
+                    <a routerLink="/projecten/12" (click)="onOverlay()">
                         <mat-icon class="nav-menu-icon">table_chart</mat-icon>Projecten
                     </a>
                 </li>
@@ -32,7 +32,7 @@
                 <mat-icon>power_settings_new</mat-icon>
             </button>
         </mat-toolbar>
-        
+
         <button class="menu-icon-button" mat-icon-button (click)="onOverlay()" aria-label="menu icon-button with a nav-menu">
             <mat-icon class="mat-icon-menu">menu</mat-icon>
         </button>
@@ -40,7 +40,6 @@
         <img src="assets/imgs/logo.png" alt="logo" class="img-responsive img-company" style="max-height: 50px;">
         <span class="span-company-name">DigitaleFactuur</span>
     </mat-toolbar-row>
-    
     <mat-toolbar-row class="mat-toolbar-row-right">
         <button class="menu-icon-button" mat-icon-button [matMenuTriggerFor]="userMenu" aria-label="arrow drop down menu user log out">
             <mat-icon class="mat-icon-menu">arrow_left</mat-icon>
