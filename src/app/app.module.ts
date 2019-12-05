@@ -11,6 +11,11 @@ import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ProjectInzienPageComponent } from './project-inzien-page/project-inzien-page.component';
+import { GmapsComponent } from './gmaps/gmaps.component';
+import { GmapsLocSearchComponent } from './gmaps/gmaps-loc-search/gmaps-loc-search.component';
+import { MaterialModule } from './material/material.module';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 
 @NgModule({
   declarations: [
@@ -18,6 +23,9 @@ import { AppRoutingModule } from './app-routing.module';
     RittenInzienPageComponent,
     HeaderComponent,
     DashboardComponent,
+    ProjectInzienPageComponent,
+    GmapsComponent,
+    GmapsLocSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +37,9 @@ import { AppRoutingModule } from './app-routing.module';
     MatIconModule,
     AppRoutingModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    MaterialModule,
+    GooglePlaceModule
   ],
   providers: [],
   bootstrap: [AppComponent]
