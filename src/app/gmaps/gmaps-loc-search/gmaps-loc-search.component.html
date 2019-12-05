@@ -1,1 +1,3 @@
-<input ngx-google-places-autocomplete #placesRef="ngx-places" [placeholder]="placeholder" (onAddressChange)="handleAddressChange($event)"/>
+<mat-form-field>
+    <input matInput ngx-google-places-autocomplete #placesRef="ngx-places" [placeholder]="placeholder" (onAddressChange)="handleAddressChange($event)"/>
+</mat-form-field>

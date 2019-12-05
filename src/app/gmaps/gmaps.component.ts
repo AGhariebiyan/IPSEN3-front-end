@@ -42,6 +42,8 @@ export class GmapsComponent implements OnInit, AfterViewInit  {
   }
 
   setRoute() {
+    // this.alertGmapService(60,"test");
+    // return;
     if (this.markerArray.lat.length > 1 && this.markerArray.lng.length > 1) {
       const directionsService = new google.maps.DirectionsService();
       const waypointsLatLng = [];
@@ -89,12 +91,18 @@ export class GmapsComponent implements OnInit, AfterViewInit  {
 
           this.km = point.distance.value / 1000;
           this.time = point.duration.text;
-          this.cdr.detectChanges();
+          this.alertGmapService(this.km, this.time);
         } else {
           alert('Directions Request from ' + start.toUrlValue(6) + ' to ' + end.toUrlValue(6) + ' failed: ' + status);
         }
       });
     }
+  }
+
+  alertGmapService(km:Number, time:String){
+    this.mapService.drivenKilometers.emit(km);
+    this.mapService.estTravelTime.emit(time);
+
   }
 
 }

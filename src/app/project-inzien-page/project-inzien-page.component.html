@@ -10,16 +10,18 @@
       </div>
 
       <div class="card-header">
-        <h3>Rit #89: Amsterdam - Leiden</h3>
+        <div class="containerHeader">
+          <h3>Rit #89: Amsterdam - Leiden</h3>
+          <button mat-button [matMenuTriggerFor]="menu"><mat-icon>keyboard_arrow_down</mat-icon></button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Item 1</button>
+            <button mat-menu-item>Item 2</button>
+          </mat-menu>
+        </div>
         <hr/>
       </div>
 
       <div class="trip-data-container">
-
-        <div class="trip-data">
-          <p>Project:</p>
-          <p>Vb-Project 14</p>
-        </div>
 
         <div class="trip-data">
           <p>Kenteken:</p>
@@ -33,7 +35,12 @@
 
         <div class="trip-data">
           <p>Gereden Kilometers:</p>
-          <p>48,3 km</p>
+          <p>{{drivenKilometers}}</p>
+        </div>
+
+        <div class="trip-data">
+          <p>Reistijd:</p>
+          <p>{{estTravelTime}}</p>
         </div>
 
         <div class="trip-data">
@@ -51,6 +58,9 @@
     <div class="card-right-content">
       <div class="map">
         <app-gmaps></app-gmaps>
+        <app-gmaps-loc-search [gmap-search-index]="0" [gmap-input-placeholder]="'Voer uw startlocatie in'"></app-gmaps-loc-search>
+        <app-gmaps-loc-search [gmap-search-index]="1" [gmap-input-placeholder]="'Voer uw tussenstop'"></app-gmaps-loc-search>
+        <app-gmaps-loc-search [gmap-search-index]="2" [gmap-input-placeholder]="'Voer uw eindlocatie in'"></app-gmaps-loc-search>
       </div>
     </div>
   </mat-card>
