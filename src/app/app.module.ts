@@ -6,19 +6,30 @@ import { RittenInzienPageComponent } from './ritten-inzien-page/ritten-inzien-pa
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Material imports
-import { MatIconModule} from "@angular/material";
+import { MatIconModule, MatToolbarModule, MatMenuModule, MatDividerModule, MatListModule} from "@angular/material";
 import { MatCardModule } from '@angular/material/card';
+import { HeaderComponent } from './header/header.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RittenInzienPageComponent
+    RittenInzienPageComponent,
+    HeaderComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
     MatCardModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatIconModule,
+    AppRoutingModule,
+    MatDividerModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
