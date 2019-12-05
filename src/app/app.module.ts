@@ -6,8 +6,6 @@ import { RittenInzienPageComponent } from './ritten-inzien-page/ritten-inzien-pa
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Material imports
-import { MatIconModule, MatToolbarModule, MatMenuModule, MatDividerModule, MatListModule} from "@angular/material";
-import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,13 +16,6 @@ import { MaterialModule } from './material/material.module';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import { VehicleAddComponent } from './vehicles/vehicle-add/vehicle-add.component';
-
-// Material imports
-import { MatIconModule, MatToolbarModule, MatMenuModule, MatDividerModule, MatListModule} from "@angular/material";
-import { MatCardModule } from '@angular/material/card';
-import { HeaderComponent } from './header/header.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -44,20 +35,10 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   imports: [
     BrowserModule,
-    MatCardModule,
     BrowserAnimationsModule,
     GooglePlaceModule,
     MaterialModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatIconModule,
-    AppRoutingModule,
-    MatDividerModule,
-    MatListModule,
-    MaterialModule,
-    GooglePlaceModule
-    MatListModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
