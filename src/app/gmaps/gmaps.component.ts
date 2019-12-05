@@ -58,7 +58,7 @@ export class GmapsComponent implements OnInit, AfterViewInit  {
       const start = new google.maps.LatLng(this.markerArray.lat[0], this.markerArray.lng[0]);
       const end = new google.maps.LatLng(this.markerArray.lat[this.markerArray.lat.length - 1], this.markerArray.lng[this.markerArray.lat.length - 1]);
       let request = {};
-      console.log(this.markerArray);
+      // console.log(this.markerArray);
       if (this.markerArray.lat.length > 2 && this.markerArray.lng.length > 2) {
         for (let i = 0; i < this.markerArray.lat.length; i++) {
 
@@ -77,7 +77,7 @@ export class GmapsComponent implements OnInit, AfterViewInit  {
 
       bounds.extend(start);
       bounds.extend(end);
-      console.log(waypointsLatLng);
+      // console.log(waypointsLatLng);
       if (waypointsLatLng.length > 0) {
         request = {
           origin: start,
