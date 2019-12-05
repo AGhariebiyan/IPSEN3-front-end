@@ -13,24 +13,6 @@ th,td{
   padding: 1em 1em 1em 1em ;
 
 }
-.card{
-  background-color: white;
-  width: 750px;
-  margin: 15% auto auto;
-
-  z-index: 1;
-
-}
-
-.plusButtonImage{
-  position: absolute;
-  z-index: 2;
-  margin-top: -2%;
-  margin-left: 73.6% ;
-
-
-
-}
 
 mat-card-title{
   font-size: 18px;
@@ -45,7 +27,6 @@ tr:nth-child(odd) td { background: #F1F1F1;}
 
 mat-card-title{
   color: black;
-
 }
 
 mat-card-content{
@@ -54,3 +35,32 @@ mat-card-content{
   align-content: center;
 }
 
+.buttonContainer{
+  /*border: 1px red solid;*/
+  width: 750px;
+  display: flex;
+  justify-content: flex-end;
+}
+.plusButtonImage{
+  position: relative;
+ top: 25px;
+  z-index: 2;
+  left: 25px
+
+
+
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /*border: 1px red solid;*/
+}
+
+.card{
+  background-color: white;
+  width: 750px;
+  z-index: 1;
+}

@@ -1,24 +1,28 @@
-<img class="plusButtonImage" src="assets/images/addButton.png" width="45" height="45">
-<mat-card class="card">
-  <mat-card-title>Ritten overzicht</mat-card-title>
-  <mat-card-content>
-    <table>
-      <tr>
-        <th>Start locatie</th>
-        <th>Eind locatie</th>
-        <th>Project</th>
-        <th>Kenteken</th>
-        <th>Verwijderen</th>
-      </tr>
-      <tr *ngFor="let trip of tripsArray">
-        <td>{{trip.startLocatie}}</td>
-        <td>{{trip.eindLocatie}}</td>
-        <td>{{trip.projectId}}</td>
-        <td>{{trip.kenteken}}</td>
-        <td>
+<div class="cardContainer">
+  <div class ="buttonContainer">
+  <img class="plusButtonImage" src="assets/images/addButton.png" width="45" height="45">
+  </div>
+  <mat-card class="card">
+    <mat-card-title>Ritten overzicht</mat-card-title>
+    <mat-card-content>
+      <table>
+        <tr>
+          <th>Start locatie</th>
+          <th>Eind locatie</th>
+          <th>Project</th>
+          <th>Kenteken</th>
+          <th>Verwijderen</th>
+        </tr>
+        <tr *ngFor="let trip of tripsArray">
+          <td>{{trip.startLocatie}}</td>
+          <td>{{trip.eindLocatie}}</td>
+          <td>{{trip.projectId}}</td>
+          <td>{{trip.kenteken}}</td>
+          <td>
             <i class="fa fa-trash fa-2x"></i>
-        </td>
-      </tr>
-    </table>
-  </mat-card-content>
-</mat-card>
+          </td>
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>
