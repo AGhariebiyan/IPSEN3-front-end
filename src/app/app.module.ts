@@ -11,6 +11,14 @@ import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ProjectInzienPageComponent } from './project-inzien-page/project-inzien-page.component';
+import { GmapsComponent } from './gmaps/gmaps.component';
+import { GmapsLocSearchComponent } from './gmaps/gmaps-loc-search/gmaps-loc-search.component';
+import { MaterialModule } from './material/material.module';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { VehiclesComponent } from './vehicles/vehicles.component';
+import { VehicleAddComponent } from './vehicles/vehicle-add/vehicle-add.component';
+
 import { TripsComponent } from './trips/trips.component';
 import {Trip} from './trips/trip.model';
 import { VoertuigenComponent } from './vehicle Delete/voertuigen.component';
@@ -24,18 +32,21 @@ import { VoertuigenComponent } from './vehicle Delete/voertuigen.component';
     RittenInzienPageComponent,
     HeaderComponent,
     DashboardComponent,
+    ProjectInzienPageComponent,
+    GmapsComponent,
+    GmapsLocSearchComponent,
+    ProjectInzienPageComponent,
+    VehiclesComponent,
+    VehicleAddComponent,
+    HeaderComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
-    MatCardModule,
     BrowserAnimationsModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatIconModule,
-    AppRoutingModule,
-    MatDividerModule,
-    MatListModule
+    GooglePlaceModule,
+    MaterialModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
