@@ -1,0 +1,67 @@
+<div class="content">
+  <div class="title">
+    <h2 >Voorbeeld project #001</h2>
+  </div>
+  <mat-card>
+    <div class="card-left-content">
+      <div class="top-left">
+        <mat-icon>arrow_back_ios</mat-icon>
+        <i>Projecten overzicht</i>
+      </div>
+
+      <div class="card-header">
+        <div class="containerHeader">
+          <h3>Rit #89: Amsterdam - Leiden</h3>
+          <button mat-button [matMenuTriggerFor]="menu"><mat-icon>keyboard_arrow_down</mat-icon></button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Item 1</button>
+            <button mat-menu-item>Item 2</button>
+          </mat-menu>
+        </div>
+        <hr/>
+      </div>
+
+      <div class="trip-data-container">
+
+        <div class="trip-data">
+          <p>Kenteken:</p>
+          <p>QT-31-41</p>
+        </div>
+
+        <div class="trip-data">
+          <p>Voertuig:</p>
+          <p>Renault Twingo</p>
+        </div>
+
+        <div class="trip-data">
+          <p>Gereden Kilometers:</p>
+          <p>{{drivenKilometers}}</p>
+        </div>
+
+        <div class="trip-data">
+          <p>Reistijd:</p>
+          <p>{{estTravelTime}}</p>
+        </div>
+
+        <div class="trip-data">
+          <p>Beginlocatie:</p>
+          <p>P.C. Hooftstraat 31a, Amsterdam</p>
+        </div>
+
+        <div class="trip-data">
+          <p>Eindlocatie:</p>
+          <p>Schipholweg 4, Leiden</p>
+        </div>
+      </div>
+
+    </div>
+    <div class="card-right-content">
+      <div class="map">
+        <app-gmaps></app-gmaps>
+        <app-gmaps-loc-search [gmap-search-index]="0" [gmap-input-placeholder]="'Voer uw startlocatie in'"></app-gmaps-loc-search>
+        <app-gmaps-loc-search [gmap-search-index]="1" [gmap-input-placeholder]="'Voer uw tussenstop'"></app-gmaps-loc-search>
+        <app-gmaps-loc-search [gmap-search-index]="2" [gmap-input-placeholder]="'Voer uw eindlocatie in'"></app-gmaps-loc-search>
+      </div>
+    </div>
+  </mat-card>
+</div>
