@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Trip} from '../models/trip.model';
+import {Trip} from './trip.model';
 
 @Component({
   selector: 'app-trips',

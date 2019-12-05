@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { TripsComponent } from './trips/trips.component';
 import {MatCardModule} from '@angular/material';
-import {Trip} from './models/trip.model';
+import {Trip} from './trips/trip.model';
 import { VoertuigenComponent } from './vehicle Delete/voertuigen.component';
 
 
