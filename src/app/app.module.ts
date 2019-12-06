@@ -15,7 +15,7 @@ import { ProjectInzienPageComponent } from './project-inzien-page/project-inzien
 import { GmapsComponent } from './gmaps/gmaps.component';
 import { GmapsLocSearchComponent } from './gmaps/gmaps-loc-search/gmaps-loc-search.component';
 import { MaterialModule } from './material/material.module';
-import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import { VehicleAddComponent } from './vehicles/vehicle-add/vehicle-add.component';
 
