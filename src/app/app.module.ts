@@ -16,6 +16,7 @@ import { MaterialModule } from './material/material.module';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import { VehicleAddComponent } from './vehicles/vehicle-add/vehicle-add.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { VehicleAddComponent } from './vehicles/vehicle-add/vehicle-add.componen
     BrowserAnimationsModule,
     GooglePlaceModule,
     MaterialModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
