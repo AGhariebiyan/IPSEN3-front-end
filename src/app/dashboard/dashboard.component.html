@@ -11,7 +11,8 @@
     
         <div class="row content-row">
             <div class="flex-container add-trip-container">
-                <span class="aantal-span">trip toevoegen<mat-icon id="mat-icon-add-circle" routerLink="/ritten/inzien">add_circle</mat-icon></span>
+                <!-- routerLink="/ritten/inzien" -->
+                <span class="aantal-span">trip toevoegen<mat-icon id="mat-icon-add-circle"  (click)="onClickPost()">add_circle</mat-icon></span>
             </div>
         </div>
     </div>
