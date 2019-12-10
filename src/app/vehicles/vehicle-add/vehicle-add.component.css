@@ -20,7 +20,7 @@
 }
 
 hr {
-  color: 1px solid gray;
+  /*color: 1px solid gray;*/
 }
 
 form {
@@ -28,7 +28,7 @@ form {
     max-width: 500px;
     width: 100%;
   }
-  
+
   .form-full-width {
     width: 100%;
   }
