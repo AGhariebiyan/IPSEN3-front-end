@@ -1,4 +1,4 @@
-import {Component, AfterViewInit, ViewChild, ElementRef, OnInit, ChangeDetectorRef} from '@angular/core';
+import {Component, AfterViewInit, ViewChild, ElementRef, OnInit} from '@angular/core';
 import {GmapsService} from './gmaps.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class GmapsComponent implements OnInit, AfterViewInit  {
   public km = 0;
   public time: string;
 
-  constructor(private cdr: ChangeDetectorRef, private mapService: GmapsService) { }
+  constructor(private mapService: GmapsService) { }
 
   ngOnInit() { this.mapService.currentLocations.subscribe((loc: {mIndex: number, lat: number, lng: number}) => {this.recieveLocation(loc); } );  }
 
