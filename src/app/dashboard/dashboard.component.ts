@@ -13,9 +13,6 @@ export class DashboardComponent implements OnInit {
   }
 
   onClickPost() {
-    // const objArray = this.httpClientService.onGet('http://localhost:8080/trips/trip/91');
-    console.log(this.httpClientService.onGet('http://localhost:8080/trips/trip/91'));
-    // this.httpClientService.onPost();
   }
 
 }
