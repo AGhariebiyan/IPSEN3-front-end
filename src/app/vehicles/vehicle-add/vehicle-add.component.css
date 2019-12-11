@@ -19,10 +19,6 @@
   font-size: 14pt;
 }
 
-hr {
-  color: 1px solid gray;
-}
-
 form {
     min-width: 150px;
     max-width: 500px;

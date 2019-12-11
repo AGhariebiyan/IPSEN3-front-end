@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { RittenInzienPageComponent } from './ritten-inzien-page/ritten-inzien-page.component';
@@ -16,7 +17,10 @@ import { MaterialModule } from './material/material.module';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import { VehicleAddComponent } from './vehicles/vehicle-add/vehicle-add.component';
-
+import { TripsComponent } from './trips/trips.component';
+import { TripAddComponent } from './trips/trip-add/trip-add.component';
+import { TripModifyComponent } from './trips/trip-modify/trip-modify.component';
+import { VehicleModifyComponent } from './vehicles/vehicle-modify/vehicle-modify.component';
 
 @NgModule({
   declarations: [
@@ -31,14 +35,20 @@ import { VehicleAddComponent } from './vehicles/vehicle-add/vehicle-add.componen
     VehiclesComponent,
     VehicleAddComponent,
     HeaderComponent,
-    DashboardComponent
+    DashboardComponent,
+    TripsComponent,
+    TripAddComponent,
+    TripModifyComponent,
+    VehicleModifyComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     GooglePlaceModule,
     MaterialModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

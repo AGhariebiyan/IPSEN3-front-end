@@ -1,33 +1,51 @@
 <div class="content">
 
   <div class="title">
-    <h2>Voertuigen overzicht</h2>
+    <h2>Voertuigen Toevoegen</h2>
   </div>
 
   <mat-card>
-    
-      <div>
-        <div class="top-left">
-            <mat-icon>arrow_back_ios</mat-icon>
-            <i>Voertuigen overzicht</i>
-        </div>
+  
+      <div class="top-left">
+        <mat-icon>arrow_back_ios</mat-icon>
+        <i>Voertuigen Overzicht</i>
       </div>
 
-      <form class="example-form">
-          <mat-form-field class="form-full-width">
-            <input matInput placeholder="Kenteken" value="">
+      <form [formGroup]="vehicleAddForm" (ngSubmit)="onSubmit()">
+        <div>
+        <mat-form-field class="form-full-width">
+            <input 
+            matInput 
+            type="text" 
+            id="licenseplate"
+            formControlName="licenseplate"
+            placeholder="Kenteken" 
+            value="">
           </mat-form-field>
       
           <mat-form-field class="form-full-width">
-            <input matInput placeholder="Merk" value="">
+            <input 
+            matInput 
+            placeholder="Merk" 
+            id="brand"
+            formControlName="brand"
+            value="">
           </mat-form-field>
       
           <mat-form-field class="form-full-width">
-            <input matInput placeholder="Type" value="">
+            <input 
+            matInput 
+            placeholder="Type"
+            formControlName="type"
+            id="type"
+            value="">
           </mat-form-field>
       
           <mat-form-field>
-            <mat-select placeholder="Brandstof type">
+            <mat-select 
+            placeholder="Brandstof type"
+            id="fuel"
+            formControlName="fuel">
               <mat-option value="benzine">Benzine</mat-option>
               <mat-option value="diesel">Diesel</mat-option>
               <mat-option value="elektrisch">Elektrisch</mat-option>
@@ -36,16 +54,25 @@
           </mat-form-field>
       
           <mat-form-field>
-            <mat-select placeholder="Carrosserie">
+            <mat-select 
+            placeholder="Carrosserie"
+            id="body"
+            formControlName="body">
               <mat-option value="station">Station</mat-option>
               <mat-option value="sedan">Sedan</mat-option>
             </mat-select>
           </mat-form-field>
-
+  
           <div class="button-row">
-            <button mat-flat-button color="primary">Primary</button>
+            <button 
+            mat-flat-button 
+            color="primary" 
+            type="submit"
+            [disabled]="!vehicleAddForm.valid">Toevoegen</button>
           </div>
-        </form>
+          <p *ngIf="formSubmitted">Voertuig is toegevoegd</p>
+        </div>
+      </form>
         
   </mat-card>
 
