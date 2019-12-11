@@ -9,7 +9,7 @@ import { ArrayType } from '@angular/compiler';
 export class HttpClientService {
   constructor(private http: HttpClient) {}
 
-  onGet(getUrl: string) : ArrayType[] {
+  onGet(getUrl: string) : any {
     const objArray = [];
 
     this.http.get(getUrl).pipe(
@@ -18,17 +18,17 @@ export class HttpClientService {
           objArray.push(responseData[key]);
         }
       })
-    ).subscribe(responseData => { console.log("response data from GET: " + responseData); });
+    ).subscribe();
 
     return objArray;
   }
 
   onPost(postUrl: string) {
-    this.http.post(postUrl, null).subscribe(responseData => { console.log("response data from POST: " + responseData); });
+    this.http.post(postUrl, null).subscribe();
   }
 
   onPut(postUrl: string) {
-    this.http.put(postUrl, null).subscribe(responseData => { console.log("response data from PUT: " + responseData); });
+    this.http.put(postUrl, null).subscribe();
   }
 
   onDelete(delUrl: string) {
