@@ -1,0 +1,24 @@
+<img class="plusButtonImage" src="assets/images/addButton.png" width="45" height="45">
+<mat-card class="card">
+  <mat-card-title>Ritten overzicht</mat-card-title>
+  <mat-card-content>
+    <table>
+      <tr>
+        <th>licensePlate</th>
+        <th>vehicleName</th>
+        <th>Project</th>
+        <th>vehicleType</th>
+        <th>Verwijderen</th>
+      </tr>
+      <tr *ngFor="let vehicle of vehiclesArray">
+        <td>{{vehicle.licensePlate}}</td>
+        <td>{{vehicle.vehicleName}}</td>
+        <td>{{vehicle.vehicleType}}</td>
+        <td>{{vehicle.totalTrips}}</td>
+        <td>
+          <i class="fa fa-trash fa-2x"></i>
+        </td>
+      </tr>
+    </table>
+  </mat-card-content>
+</mat-card>

@@ -4,7 +4,7 @@ import {GmapsService} from './gmaps.service';
 @Component({
   selector: 'app-gmaps',
   templateUrl: './gmaps.component.html',
-  styleUrls: ['./gmaps.component.scss']
+  styleUrls: ['./gmaps.component.css']
 })
 export class GmapsComponent implements OnInit, AfterViewInit  {
   @ViewChild('mapContainer', {static: false}) gmap: ElementRef;
@@ -42,19 +42,34 @@ export class GmapsComponent implements OnInit, AfterViewInit  {
   }
 
   setRoute() {
-    if (this.markerArray.lat.length > 1 && this.markerArray.lng.length > 1) {
+    // this.alertGmapService(60,"test");
+    // return;
+    let tempArrayLat = this.markerArray.lat.filter(function (el) {
+      return el != null;
+    });
+
+    let tempArrayLong = this.markerArray.lng.filter(function (el) {
+      return el != null;
+    });
+
+    if (tempArrayLong.length > 1 && tempArrayLat.length > 1) {
       const directionsService = new google.maps.DirectionsService();
       const waypointsLatLng = [];
       const start = new google.maps.LatLng(this.markerArray.lat[0], this.markerArray.lng[0]);
       const end = new google.maps.LatLng(this.markerArray.lat[this.markerArray.lat.length - 1], this.markerArray.lng[this.markerArray.lat.length - 1]);
-
       let request = {};
-
+      // console.log(this.markerArray);
       if (this.markerArray.lat.length > 2 && this.markerArray.lng.length > 2) {
         for (let i = 0; i < this.markerArray.lat.length; i++) {
+
           if (i === 0 || i === (this.markerArray.lng.length - 1) ) {
             continue;
           }
+
+          if (this.markerArray.lat[i] == null || this.markerArray.lng[i] == true) {
+            continue;
+          }
+
           waypointsLatLng.push({location: new google.maps.LatLng(this.markerArray.lat[i], this.markerArray.lng[i])});
         }
       }
@@ -62,7 +77,7 @@ export class GmapsComponent implements OnInit, AfterViewInit  {
 
       bounds.extend(start);
       bounds.extend(end);
-
+      // console.log(waypointsLatLng);
       if (waypointsLatLng.length > 0) {
         request = {
           origin: start,
@@ -89,12 +104,18 @@ export class GmapsComponent implements OnInit, AfterViewInit  {
 
           this.km = point.distance.value / 1000;
           this.time = point.duration.text;
-          this.cdr.detectChanges();
+          this.alertGmapService(this.km, this.time);
         } else {
           alert('Directions Request from ' + start.toUrlValue(6) + ' to ' + end.toUrlValue(6) + ' failed: ' + status);
         }
       });
     }
+  }
+
+  alertGmapService(km:Number, time:String){
+    this.mapService.drivenKilometers.emit(km);
+    this.mapService.estTravelTime.emit(time);
+
   }
 
 }

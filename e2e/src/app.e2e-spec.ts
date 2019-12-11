@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('DF app is running!');
+    expect(page.getTitleText()).toEqual('IPSEN3-front-end app is running!');
   });
 
   afterEach(async () => {

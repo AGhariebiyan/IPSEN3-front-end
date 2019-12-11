@@ -1,0 +1,95 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+//Angular custom theme
+$digitale-factuur-primary: (
+  50 : #e7e9ec,
+  100 : #c2c8cf,
+  200 : #9aa4af,
+  300 : #71808e,
+  400 : #526476,
+  500 : #34495e,
+  600 : #2f4256,
+  700 : #27394c,
+  800 : #213142,
+  900 : #152131,
+  A100 : #72adff,
+  A200 : #3f8fff,
+  A400 : #0c71ff,
+  A700 : #0065f1,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$digitale-factuur-accent: (
+  50 : #e4f7f3,
+  100 : #baebe1,
+  200 : #8ddece,
+  300 : #5fd0ba,
+  400 : #3cc6ab,
+  500 : #1abc9c,
+  600 : #17b694,
+  700 : #13ad8a,
+  800 : #0fa580,
+  900 : #08976e,
+  A100 : #c3ffec,
+  A200 : #90ffdc,
+  A400 : #5dffcc,
+  A700 : #44ffc4,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$IPSEN3-front-end-primary: mat-palette($digitale-factuur-primary);
+$IPSEN3-front-end-accent: mat-palette($digitale-factuur-accent);
+
+// The warn palette is optional (defaults to red).
+$IPSEN3-front-end-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$IPSEN3-front-end-theme: mat-light-theme($IPSEN3-front-end-primary, $IPSEN3-front-end-accent, $IPSEN3-front-end-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($IPSEN3-front-end-theme);
+

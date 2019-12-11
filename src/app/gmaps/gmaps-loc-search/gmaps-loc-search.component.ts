@@ -23,7 +23,6 @@ export class GmapsLocSearchComponent implements OnInit {
   ngOnInit() {
   }
   public handleAddressChange(address: Address) {
-    console.log(this.placeholder);
     // this.locationEvent.emit({lat: address.geometry.location.lat(), lng: address.geometry.location.lng()});
     this.mapService.currentLocations.emit({mIndex: this.index, lat: address.geometry.location.lat(), lng: address.geometry.location.lng()});
   }
