@@ -1,6 +1,6 @@
 <div class="cardContainer">
-  <div class ="buttonContainer">
-  <img class="plusButtonImage" src="assets/images/addButton.png" width="45" height="45">
+  <div class="buttonContainer">
+    <img class="plusButtonImage" src="assets/images/addButton.png" width="45" height="45">
   </div>
   <mat-card class="card">
     <mat-card-title>Ritten overzicht</mat-card-title>
@@ -13,16 +13,19 @@
           <th>Kenteken</th>
           <th>Verwijderen</th>
         </tr>
-        <tr *ngFor="let trip of tripsArray">
-          <td>{{trip.startLocatie}}</td>
-          <td>{{trip.eindLocatie}}</td>
+        <tr *ngFor="let trip of tripsArray | paginate: {itemsPerPage: 2, currentPage: p}">
+          <td>{{trip.startLocation}}</td>
+          <td>{{trip.endLocation}}</td>
           <td>{{trip.projectId}}</td>
-          <td>{{trip.kenteken}}</td>
+          <td>{{trip.licensePlate}}</td>
           <td>
-            <i class="fa fa-trash fa-2x"></i>
+            <i (click)=deleteTrip(trip.tripId) class="fa fa-trash fa-2x"></i>
           </td>
         </tr>
       </table>
+    </mat-card-content>
+    <mat-card-content class="paginationHolder">
+      <pagination-controls (pageChange)="p =$event"></pagination-controls>
     </mat-card-content>
   </mat-card>
 </div>

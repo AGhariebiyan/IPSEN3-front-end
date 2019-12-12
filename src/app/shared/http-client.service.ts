@@ -1,14 +1,19 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpClientService {
-  constructor(private http: HttpClient) {}
 
-  onGet(getUrl: string): Observable<object> {
+
+
+  constructor(private http: HttpClient) {
+  }
+
+  onGet(getUrl: string): Observable<any> {
     return this.http.get(getUrl);
   }
 
@@ -20,7 +25,7 @@ export class HttpClientService {
     this.http.put(postUrl, null).subscribe();
   }
 
-  onDelete(delUrl: string) {
+  onDelete(delUrl: string): Observable<any> {
     return this.http.delete(delUrl);
   }
 }

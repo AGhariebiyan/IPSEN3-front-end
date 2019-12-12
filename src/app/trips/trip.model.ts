@@ -1,14 +1,23 @@
 export class Trip {
-  startLocatie: string;
-  eindLocatie: string;
+  tripId: number;
   projectId: number;
-  kenteken: string;
+  userId: number;
+  licensePlate: string;
+  startLocation: string;
+  endLocation: string;
+  startKilometergauge: number;
+  endKilometergauge: number;
 
 
-  constructor(startLocatie: string, eindLocatie: string, projectId: number, kenteken: string) {
-    this.startLocatie = startLocatie;
-    this.eindLocatie = eindLocatie;
+  constructor(id: number, projectId: number, userId: number, licensePlate: string, startLocation: string,
+              endLocation: string, startKilometergauge: number, endKilometergauge: number) {
+    this.tripId = id;
     this.projectId = projectId;
-    this.kenteken = kenteken;
+    this.userId = userId;
+    this.licensePlate = licensePlate;
+    this.startLocation = startLocation;
+    this.endLocation = endLocation;
+    this.startKilometergauge = startKilometergauge;
+    this.endKilometergauge = endKilometergauge;
   }
 }

@@ -29,6 +29,7 @@ mat-card-title{
   color: black;
 }
 
+
 mat-card-content{
   display: flex;
   justify-content: center;
@@ -45,7 +46,8 @@ mat-card-content{
   position: relative;
  top: 25px;
   z-index: 2;
-  left: 25px
+  left: 25px;
+  cursor: pointer;
 
 
 
@@ -63,4 +65,13 @@ mat-card-content{
   background-color: white;
   width: 750px;
   z-index: 1;
+}
+
+.fa-trash{
+  cursor: pointer;
+}
+
+.paginationHolder{
+  display: flex;
+  justify-content: center;
 }
