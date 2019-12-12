@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
 export class HttpClientService {
   constructor(private http: HttpClient) {}
 
-  onGet(getUrl: string): Observable<object> {
+  onGet(getUrl: string): Observable<any> {
     return this.http.get(getUrl);
   }
 
