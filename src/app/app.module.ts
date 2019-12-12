@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { RittenInzienPageComponent } from './ritten-inzien-page/ritten-inzien-page.component';
+import { ViewTripsPageComponent } from './view-trips-page/view-trips-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Material imports
@@ -29,7 +29,7 @@ import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.compon
     AppComponent,
     TripsComponent,
     VoertuigenComponent,
-    RittenInzienPageComponent,
+    ViewTripsPageComponent,
     HeaderComponent,
     DashboardComponent,
     ProjectInzienPageComponent,
