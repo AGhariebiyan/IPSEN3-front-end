@@ -10,15 +10,8 @@ export class DashboardComponent implements OnInit {
   amountOfTripsByUser : string;
   amountOfProjectsByUser : string;
 
-  constructor(private httpClientService: HttpClientService) {}
-
-  ngOnInit() {
-    // this.fetchAmountOfTripsByUser();
-    this.fetchAmountOfProjectsByUser();
-  }
-
-  fetchAmountOfTripsByUser() {
-    const fetchedObj = this.httpClientService.onGet('http://localhost:8080/trips/amount-of-trips/user/1').pipe()
+  constructor(private httpClientService: HttpClientService) {
+    this.httpClientService.onGet('http://localhost:8080/trips/amount-of-trips/user/1').pipe()
       .subscribe(
         data => {
           this.amountOfTripsByUser = data;
@@ -26,10 +19,8 @@ export class DashboardComponent implements OnInit {
         error => {
           console.log(error);
     });
-  }
 
-  fetchAmountOfProjectsByUser() {
-    const fetchedObj = this.httpClientService.onGet('http://localhost:8080/trips/fetch/unique-projectids/1').pipe()
+    this.httpClientService.onGet('http://localhost:8080/trips/fetch/unique-projectids/1').pipe()
       .subscribe(
         data => {
           this.amountOfProjectsByUser = data.length;
@@ -39,4 +30,11 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  ngOnInit() {
+    this.fetchAmountOfTripsByUserAndAmountOfProjects();
+  }
+
+  fetchAmountOfTripsByUserAndAmountOfProjects() {
+    
+  }
 }
