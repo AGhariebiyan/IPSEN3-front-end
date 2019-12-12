@@ -7,6 +7,8 @@ import { RittenInzienPageComponent } from './ritten-inzien-page/ritten-inzien-pa
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Material imports
+import { MatIconModule, MatToolbarModule, MatMenuModule, MatDividerModule, MatListModule} from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,17 +16,22 @@ import { ProjectInzienPageComponent } from './project-inzien-page/project-inzien
 import { GmapsComponent } from './gmaps/gmaps.component';
 import { GmapsLocSearchComponent } from './gmaps/gmaps-loc-search/gmaps-loc-search.component';
 import { MaterialModule } from './material/material.module';
-import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import { VehicleAddComponent } from './vehicles/vehicle-add/vehicle-add.component';
 import { TripsComponent } from './trips/trips.component';
 import { TripAddComponent } from './trips/trip-add/trip-add.component';
 import { TripModifyComponent } from './trips/trip-modify/trip-modify.component';
 import { VehicleModifyComponent } from './vehicles/vehicle-modify/vehicle-modify.component';
+import { HttpClientModule } from '@angular/common/http';
+import {Trip} from './trips/trip.model';
+import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    TripsComponent,
+    VoertuigenComponent,
     RittenInzienPageComponent,
     HeaderComponent,
     DashboardComponent,
@@ -48,7 +55,8 @@ import { VehicleModifyComponent } from './vehicles/vehicle-modify/vehicle-modify
     MaterialModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
