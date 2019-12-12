@@ -1,0 +1,42 @@
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .title{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  
+  .top-left {
+    display: flex;
+    flex-direction: row;
+    font-size: 14pt;
+  }
+  
+  form {
+      min-width: 150px;
+      max-width: 500px;
+      width: 100%;
+    }
+    
+    .form-full-width {
+      width: 100%;
+    }
+  
+  .button-row button,
+  .button-row a {
+    margin-right: 8px;
+  }
+
+  .map {
+    border: 1px #1ABC9C solid;
+    height: 350px;
+    width: 275px;
+    margin: 25px;
+  }
