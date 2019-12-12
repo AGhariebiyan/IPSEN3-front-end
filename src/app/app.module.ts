@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TripsComponent } from './trips/trips.component';
 import {Trip} from './trips/trip.model';
 import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.component';
+import { ProjectOverviewPageComponent } from './project-overview-page/project-overview-page.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.compon
     VehiclesComponent,
     VehicleAddComponent,
     HeaderComponent,
-    DashboardComponent
+    DashboardComponent,
+    ProjectOverviewPageComponent
   ],
   imports: [
     BrowserModule,

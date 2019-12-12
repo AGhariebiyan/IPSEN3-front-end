@@ -1,0 +1,42 @@
+<div class="content">
+  <div class="searchContainer">
+    <mat-form-field class="example-form-field">
+        <input matInput type="text" (input)="filterProjectTable($event)" placeholder="Zoeken..." [value]='value'>
+        <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">
+          <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+  </div>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort class="table-size">
+      <!-- Project nummer kolom -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Project nummer: </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <!-- Naam kolom -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Project naam: </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Totaal geboekte trips op een project -->
+      <ng-container matColumnDef="trips">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Totale trips: </th>
+        <td mat-cell *matCellDef="let element"> {{element.trips}} </td>
+      </ng-container>
+
+      <!-- Totaal aantal km's op een project -->
+      <ng-container matColumnDef="km">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Totaal aantal km: </th>
+        <td mat-cell *matCellDef="let element"> {{element.km}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>
+
