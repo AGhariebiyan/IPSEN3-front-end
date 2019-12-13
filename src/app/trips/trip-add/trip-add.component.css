@@ -40,3 +40,9 @@
     width: 275px;
     margin: 25px;
   }
+
+  mat-card {
+    margin: 50px;
+    display: flex;
+    flex-direction: row;
+  }
