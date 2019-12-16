@@ -1,13 +1,12 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpClientService {
-
+  constructor(private http: HttpClient) {}
 
 
   constructor(private http: HttpClient) {
@@ -25,7 +24,7 @@ export class HttpClientService {
     this.http.put(postUrl, null).subscribe();
   }
 
-  onDelete(delUrl: string): Observable<any> {
+  onDelete(delUrl: string) {
     return this.http.delete(delUrl);
   }
 }
