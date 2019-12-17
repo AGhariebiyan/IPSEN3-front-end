@@ -1,3 +1,4 @@
+
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Trip} from './trip.model';
 import {HttpClientService} from '../shared/http-client.service';
@@ -94,10 +95,4 @@ export class TripsComponent implements OnInit {
     this.value = event.target.value;
   }
 
-  clearSearch() {
-    this.dataSource1.filter = '';
-    this.value = '';
-  }
-
 }
-
