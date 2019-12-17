@@ -68,3 +68,43 @@
     cursor: pointer;
     color: #52AE4F;
 }
+
+/* phones and down */
+@media (max-width: 480px) {
+    .content-container {
+        min-height: 100%;
+    }
+
+    .content-item {
+        height: auto;
+        flex-direction: column;
+    }
+
+    .content-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: auto;
+        flex: 1;
+        flex-direction: column;
+    }
+
+    .totalContainer {
+        width: 85vw;
+        height: 100%;
+    }
+
+    .aantal-span {
+        font-size: 5vw;
+    }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {}
+
+/* Large desktop */
+@media (min-width: 1200px) {}
