@@ -24,6 +24,7 @@ import { TripsComponent } from './trips/trips.component';
 import {Trip} from './trips/trip.model';
 import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.component';
 import { ProjectOverviewPageComponent } from './project-overview-page/project-overview-page.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { ProjectOverviewPageComponent } from './project-overview-page/project-ov
     VehiclesComponent,
     VehicleAddComponent,
     HeaderComponent,
-    DashboardComponent
+    DashboardComponent,
+    ProjectOverviewPageComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,8 @@ import { ProjectOverviewPageComponent } from './project-overview-page/project-ov
     GooglePlaceModule,
     MaterialModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

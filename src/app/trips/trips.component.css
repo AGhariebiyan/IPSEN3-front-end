@@ -1,40 +1,4 @@
-table{
-  border-collapse: collapse;
-  text-align: center;
-  width: 750px;
 
-}
-table,th,td{
-  border: 1px ridge #E9E9E9;
-  color: black;
-
-}
-th,td{
-  padding: 1em 1em 1em 1em ;
-
-}
-
-mat-card-title{
-  font-size: 18px;
-}
-
-th{
-  background: linear-gradient(#e6e6e6,#b3b3b3);
-}
-
-tr:nth-child(even) td { background: #FEFEFE; }
-tr:nth-child(odd) td { background: #F1F1F1;}
-
-mat-card-title{
-  color: black;
-}
-
-
-mat-card-content{
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
 
 .buttonContainer{
   /*border: 1px red solid;*/
@@ -49,29 +13,29 @@ mat-card-content{
   left: 25px;
   cursor: pointer;
 
-
-
 }
 
-.cardContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /*border: 1px red solid;*/
-}
-
-.card{
-  background-color: white;
-  width: 750px;
-  z-index: 1;
-}
 
 .fa-trash{
   cursor: pointer;
 }
 
-.paginationHolder{
+
+.content {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.table-size{
+  width:50vw;
+}
+
+.searchContainer {
+  width: 50vw;
+  display: flex;
+  justify-content: flex-end;
 }

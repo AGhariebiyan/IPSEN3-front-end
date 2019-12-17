@@ -4,8 +4,6 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 
 
-
-
 export interface PeriodicElement {
   id: number;
   name: string;
@@ -67,18 +65,19 @@ export class ProjectOverviewPageComponent implements OnInit {
   constructor() {
     this.displayedColumns = ['id', 'name', 'trips', 'km'];
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-   }
+  }
 
   ngOnInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 
-  filterProjectTable(event){
+  filterProjectTable(event) {
     this.dataSource.filter = event.target.value;
     this.value = event.target.value;
   }
-  clearSearch(){
+
+  clearSearch() {
     this.dataSource.filter = '';
     this.value = '';
   }
