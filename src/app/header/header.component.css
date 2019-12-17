@@ -1,120 +1,16 @@
-.mat-toolbar-header {
-    display: flex;
-    flex-direction: row;
+.logo {
+  margin: 0 10px;
 }
 
-.menu-icon-button {
-    all: initial;
-    * {
-      all: unset;
-    }
+.menuButton {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+  border-radius: 5px;
 }
 
-.mat-icon-menu {
-    color: white;
-}
-
-.img-company {
-    position: relative;
-    left: 25px;
-}
-
-.span-company-name {
-    position: relative;
-    left: 35px;
-}
-
-.mat-toolbar-row-right {
-    display: flex;
-    flex-direction: row-reverse;
-}
-
-.mat-icon-account-circle {
-    position: relative;
-    right: 25px;
-}
-
-#span-username {
-    position: relative;
-    right: 35px;
-}
-
-#overlay {
-    position: fixed; 
-    display: none; 
-    width: 15%; 
-    height: 100%;
-    top: 64px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: white;
-    z-index: 2;
-    cursor: pointer;
-    animation: fadein 0.5s;
-    -webkit-animation: fadein 0.5s; /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fadein 0.5s; /* Firefox < 16 */
-    -ms-animation: fadein 0.5s; /* Internet Explorer */
-    -o-animation: fadein 0.5s; /* Opera < 12.1 */
-}
-
-.overlayed-dropdown-menu {
-    list-style: none;
-    position: relative;
-    top: 35px;
-    color: #34495e;
-}
-
-.overlayed-dropdown-menu-item, a {
-    text-decoration: none;
-    color: #34495e;
-}
-
-a:hover {
-    color: #14BD9C;
-}
-
-.nav-menu-icon {
-    position: relative;
-    top: 3px;
-    right: 15px;
-}
-
-.logout-from-drop-down-menu-button {
-    position: absolute;
-    bottom: calc(5vh);
-    left: 0;
-    width: 100%;
-    height: 10%;
-    background-color: transparent;
-    border: none;
-}
-
-@keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Firefox < 16 */
-@-moz-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Safari, Chrome and Opera > 12.1 */
-@-webkit-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Internet Explorer */
-@-ms-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Opera < 12.1 */
-@-o-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+.menuButton:hover {
+  background: #2f4256;
+  cursor: pointer;
 }

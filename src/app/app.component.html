@@ -1,2 +1,16 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
+<mat-toolbar color="primary">
+  <mat-icon class="menuButton" (click)="menu.toggle()">menu</mat-icon>
+  <img src="assets/imgs/logo.png" class="logo" alt="logo digitale factuur" style="max-height: 50px;">
+  Digitale Factuur
+</mat-toolbar>
+
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #menu mode="side">
+    Sidenav content
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet>Loading page...</router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
