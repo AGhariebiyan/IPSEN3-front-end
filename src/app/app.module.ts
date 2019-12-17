@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { RittenInzienPageComponent } from './ritten-inzien-page/ritten-inzien-page.component';
@@ -18,13 +19,13 @@ import { MaterialModule } from './material/material.module';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import { VehicleAddComponent } from './vehicles/vehicle-add/vehicle-add.component';
-import { HttpClientModule } from '@angular/common/http';
-
 import { TripsComponent } from './trips/trips.component';
+import { TripAddComponent } from './trips/trip-add/trip-add.component';
+import { TripModifyComponent } from './trips/trip-modify/trip-modify.component';
+import { VehicleModifyComponent } from './vehicles/vehicle-modify/vehicle-modify.component';
+import { HttpClientModule } from '@angular/common/http';
 import {Trip} from './trips/trip.model';
 import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.component';
-import { ProjectOverviewPageComponent } from './project-overview-page/project-overview-page.component';
-
 
 @NgModule({
   declarations: [
@@ -42,7 +43,10 @@ import { ProjectOverviewPageComponent } from './project-overview-page/project-ov
     VehicleAddComponent,
     HeaderComponent,
     DashboardComponent,
-    ProjectOverviewPageComponent
+    TripsComponent,
+    TripAddComponent,
+    TripModifyComponent,
+    VehicleModifyComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +54,8 @@ import { ProjectOverviewPageComponent } from './project-overview-page/project-ov
     GooglePlaceModule,
     MaterialModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [],
