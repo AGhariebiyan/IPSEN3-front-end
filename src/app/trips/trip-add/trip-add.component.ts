@@ -15,6 +15,7 @@ export class TripAddComponent implements OnInit {
 
   public drivenKilometers;
   public estTravelTime;
+  private destination = {location: []};
 
   constructor(private httpClientServive: HttpClientService, private cdr: ChangeDetectorRef, private mapService: GmapsService) { }
 
@@ -31,6 +32,7 @@ export class TripAddComponent implements OnInit {
     
     this.mapService.drivenKilometers.subscribe((km) => {this.drivenKilometers = km; this.cdr.detectChanges(); } );
     this.mapService.estTravelTime.subscribe((time) => {this.estTravelTime = time; this.cdr.detectChanges(); } );
+    this.mapService.destination.subscribe((place) => {this.destination = place; console.log(place)} );
   }
 
   onSubmit(){
@@ -42,8 +44,10 @@ export class TripAddComponent implements OnInit {
     const endKmGauge = this.tripAddForm.value.endKmGauge;
     const projectId = this.tripAddForm.value.projectID;
 
-    const postObj = this.httpClientServive.onPost(
-      'http://localhost:8080/trips/trip/add/for-project/' + projectId + '/1/' + licenseplate + '/' + startLocation + '/' + endLocation + '/' + startKmGauge + '/' + endKmGauge + '/' + drivenKm);
+    console.log(this.destination);
+
+  //   const postObj = this.httpClientServive.onPost(
+  //     // 'http://localhost:8080/trips/trip/add/for-project/' + projectId + '/1/' + licenseplate + '/' + this.destination[0].location + '/' + endLocation + '/' + startKmGauge + '/' + endKmGauge + '/' + drivenKm);
 
   }
 

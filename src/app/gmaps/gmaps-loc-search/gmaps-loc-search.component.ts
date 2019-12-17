@@ -15,6 +15,8 @@ export class GmapsLocSearchComponent implements OnInit {
   @Input('gmap-search-index') index: number;
   @Input('gmap-input-placeholder') placeholder: string;
 
+  private adressArr = {location: []};
+
 
   private loc: {};
 
@@ -23,8 +25,13 @@ export class GmapsLocSearchComponent implements OnInit {
   ngOnInit() {
   }
   public handleAddressChange(address: Address) {
+    this.adressArr.location[this.index] = address.formatted_address;
+    console.log(this.index, this.adressArr)
+    
     // this.locationEvent.emit({lat: address.geometry.location.lat(), lng: address.geometry.location.lng()});
     this.mapService.currentLocations.emit({mIndex: this.index, lat: address.geometry.location.lat(), lng: address.geometry.location.lng()});
+    this.mapService.destination.emit(this.adressArr);
+  
   }
 
 }
