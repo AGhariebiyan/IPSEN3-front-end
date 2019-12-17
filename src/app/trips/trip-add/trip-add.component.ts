@@ -29,10 +29,10 @@ export class TripAddComponent implements OnInit {
       'endKmGauge': new FormControl(null),
       'projectID': new FormControl(null)
     });
-    
+
     this.mapService.drivenKilometers.subscribe((km) => {this.drivenKilometers = km; this.cdr.detectChanges(); } );
     this.mapService.estTravelTime.subscribe((time) => {this.estTravelTime = time; this.cdr.detectChanges(); } );
-    this.mapService.destination.subscribe((place) => {this.destination = place; console.log(place)} );
+    this.mapService.destination.subscribe((place) => {this.destination.location[place.mIndex] = place.loc; console.log(place)} );
   }
 
   onSubmit(){
