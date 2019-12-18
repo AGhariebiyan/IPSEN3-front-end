@@ -1,16 +1,15 @@
 <div class="content">
-
-    <div class="title">
-        <h2>Rit Toevoegen</h2>
-    </div>
     
     <mat-card>
     
+        <div class='dataContainer'>
         <div class="top-left">
             <mat-icon>arrow_back_ios</mat-icon>
             <i>Ritten Overzicht</i>
         </div>
     
+        <h2>Rit toevoegen</h2>
+
         <form [formGroup]="tripAddForm" (ngSubmit)="onSubmit()">
             <mat-form-field class="form-full-width">
                 <input 
@@ -21,15 +20,6 @@
                 value="">
             </mat-form-field>
 
-            <!-- <mat-form-field class="form-full-width">
-                <input 
-                matInput
-                id="startLocation"
-                formControlName="startLocation"
-                placeholder="Start locatie" 
-                value="">
-            </mat-form-field> -->
-
             <app-gmaps-loc-search
             [gmap-search-index]="0" 
             [gmap-input-placeholder]="'Voer uw startlocatie in'">            
@@ -39,15 +29,6 @@
             [gmap-search-index]="1" 
             [gmap-input-placeholder]="'Voer uw tussenstop'">
             </app-gmaps-loc-search>
-        
-            <!-- <mat-form-field class="form-full-width">
-                <input 
-                matInput
-                id="endLocation"
-                formControlName="endLocation"
-                placeholder="Eind locatie" 
-                value="">
-            </mat-form-field> -->
         
             <mat-form-field class="form-full-width">
                 <input 
@@ -69,16 +50,16 @@
                 value="">
             </mat-form-field>
 
-            <mat-form-field class="form-full-width">
-                <input 
+            <!-- <mat-form-field class="form-full-width">
+                <input
+            
                 matInput
-                type="number" 
+                type="text"
                 id="endKmGauge"
                 formControlName="endKmGauge"
                 placeholder="Eind kilometerstand" 
-                value=""
-                [(ngModel)]="endKmGaugeTotal">
-            </mat-form-field>
+                value="">
+            </mat-form-field> -->
 
             <mat-form-field class="form-full-width">
                 <input 
@@ -98,6 +79,7 @@
             </div>
             <p *ngIf="formSubmitted">Rit is toegevoegd!</p>
         </form>
+        </div>
 
         <div class="map">
             <app-gmaps></app-gmaps>

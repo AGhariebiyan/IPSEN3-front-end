@@ -15,9 +15,20 @@ export class TripAddComponent implements OnInit {
 
   public drivenKilometers;
   public estTravelTime;
+  public displayedLicenseplates: string[];
   private destination = {location: []};
 
-  constructor(private httpClientServive: HttpClientService, private cdr: ChangeDetectorRef, private mapService: GmapsService) { }
+  constructor(private httpClientService: HttpClientService, private cdr: ChangeDetectorRef, private mapService: GmapsService) {
+    this.displayedLicenseplates = ['licenseplates'];
+    const fetchedObj = this.httpClientService.onGet('http://localhost:8080/vehicles/fetch/unique-licenseplates/1').pipe()
+      .subscribe(
+        data => {
+          data.array.forEach(element => {
+            
+          });
+        }
+      )
+   }
 
   ngOnInit() {
     this.tripAddForm =  new FormGroup({
@@ -35,19 +46,19 @@ export class TripAddComponent implements OnInit {
     this.mapService.destination.subscribe((place) => {this.destination.location[place.mIndex] = place.loc; console.log(place)} );
   }
 
+
   onSubmit(){
     const licenseplate = this.tripAddForm.value.licenseplate;
-    const startLocation = this.tripAddForm.value.startLocation;
-    const endLocation = this.tripAddForm.value.endLocation;
     const drivenKm = this.tripAddForm.value.drivenKm;
     const startKmGauge = this.tripAddForm.value.startKmGauge;
-    const endKmGauge = this.tripAddForm.value.endKmGauge;
+    const endKmGauge = startKmGauge + drivenKm;
     const projectId = this.tripAddForm.value.projectID;
 
-    console.log(this.destination);
+    console.log(this.destination.location[0]);
+    console.log(this.destination.location[1]);
 
-  //   const postObj = this.httpClientServive.onPost(
-  //     // 'http://localhost:8080/trips/trip/add/for-project/' + projectId + '/1/' + licenseplate + '/' + this.destination[0].location + '/' + endLocation + '/' + startKmGauge + '/' + endKmGauge + '/' + drivenKm);
+    const postObj = this.httpClientService.onPost(
+      'http://localhost:8080/trips/trip/add/for-project/' + projectId + '/1/' + licenseplate + '/' + this.destination.location[0] + '/' + this.destination.location[1] + '/' + startKmGauge + '/' + endKmGauge + '/' + drivenKm);
 
   }
 
