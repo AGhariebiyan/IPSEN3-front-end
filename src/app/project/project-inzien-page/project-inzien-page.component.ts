@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import {GmapsService} from '../gmaps/gmaps.service';
-import { HttpClientService } from '../shared/http-client.service';
+import {GmapsService} from '../../gmaps/gmaps.service';
+import { HttpClientService } from '../../shared/http-client.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-project-inzien-page',
@@ -11,28 +12,28 @@ import { HttpClientService } from '../shared/http-client.service';
 export class ProjectInzienPageComponent implements OnInit {
 
 
-  public drivenKilometers;
-  public estTravelTime;
-  constructor(private cdr: ChangeDetectorRef, private mapService: GmapsService, private httpClientService: HttpClientService) { }
+  public projectId: number;
+  public projectName: string;
 
+  constructor(private cdr: ChangeDetectorRef, private mapService: GmapsService, private httpClientService: HttpClientService, private aRoute: ActivatedRoute, private route: Router) { }
 
   ngOnInit() {
-    this.mapService.drivenKilometers.subscribe((km) => {this.drivenKilometers = km; this.cdr.detectChanges(); } );
-    this.mapService.estTravelTime.subscribe((time) => {this.estTravelTime = time; this.cdr.detectChanges(); } );
+    // this.mapService.drivenKilometers.subscribe((km) => {this.drivenKilometers = km; this.cdr.detectChanges(); } );
+    // this.mapService.estTravelTime.subscribe((time) => {this.estTravelTime = time; this.cdr.detectChanges(); } );
 
-    const fetchedObj = this.httpClientService.onGet('http://localhost:8080/project/getAllProject').pipe()
+    const fetchedObj = this.httpClientService.onGet('http://localhost:8080/project/getProjectById?projectId=' + this.aRoute.snapshot.params.projectId).pipe()
       .subscribe(
         data => {
-          console.log(data);
+          this.projectId = data.id;
+          this.projectName = data.name;
         },
         error => {
           console.log(error);
     });
+  }
 
-
-
-
-
+  public navigateBack(){
+    this.route.navigate(['projecten/'+event.target.parentNode.children[0].id]);
   }
 
 

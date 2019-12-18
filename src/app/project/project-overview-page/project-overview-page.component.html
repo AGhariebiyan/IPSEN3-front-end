@@ -39,5 +39,11 @@
     </table>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
+
+  <div class="footerContainer">
+    <small>Laatste update: {{lastUpdate}}</small>
+    <button class="btn" (click)="updateTable($event)" [ngClass]="loading ? 'loading' : 'done'">Update</button>
+
+  </div>
 </div>
 

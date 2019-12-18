@@ -11,7 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ProjectInzienPageComponent } from './project-inzien-page/project-inzien-page.component';
+import { ProjectInzienPageComponent } from './project/project-inzien-page/project-inzien-page.component';
 import { GmapsComponent } from './gmaps/gmaps.component';
 import { GmapsLocSearchComponent } from './gmaps/gmaps-loc-search/gmaps-loc-search.component';
 import { MaterialModule } from './material/material.module';
@@ -23,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { TripsComponent } from './trips/trips.component';
 import {Trip} from './trips/trip.model';
 import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.component';
-import { ProjectOverviewPageComponent } from './project-overview-page/project-overview-page.component';
+import { ProjectOverviewPageComponent } from './project/project-overview-page/project-overview-page.component';
+import {CookieService} from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { ProjectOverviewPageComponent } from './project-overview-page/project-ov
     HeaderComponent,
     DashboardComponent,
     ProjectOverviewPageComponent
+
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,7 @@ import { ProjectOverviewPageComponent } from './project-overview-page/project-ov
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

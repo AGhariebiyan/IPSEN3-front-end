@@ -1,12 +1,12 @@
 <div class="content">
   <div class="title">
-    <h2 >Voorbeeld project #001</h2>
+    <h2 >{{projectName}} #{{projectId}}</h2>
   </div>
   <mat-card>
     <div class="card-left-content">
       <div class="top-left">
-        <mat-icon>arrow_back_ios</mat-icon>
-        <i>Projecten overzicht</i>
+        <mat-icon (click)="navigateBack()" >arrow_back_ios</mat-icon>
+        <i (click)="navigateBack()" >Projecten overzicht</i>
       </div>
 
       <div class="card-header">
@@ -58,9 +58,6 @@
     <div class="card-right-content">
       <div class="map">
         <app-gmaps></app-gmaps>
-        <app-gmaps-loc-search [gmap-search-index]="0" [gmap-input-placeholder]="'Voer uw startlocatie in'"></app-gmaps-loc-search>
-        <app-gmaps-loc-search [gmap-search-index]="1" [gmap-input-placeholder]="'Voer uw tussenstop'"></app-gmaps-loc-search>
-<!--        <app-gmaps-loc-search [gmap-search-index]="2" [gmap-input-placeholder]="'Voer uw eindlocatie in'"></app-gmaps-loc-search>-->
       </div>
     </div>
   </mat-card>
