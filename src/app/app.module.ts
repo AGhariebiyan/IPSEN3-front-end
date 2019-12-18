@@ -24,6 +24,7 @@ import { TripsComponent } from './trips/trips.component';
 import {Trip} from './trips/trip.model';
 import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.component';
 import { NotificationComponent } from './shared/notification/notification.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { NotificationComponent } from './shared/notification/notification.compon
     VehicleAddComponent,
     HeaderComponent,
     DashboardComponent,
-    NotificationComponent
+    NotificationComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
