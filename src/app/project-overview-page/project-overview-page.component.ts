@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import {HttpClientService} from '../shared/http-client.service';
 
 
 
@@ -22,41 +23,10 @@ export interface PeriodicElement {
 
 export class ProjectOverviewPageComponent implements OnInit {
 
-  private ELEMENT_DATA: PeriodicElement[] = [
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
+  private ELEMENT_DATA: PeriodicElement[] = [];
 
-
-  ];
-
-  displayedColumns: string[];
-  dataSource: MatTableDataSource<PeriodicElement>;
+  public displayedColumns: string[];
+  public dataSource: MatTableDataSource<PeriodicElement>;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -64,12 +34,24 @@ export class ProjectOverviewPageComponent implements OnInit {
   value = '';
 
 
-  constructor() {
+  constructor(private httpClient: HttpClientService) {
     this.displayedColumns = ['id', 'name', 'trips', 'km'];
-    this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-   }
+    const fetchedObj = this.httpClient.onGet('http://localhost:8080/project/getAllProject').pipe()
+      .subscribe(
+        data => {
+          data.forEach(dataEl => {
+            this.ELEMENT_DATA.push({id: dataEl.id, name: dataEl.name, trips: dataEl.trips.length, km: 1.234});
+          });
+          this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+          this.onDataInit();
+        },
+        error => {
+          console.log(error);
+    });
+  }
 
-  ngOnInit() {
+  ngOnInit(){}
+  onDataInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
