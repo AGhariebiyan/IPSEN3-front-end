@@ -26,8 +26,6 @@ import { VehicleModifyComponent } from './vehicles/vehicle-modify/vehicle-modify
 import { HttpClientModule } from '@angular/common/http';
 import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.component';
 import { ProjectOverviewPageComponent } from './project-overview-page/project-overview-page.component';
-import {NgxPaginationModule} from 'ngx-pagination';
-
 
 @NgModule({
   declarations: [
@@ -41,15 +39,18 @@ import {NgxPaginationModule} from 'ngx-pagination';
     GmapsComponent,
     GmapsLocSearchComponent,
     ProjectInzienPageComponent,
+    ProjectOverviewPageComponent,
     VehiclesComponent,
     VehicleAddComponent,
     HeaderComponent,
     DashboardComponent,
+<<<<<<<<< Temporary merge branch 1
+=========
     TripsComponent,
     TripAddComponent,
     TripModifyComponent,
-    VehicleModifyComponent,
-    ProjectOverviewPageComponent
+    VehicleModifyComponent
+>>>>>>>>> Temporary merge branch 2
   ],
   imports: [
     BrowserModule,
@@ -59,8 +60,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule,
-    NgxPaginationModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

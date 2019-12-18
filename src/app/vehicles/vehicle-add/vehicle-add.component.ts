@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { HttpClientService } from 'src/app/shared/http-client.service';
 
 @Component({
   selector: 'app-vehicle-add',
@@ -11,7 +12,7 @@ export class VehicleAddComponent implements OnInit {
 
   vehicleAddForm: FormGroup;
 
-  constructor() { }
+  constructor(private httpClientServive: HttpClientService) { }
 
   ngOnInit() {
     this.vehicleAddForm = new FormGroup({
@@ -24,12 +25,19 @@ export class VehicleAddComponent implements OnInit {
   }
 
   onSubmit() { 
-    console.log(this.vehicleAddForm);
-    console.log(this.vehicleAddForm.value.licenseplate);
-    console.log(this.vehicleAddForm.value.fuel);
-    console.log(this.vehicleAddForm.value.body);
+    const licensplate = this.vehicleAddForm.value.licenseplate;
+    const brand = this.vehicleAddForm.value.brand;
+    const type = this.vehicleAddForm.value.type;
+    const fuel = this.vehicleAddForm.value.fuel;
+    const vehicleBody = this.vehicleAddForm.value.body;
+
+    const postObj = this.httpClientServive.onPost('http://localhost:8080/vehicles/vehicle/add/for-user/1/2/' + licensplate + '/' + brand + '/' + type + '/' + fuel + '/' + vehicleBody);
     this.formSubmitted = true;
-    this.vehicleAddForm.reset();
+
+    /**
+     * TODO:
+     * navigatie naar voertuigen overzicht*/  
+    // this.vehicleAddForm.reset();
   }
 
 }
