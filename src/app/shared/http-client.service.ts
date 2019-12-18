@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, catchError } from 'rxjs/operators';
-import { ArrayType } from '@angular/compiler';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,18 +8,8 @@ import { ArrayType } from '@angular/compiler';
 export class HttpClientService {
   constructor(private http: HttpClient) {}
 
-  onGet(getUrl: string) : any {
-    const objArray = [];
-
-    this.http.get(getUrl).pipe(
-      map(responseData => {
-        for(const key in responseData) {
-          objArray.push(responseData[key]);
-        }
-      })
-    ).subscribe();
-
-    return objArray;
+  onGet(getUrl: string): Observable<any> {
+    return this.http.get(getUrl);
   }
 
   onPost(postUrl: string) {
