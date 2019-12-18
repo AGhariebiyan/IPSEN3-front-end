@@ -118,3 +118,49 @@ a:hover {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+
+/* phones and down */
+@media (max-width: 480px) {
+    .mat-toolbar-header {
+        flex-direction: column;
+    }
+
+    .mat-toolbar-row-right {
+        display: none;
+    }
+
+    .img-company {
+        width: 15vw;
+        height: auto;
+    }
+
+    #overlay {
+        width: 100%; 
+        top: 57px;
+    }
+    
+    .overlayed-dropdown-menu {
+        top: 20vh;
+        padding: 0;
+    }
+
+    .overlayed-dropdown-menu-item, a {
+        font-size: 22px;
+        position: relative;
+        left: 15%;
+        margin-top: 4%;
+    }
+    
+    .logout-from-drop-down-menu-button {
+        bottom: calc(10vh);
+    }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {}
+
+/* Large desktop */
+@media (min-width: 1200px) {}
