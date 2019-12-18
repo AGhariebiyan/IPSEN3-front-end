@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { RittenInzienPageComponent } from './ritten-inzien-page/ritten-inzien-page.component';
+import { ViewTripsPageComponent } from './view-trips-page/view-trips-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Material imports
+
 import { MatIconModule, MatToolbarModule, MatMenuModule, MatDividerModule, MatListModule, MatButtonModule} from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
@@ -18,13 +20,17 @@ import { MaterialModule } from './material/material.module';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import { VehicleAddComponent } from './vehicles/vehicle-add/vehicle-add.component';
-import { HttpClientModule } from '@angular/common/http';
-
 import { TripsComponent } from './trips/trips.component';
-import {Trip} from './trips/trip.model';
+import { TripAddComponent } from './trips/trip-add/trip-add.component';
+import { TripModifyComponent } from './trips/trip-modify/trip-modify.component';
+import { VehicleModifyComponent } from './vehicles/vehicle-modify/vehicle-modify.component';
+import { HttpClientModule } from '@angular/common/http';
 import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.component';
+
 import { NotificationComponent } from './shared/notification/notification.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+
+import { ProjectOverviewPageComponent } from './project-overview-page/project-overview-page.component';
 
 
 @NgModule({
@@ -32,19 +38,23 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
     AppComponent,
     TripsComponent,
     VoertuigenComponent,
-    RittenInzienPageComponent,
+    ViewTripsPageComponent,
     HeaderComponent,
     DashboardComponent,
     ProjectInzienPageComponent,
     GmapsComponent,
     GmapsLocSearchComponent,
     ProjectInzienPageComponent,
+    ProjectOverviewPageComponent,
     VehiclesComponent,
     VehicleAddComponent,
     HeaderComponent,
     DashboardComponent,
     NotificationComponent,
     PageNotFoundComponent
+    TripAddComponent,
+    TripModifyComponent,
+    VehicleModifyComponent
   ],
   imports: [
     BrowserModule,
@@ -52,8 +62,10 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
     GooglePlaceModule,
     MaterialModule,
     AppRoutingModule,
-    HttpClientModule,
     MatButtonModule
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
