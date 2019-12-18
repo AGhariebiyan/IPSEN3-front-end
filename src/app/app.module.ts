@@ -23,6 +23,7 @@ import { TripModifyComponent } from './trips/trip-modify/trip-modify.component';
 import { VehicleModifyComponent } from './vehicles/vehicle-modify/vehicle-modify.component';
 import { HttpClientModule } from '@angular/common/http';
 import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.component';
+import { ProjectOverviewPageComponent } from './project-overview-page/project-overview-page.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.compon
     GmapsComponent,
     GmapsLocSearchComponent,
     ProjectInzienPageComponent,
+    ProjectOverviewPageComponent,
     VehiclesComponent,
     VehicleAddComponent,
     HeaderComponent,

@@ -1,43 +1,48 @@
 <div class="content">
-
-    <div class="title">
-        <h2>Rit Toevoegen</h2>
-    </div>
     
     <mat-card>
     
+        <div class='dataContainer'>
         <div class="top-left">
             <mat-icon>arrow_back_ios</mat-icon>
             <i>Ritten Overzicht</i>
         </div>
     
+        <h2>Rit toevoegen</h2>
+
         <form [formGroup]="tripAddForm" (ngSubmit)="onSubmit()">
-            <mat-form-field class="form-full-width">
-                <input 
-                matInput 
+
+            <mat-form-field>
+                <mat-select 
+                placeholder="Kenteken"
                 id="licenseplate"
-                formControlName="licenseplate"
-                placeholder="Kenteken" 
-                value="">
+                formControlName="licenseplate">
+                  <mat-option 
+                  *ngFor="let licenseplate of licenseplates"
+                  value="{{licenseplate}}">{{licenseplate}}</mat-option>
+                </mat-select>
             </mat-form-field>
 
-            <mat-form-field class="form-full-width">
-                <input 
-                matInput
-                id="startLocation"
-                formControlName="startLocation"
-                placeholder="Start locatie" 
-                value="">
+            <mat-form-field>
+                <mat-select 
+                placeholder="Project nummer"
+                id="projectId"
+                formControlName="projectID">
+                  <mat-option 
+                  *ngFor="let project of projects"
+                  value="{{project}}">{{project}}</mat-option>
+                </mat-select>
             </mat-form-field>
-        
-            <mat-form-field class="form-full-width">
-                <input 
-                matInput
-                id="endLocation"
-                formControlName="endLocation"
-                placeholder="Eind locatie" 
-                value="">
-            </mat-form-field>
+
+            <app-gmaps-loc-search
+            [gmap-search-index]="0" 
+            [gmap-input-placeholder]="'Voer uw startlocatie in'">            
+            </app-gmaps-loc-search>
+            
+            <app-gmaps-loc-search
+            [gmap-search-index]="1" 
+            [gmap-input-placeholder]="'Voer uw eindbestemming in'">
+            </app-gmaps-loc-search>
         
             <mat-form-field class="form-full-width">
                 <input 
@@ -45,9 +50,18 @@
                 type="number" 
                 id="drivenKm"
                 formControlName="drivenKm"
-                placeholder="Gereden KM" 
-                value=""
-                >
+                placeholder="Gereden Kilometers"
+                value="{{drivenKilometers}}">
+            </mat-form-field>
+
+            <mat-form-field class="form-full-width">
+                <input 
+                matInput
+                type="number" 
+                id="startKmGauge"
+                formControlName="startKmGauge"
+                placeholder="Start kilometerstand" 
+                value="">
             </mat-form-field>
     
             <div class="button-row">
@@ -56,15 +70,16 @@
                 color="primary"
                 [disabled]="!tripAddForm.valid">Toevoegen</button>
             </div>
+            <p *ngIf="formSubmitted">Rit is toegevoegd!</p>
         </form>
+        </div>
 
-        <!-- <div class="map">
-            <app-gmaps></app-gmaps>
-            <app-gmaps-loc-search [gmap-search-index]="0" [gmap-input-placeholder]="'Voer uw startlocatie in'"></app-gmaps-loc-search>
-            <app-gmaps-loc-search [gmap-search-index]="1" [gmap-input-placeholder]="'Voer uw tussenstop'"></app-gmaps-loc-search>
-            <app-gmaps-loc-search [gmap-search-index]="2" [gmap-input-placeholder]="'Voer uw eindlocatie in'"></app-gmaps-loc-search>
-        </div> -->
+        <div class="map">
+            <app-gmaps></app-gmaps>            
+        </div>
             
     </mat-card>
-    
+    {{estTravelTime}}
+
+        
 </div>
