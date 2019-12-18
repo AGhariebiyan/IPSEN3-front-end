@@ -7,6 +7,9 @@ import { ViewTripsPageComponent } from './view-trips-page/view-trips-page.compon
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Material imports
+
+import { MatIconModule, MatToolbarModule, MatMenuModule, MatDividerModule, MatListModule, MatButtonModule} from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,7 +26,12 @@ import { TripModifyComponent } from './trips/trip-modify/trip-modify.component';
 import { VehicleModifyComponent } from './vehicles/vehicle-modify/vehicle-modify.component';
 import { HttpClientModule } from '@angular/common/http';
 import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.component';
+
+import { NotificationComponent } from './shared/notification/notification.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+
 import { ProjectOverviewPageComponent } from './project-overview-page/project-overview-page.component';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +50,8 @@ import { ProjectOverviewPageComponent } from './project-overview-page/project-ov
     VehicleAddComponent,
     HeaderComponent,
     DashboardComponent,
-    TripsComponent,
+    NotificationComponent,
+    PageNotFoundComponent
     TripAddComponent,
     TripModifyComponent,
     VehicleModifyComponent
@@ -53,6 +62,7 @@ import { ProjectOverviewPageComponent } from './project-overview-page/project-ov
     GooglePlaceModule,
     MaterialModule,
     AppRoutingModule,
+    MatButtonModule
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule

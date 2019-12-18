@@ -1,0 +1,11 @@
+<div class="flex-container content-container">
+    <div class="flex-item content-item">
+        <span class="notificatie-span">{{melding}}</span>
+        <a class="back-a" routerLink="/{{onGoBackRouterLinkPath}}">
+            <mat-icon class="back-icon">arrow_back</mat-icon>
+        </a>
+        <button class="mat-stroked-button-notification" mat-stroked-button (click)="onGoFurther()"> 
+            <span>ga verder</span>
+        </button>
+    </div>
+</div>
