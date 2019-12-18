@@ -28,3 +28,25 @@
   display: grid;
   grid-template-rows: 1fr 9fr;
 }
+
+.menu {
+  width: 300px;
+  background-color: #526476;
+  display: flex;
+  justify-content: center;
+}
+
+.menuList {
+  list-style: none;
+  margin-top: 50px;
+}
+
+.menuList li {
+  margin: 20px 0;
+  font-size: 1.75em;
+}
+
+.menuList a {
+  text-decoration: none;
+  color: #FAFAFA;
+}
