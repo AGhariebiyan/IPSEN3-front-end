@@ -5,6 +5,7 @@ import { ViewTripsPageComponent } from './view-trips-page/view-trips-page.compon
 import { ProjectInzienPageComponent } from './project/project-inzien-page/project-inzien-page.component';
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import {TripsComponent} from './trips/trips.component';
+import {ProjectOverviewPageComponent} from './project/project-overview-page/project-overview-page.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -12,6 +13,7 @@ const appRoutes: Routes = [
   { path: 'ritten', component: TripsComponent},
     { path: 'voertuigen', component: VehiclesComponent},
     { path: 'ritten/inzien', component: ViewTripsPageComponent},
+  { path: 'projecten', component: ProjectOverviewPageComponent},
     { path: 'projecten/:projectId', component: ProjectInzienPageComponent},
 ];
 @NgModule({

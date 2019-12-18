@@ -2,7 +2,6 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClientService } from 'src/app/shared/http-client.service';
 import { GmapsService } from 'src/app/gmaps/gmaps.service';
-import { PeriodicElement } from 'src/app/project-overview-page/project-overview-page.component';
 
 @Component({
   selector: 'app-trip-add',
@@ -30,15 +29,16 @@ export class TripAddComponent implements OnInit {
         }
       )
 
-      const projects = this.httpClientService.onGet('http://localhost:8080/trips/fetch/unique-projectids/1').pipe()
+      const projects = this.httpClientService.onGet('http://localhost:8080/project/getAllProject').pipe()
       .subscribe(
         data => {
           data.forEach(project => {
-            this.projects.push(project);
+            console.log(project);
+            this.projects.push(project.name + ' #' + project.id);
           });
         }
       )
-  
+
    }
 
   ngOnInit() {
@@ -61,10 +61,10 @@ export class TripAddComponent implements OnInit {
 
   onSubmit(){
     const licenseplate = this.tripAddForm.value.licenseplate;
-    const drivenKm = this.tripAddForm.value.drivenKm;
+    const drivenKm = this.drivenKilometers;
     const startKmGauge = this.tripAddForm.value.startKmGauge;
     const endKmGauge = startKmGauge + drivenKm;
-    const projectId = this.tripAddForm.value.projectID;
+    const projectId = this.tripAddForm.value.projectID.split('#')[1];
 
     console.log(this.destination.location[0]);
     console.log(this.destination.location[1]);
