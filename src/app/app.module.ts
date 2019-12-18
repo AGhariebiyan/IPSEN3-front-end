@@ -41,15 +41,18 @@ import {NgxPaginationModule} from 'ngx-pagination';
     GmapsComponent,
     GmapsLocSearchComponent,
     ProjectInzienPageComponent,
+    ProjectOverviewPageComponent,
     VehiclesComponent,
     VehicleAddComponent,
     HeaderComponent,
     DashboardComponent,
+<<<<<<<<< Temporary merge branch 1
+    ProjectOverviewPageComponent
+=========
     TripsComponent,
     TripAddComponent,
     TripModifyComponent,
     VehicleModifyComponent,
-    ProjectOverviewPageComponent
   ],
   imports: [
     BrowserModule,

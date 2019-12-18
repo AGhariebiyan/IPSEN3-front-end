@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-
+import { HttpClientService } from '../shared/http-client.service';
 
 export interface PeriodicElement {
   id: number;
@@ -18,43 +18,12 @@ export interface PeriodicElement {
   styleUrls: ['./project-overview-page.component.css']
 })
 
-export class ProjectOverviewPageComponent implements OnInit {
+export class ProjectOverviewPageComponent implements OnInit, AfterViewInit {
 
-  private ELEMENT_DATA: PeriodicElement[] = [
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
-    {id: 1, name: 'Hydrogen', trips: 1.0079, km: 1.234},
+  public ELEMENT_DATA: PeriodicElement[];
 
-
-  ];
-
-  displayedColumns: string[];
-  dataSource: MatTableDataSource<PeriodicElement>;
+  public displayedColumns: string[];
+  public dataSource: MatTableDataSource<PeriodicElement>;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -62,14 +31,34 @@ export class ProjectOverviewPageComponent implements OnInit {
   value = '';
 
 
-  constructor() {
+  constructor(private httpClientService: HttpClientService) {
     this.displayedColumns = ['id', 'name', 'trips', 'km'];
+   }
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   }
 
   ngOnInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+
+   }
+
+  ngAfterViewInit() {
+    const fetchedObj = this.httpClientService.onGet('http://localhost:8080/project/getAllProject').pipe()
+      .subscribe(
+        data => {
+          console.log(data);
+          console.log(this.ELEMENT_DATA);
+          console.log(this.dataSource);
+          data.forEach(function (value) {
+            this.ELEMENT_DATA.push({id: value.id, name: value.name, trips: value.trips.length, km: 1.234});
+            this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+          });
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 
   filterProjectTable(event) {
