@@ -22,6 +22,10 @@
   font-size: 14pt;
 }
 
+.top-left mat-icon, top-left i{
+  cursor:pointer;
+}
+
 .card-header {
   margin: 25px 0 15px 0;
   color: #34495E;

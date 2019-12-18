@@ -10,6 +10,9 @@
 .table-size{
   width:50vw;
 }
+.projectOverviewTable tr{
+  cursor:pointer;
+}
 
 .searchContainer {
     width: 50vw;

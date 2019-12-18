@@ -11,12 +11,13 @@
 
       <div class="card-header">
         <div class="containerHeader">
-          <h3>Rit #89: Amsterdam - Leiden</h3>
-          <button mat-button [matMenuTriggerFor]="menu"><mat-icon>keyboard_arrow_down</mat-icon></button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item>Item 1</button>
-            <button mat-menu-item>Item 2</button>
-          </mat-menu>
+          <h3>Rit #{{tripId}}: {{startLocation}} - {{endLocation}}</h3>
+          <div *ngIf="publicTripMap.size > 1">
+            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>keyboard_arrow_down</mat-icon></button>
+            <mat-menu #menu="matMenu" >
+              <button *ngFor="let trips of publicTripMap | keyvalue" (click)="fetchNewTrip(trips.key)" mat-menu-item>{{trips.value}}</button>
+            </mat-menu>
+          </div>
         </div>
         <hr/>
       </div>
@@ -25,7 +26,7 @@
 
         <div class="trip-data">
           <p>Kenteken:</p>
-          <p>QT-31-41</p>
+          <p>{{licensePlate}}</p>
         </div>
 
         <div class="trip-data">
@@ -35,7 +36,7 @@
 
         <div class="trip-data">
           <p>Gereden Kilometers:</p>
-          <p>{{drivenKilometers}}</p>
+          <p>{{drivenKilometers}} KM</p>
         </div>
 
         <div class="trip-data">
@@ -45,12 +46,12 @@
 
         <div class="trip-data">
           <p>Beginlocatie:</p>
-          <p>P.C. Hooftstraat 31a, Amsterdam</p>
+          <p>{{startLocation}}</p>
         </div>
 
         <div class="trip-data">
           <p>Eindlocatie:</p>
-          <p>Schipholweg 4, Leiden</p>
+          <p>{{endLocation}}</p>
         </div>
       </div>
 

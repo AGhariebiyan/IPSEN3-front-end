@@ -10,7 +10,7 @@ import {CookieService} from 'ngx-cookie-service';
 
 
 
-export interface PeriodicElement {
+export interface ProjectElement {
   id: number;
   name: string;
   trips: number;
@@ -26,11 +26,11 @@ export interface PeriodicElement {
 
 export class ProjectOverviewPageComponent implements OnInit {
 
-  private ELEMENT_DATA: PeriodicElement[] = [];
+  private ELEMENT_DATA: ProjectElement[] = [];
   private lastUpdate: string;
 
   public displayedColumns: string[];
-  public dataSource: MatTableDataSource<PeriodicElement>;
+  public dataSource: MatTableDataSource<ProjectElement>;
   public loading: boolean;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -52,17 +52,23 @@ export class ProjectOverviewPageComponent implements OnInit {
 
   private fetchProjectsFromBackEnd() {
     const projectArr = [];
+
     const fetchedObj = this.httpClient.onGet('http://localhost:8080/project/getAllProject').pipe()
       .subscribe(
         data => {
           this.ELEMENT_DATA = [];
           data.forEach(dataEl => {
-            this.ELEMENT_DATA.push({id: dataEl.id, name: dataEl.name, trips: dataEl.trips.length, km: 1.234});
-            projectArr.push(new ProjectModel(dataEl.id, dataEl.name, dataEl.trips));
+            let drivenKm = 0;
+            dataEl.trips.forEach(value => {
+              drivenKm = drivenKm + (value.endKilometergauge - value.startKilometergauge);
+              drivenKm = Math.round(drivenKm * 100) / 100;
+            });
+            this.ELEMENT_DATA.push({id: dataEl.id, name: dataEl.name, trips: dataEl.trips.length, km: drivenKm});
+            projectArr.push(new ProjectModel(dataEl.id, dataEl.name, dataEl.trips, drivenKm));
           });
 
-          this.cookieService.set('projectArr', JSON.stringify(projectArr));
-          this.cookieService.set('projectTableUpdate', new Date().toISOString());
+          this.setCookie('projectArr', JSON.stringify(projectArr), 1);
+          this.setCookie('projectTableUpdate', new Date().toISOString(), 1);
 
           this.parseUpdateTime(this.cookieService.get('projectTableUpdate'));
 
@@ -76,10 +82,18 @@ export class ProjectOverviewPageComponent implements OnInit {
         });
   }
 
+  private setCookie(cookieName: string, cookieValue: any, maxTimeInHours: number){
+    const cookieExpiration = new Date();
+    cookieExpiration.setHours( cookieExpiration.getHours() + maxTimeInHours );
+
+    this.cookieService.set(cookieName, cookieValue, cookieExpiration, '/projecten');
+    this.cookieService.set(cookieName, cookieValue, cookieExpiration, '/projecten');
+  }
+
   private fetchProjectsFromCookie(){
     this.parseUpdateTime(this.cookieService.get('projectTableUpdate'));
     JSON.parse(this.cookieService.get('projectArr')).forEach(projects => {
-      this.ELEMENT_DATA.push({id: projects.id, name: projects.name, trips: projects.trips.length, km: 1.234});
+      this.ELEMENT_DATA.push({id: projects.id, name: projects.name, trips: projects.trips.length, km: projects.totalDrivenKm});
       this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
       this.onDataInit();
     });
@@ -123,7 +137,7 @@ export class ProjectOverviewPageComponent implements OnInit {
   }
 
   public openProjectPage(event) {
-    this.router.navigate(['projecten/'+event.target.parentNode.children[0].id]);
+    this.router.navigate(['projecten/' + event.target.parentNode.children[0].id]);
   }
 
 

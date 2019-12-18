@@ -1,4 +1,4 @@
-import {Component, AfterViewInit, ViewChild, ElementRef, OnInit} from '@angular/core';
+import {Component, AfterViewInit, ViewChild, ElementRef, OnInit, Input} from '@angular/core';
 import {GmapsService} from './gmaps.service';
 
 @Component({
@@ -9,29 +9,58 @@ import {GmapsService} from './gmaps.service';
 export class GmapsComponent implements OnInit, AfterViewInit  {
   @ViewChild('mapContainer', {static: false}) gmap: ElementRef;
 
+
   private loc = {};
   private map: google.maps.Map;
   private markerArray = {lat: [], lng: []};
   private directionsDisplay = new google.maps.DirectionsRenderer();
 
+
   public km = 0;
   public time: string;
 
-  constructor(private mapService: GmapsService) { }
+  constructor(private mapService: GmapsService) {
 
-  ngOnInit() { this.mapService.currentLocations.subscribe((loc: {mIndex: number, lat: number, lng: number}) => {this.recieveLocation(loc); } );  }
+
+  }
+
+  ngOnInit() {
+    this.mapService.currentLocations.subscribe((loc: {mIndex: number, lat: number, lng: number}) => {this.recieveLocation(loc); } );
+    this.mapService.locationByAddress.subscribe((locationsArr: [string, string]) => {this.checkForStartEndLoc(locationsArr); } );
+  }
 
   ngAfterViewInit() {
     this.mapInitializer();
   }
 
-  recieveLocation(loc: {mIndex: number, lat: number, lng: number}) {
+  private checkForStartEndLoc(locationsArr: string[]) {
+
+
+    const geocoder = new google.maps.Geocoder();
+    locationsArr.forEach((value, key ) => {
+      geocoder.geocode( { 'address' : value }, ( results, status ) => {
+        if ( status === google.maps.GeocoderStatus.OK ) {
+          // console.log(key);
+          this.markerArray.lat[ key ] = results[0].geometry.location.lat();
+          this.markerArray.lng[ key ] = results[0].geometry.location.lng();
+
+          this.setRoute();
+
+        } else {
+          alert( 'Geocode was not successful for the following reason: ' + status );
+        }
+      } );
+
+    });
+  }
+
+  private recieveLocation(loc: {mIndex: number, lat: number, lng: number}) {
     this.markerArray.lat[ loc.mIndex ] = loc.lat;
     this.markerArray.lng[ loc.mIndex ] = loc.lng;
     this.setRoute();
   }
 
-  mapInitializer() {
+  private mapInitializer() {
     const coordinates = new google.maps.LatLng(52.160114, 4.497010);
     const mapOptions: google.maps.MapOptions = {
       center: coordinates,
@@ -41,7 +70,7 @@ export class GmapsComponent implements OnInit, AfterViewInit  {
     this.map = new google.maps.Map(this.gmap.nativeElement, mapOptions);
   }
 
-  setRoute() {
+  private setRoute() {
     // this.alertGmapService(60,"test");
     // return;
     let tempArrayLat = this.markerArray.lat.filter(function (el) {
@@ -52,6 +81,7 @@ export class GmapsComponent implements OnInit, AfterViewInit  {
       return el != null;
     });
 
+    // console.log(tempArrayLong);
     if (tempArrayLong.length > 1 && tempArrayLat.length > 1) {
       const directionsService = new google.maps.DirectionsService();
       const waypointsLatLng = [];
@@ -105,17 +135,21 @@ export class GmapsComponent implements OnInit, AfterViewInit  {
           this.km = point.distance.value / 1000;
           this.time = point.duration.text;
           this.alertGmapService(this.km, this.time);
+
+          return true;
         } else {
           alert('Directions Request from ' + start.toUrlValue(6) + ' to ' + end.toUrlValue(6) + ' failed: ' + status);
+          return true;
         }
       });
+    } else {
+      return false;
     }
   }
 
-  alertGmapService(km:Number, time:String){
+  private alertGmapService(km: number, time: string){
     this.mapService.drivenKilometers.emit(km);
     this.mapService.estTravelTime.emit(time);
 
   }
-
 }
