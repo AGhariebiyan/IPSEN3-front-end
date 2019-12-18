@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Trip} from './trip.model';
 
 @Component({
@@ -8,6 +8,7 @@ import {Trip} from './trip.model';
 })
 export class TripsComponent implements OnInit {
 
+constructor() { }
  public tripsArray: Trip[] = [
     new Trip('Den Haag', 'Maastricht', 45, 'AA-CV'),
     new Trip('Aruba', 'Bonaire', 45, 'AA-CV'),
@@ -16,9 +17,6 @@ export class TripsComponent implements OnInit {
     new Trip('Den Haag', 'Maastricht', 45, 'AA-CV'),
     new Trip('Den Haag', 'Maastricht', 45, 'AA-CV')
   ];
-
-  constructor() {
-  }
 
 
   ngOnInit() {

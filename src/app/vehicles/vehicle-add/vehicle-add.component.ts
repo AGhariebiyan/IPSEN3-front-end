@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-vehicle-add',
@@ -7,15 +7,29 @@ import { Validators, FormControl } from '@angular/forms';
   styleUrls: ['./vehicle-add.component.css']
 })
 export class VehicleAddComponent implements OnInit {
+  formSubmitted = false;
+
+  vehicleAddForm: FormGroup;
 
   constructor() { }
 
   ngOnInit() {
+    this.vehicleAddForm = new FormGroup({
+      'licenseplate': new FormControl(null, Validators.required),
+      'brand': new FormControl(null, Validators.required),
+      'type': new FormControl(null, Validators.required),
+      'fuel': new FormControl(null, Validators.required),
+      'body': new FormControl(null, Validators.required)
+    });
   }
 
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  onSubmit() { 
+    console.log(this.vehicleAddForm);
+    console.log(this.vehicleAddForm.value.licenseplate);
+    console.log(this.vehicleAddForm.value.fuel);
+    console.log(this.vehicleAddForm.value.body);
+    this.formSubmitted = true;
+    this.vehicleAddForm.reset();
+  }
 
 }
