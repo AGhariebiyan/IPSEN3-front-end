@@ -3,12 +3,10 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { RittenInzienPageComponent } from './ritten-inzien-page/ritten-inzien-page.component';
+import { ViewTripsPageComponent } from './view-trips-page/view-trips-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Material imports
-import { MatIconModule, MatToolbarModule, MatMenuModule, MatDividerModule, MatListModule} from '@angular/material';
-import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,7 +22,6 @@ import { TripAddComponent } from './trips/trip-add/trip-add.component';
 import { TripModifyComponent } from './trips/trip-modify/trip-modify.component';
 import { VehicleModifyComponent } from './vehicles/vehicle-modify/vehicle-modify.component';
 import { HttpClientModule } from '@angular/common/http';
-import {Trip} from './trips/trip.model';
 import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.component';
 import { ProjectOverviewPageComponent } from './project-overview-page/project-overview-page.component';
 
@@ -33,7 +30,7 @@ import { ProjectOverviewPageComponent } from './project-overview-page/project-ov
     AppComponent,
     TripsComponent,
     VoertuigenComponent,
-    RittenInzienPageComponent,
+    ViewTripsPageComponent,
     HeaderComponent,
     DashboardComponent,
     ProjectInzienPageComponent,
