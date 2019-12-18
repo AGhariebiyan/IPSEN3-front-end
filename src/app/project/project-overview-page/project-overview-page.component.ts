@@ -3,6 +3,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {HttpClientService} from '../shared/http-client.service';
+import {Router} from '@angular/router';
 
 
 
@@ -34,7 +35,7 @@ export class ProjectOverviewPageComponent implements OnInit {
   value = '';
 
 
-  constructor(private httpClient: HttpClientService) {
+  constructor(private httpClient: HttpClientService, public router: Router) {
     this.displayedColumns = ['id', 'name', 'trips', 'km'];
     const fetchedObj = this.httpClient.onGet('http://localhost:8080/project/getAllProject').pipe()
       .subscribe(
@@ -51,18 +52,24 @@ export class ProjectOverviewPageComponent implements OnInit {
   }
 
   ngOnInit(){}
-  onDataInit() {
+
+  private onDataInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 
-  filterProjectTable(event){
+  private filterProjectTable(event) {
     this.dataSource.filter = event.target.value;
     this.value = event.target.value;
   }
-  clearSearch(){
+
+  public clearSearch(){
     this.dataSource.filter = '';
     this.value = '';
+  }
+
+  public openProjectPage(event) {
+    this.router.navigate(['projecten/'+event.target.parentNode.children[0].id]);
   }
 
 }
