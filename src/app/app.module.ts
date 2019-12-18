@@ -6,7 +6,7 @@ import { RittenInzienPageComponent } from './ritten-inzien-page/ritten-inzien-pa
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Material imports
-import { MatIconModule, MatToolbarModule, MatMenuModule, MatDividerModule, MatListModule} from '@angular/material';
+import { MatIconModule, MatToolbarModule, MatMenuModule, MatDividerModule, MatListModule, MatButtonModule} from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TripsComponent } from './trips/trips.component';
 import {Trip} from './trips/trip.model';
 import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.component';
+import { NotificationComponent } from './shared/notification/notification.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.compon
     VehiclesComponent,
     VehicleAddComponent,
     HeaderComponent,
-    DashboardComponent
+    DashboardComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.compon
     GooglePlaceModule,
     MaterialModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

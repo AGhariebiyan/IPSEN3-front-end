@@ -5,6 +5,7 @@ import { RittenInzienPageComponent } from './ritten-inzien-page/ritten-inzien-pa
 import { ProjectInzienPageComponent } from './project-inzien-page/project-inzien-page.component';
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import {TripsComponent} from './trips/trips.component';
+import { NotificationComponent } from './shared/notification/notification.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -13,6 +14,8 @@ const appRoutes: Routes = [
     { path: 'voertuigen', component: VehiclesComponent},
     { path: 'ritten/inzien', component: RittenInzienPageComponent},
     { path: 'projecten/:projectId', component: ProjectInzienPageComponent},
+    { path: 'melding', component: NotificationComponent},
+
 ];
 @NgModule({
     imports: [RouterModule.forRoot(appRoutes)],
