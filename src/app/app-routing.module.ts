@@ -13,7 +13,6 @@ const appRoutes: Routes = [
     { path: 'ritten', component: TripsComponent},
     { path: 'voertuigen', component: VehiclesComponent},
     { path: 'ritten/inzien', component: ViewTripsPageComponent},
-    { path: 'ritten/inzien', component: RittenInzienPageComponent},
     { path: 'projecten', component: ProjectOverviewPageComponent},
     { path: 'projecten/:projectId', component: ProjectInzienPageComponent},
 ];

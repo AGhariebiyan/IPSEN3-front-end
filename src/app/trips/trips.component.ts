@@ -1,4 +1,3 @@
-
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Trip} from './trip.model';
 import {HttpClientService} from '../shared/http-client.service';
@@ -6,16 +5,16 @@ import {EventEmitter} from 'events';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
-import {PeriodicElement} from '../project-overview-page/project-overview-page.component';
 import {Observable} from 'rxjs';
 import {ArrayType} from '@angular/compiler';
+import {log} from 'util';
 
-export interface PeriodicElement {
-  startLocation: string;
-  endLocation: string;
-  licensePlate: string;
-  project: number;
-}
+// export interface Trip {
+//   startLocation: string;
+//   endLocation: string;
+//   licensePlate: string;
+//   project: number;
+// }
 
 @Component({
   selector: 'app-trips',
@@ -38,10 +37,10 @@ export class TripsComponent implements OnInit {
   p = 1;
   result: EventEmitter = new EventEmitter();
 
-  public tripsArray: PeriodicElement[] = [];
+  public tripsArray: Trip[] = [];
 
   displayedColumns: string[];
-  dataSource1: MatTableDataSource<PeriodicElement>;
+  dataSource1: MatTableDataSource<Trip>;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -50,20 +49,19 @@ export class TripsComponent implements OnInit {
 
 
   constructor(private httpClientService: HttpClientService) {
-    this.displayedColumns = ['startLocation', 'endLocation', 'licensePlate', 'project', 'deleteButton'];
-    /*console.log(this.getTrips());*/
+    this.displayedColumns = ['startLocation', 'endLocation', 'licensePlate', 'project', 'verwijder'];
     this.getTrips();
     this.dataSource1 = new MatTableDataSource(this.tripsArray);
-
   }
 
   ngOnInit() {
 
     this.result.on('deleteTrip', () => {
       this.getTrips();
+      this.dataSource1 = new MatTableDataSource(this.tripsArray);
     });
 
-    this.dataSource1 = new MatTableDataSource(this.tripsArray);
+
     this.dataSource1.sort = this.sort;
     this.dataSource1.paginator = this.paginator;
   }
@@ -75,18 +73,29 @@ export class TripsComponent implements OnInit {
         data => {
           data.forEach(dataE => {
               this.tripsArray.push({
-                startLocation: dataE.startLocation, endLocation: dataE.endLocation
-              })
-              ;
+                endKilometergauge: dataE.endKilometergauge, startKilometergauge: dataE.startKilometergauge, tripId: dataE.tripId,
+                userId: dataE.userId,
+                startLocation: dataE.startLocation, endLocation: dataE.endLocation,
+                licensePlate: dataE.licensePlate, projectId: dataE.projectId
+              });
             }
           );
         }
       );
+
+
   }
 
+  // refresh() {
+  //   this.myService.doSomething().subscribe((data: PeriodicElement[]) => {
+  //     this.dataSource.data = data;
+  //   });
+  // }
+
   deleteTrip(id: number) {
-    this.httpClientService.onDelete('http://localhost:8080/trips/delete/' + id).subscribe(() => {
+    this.httpClientService.onDelete('http://localhost:8080/trips/delete/' + id).subscribe((data: Trip[]) => {
       this.result.emit('deleteTrip');
+      this.dataSource1.data = data;
     });
   }
 
