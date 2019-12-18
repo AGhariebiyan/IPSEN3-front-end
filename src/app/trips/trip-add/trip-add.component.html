@@ -11,13 +11,27 @@
         <h2>Rit toevoegen</h2>
 
         <form [formGroup]="tripAddForm" (ngSubmit)="onSubmit()">
-            <mat-form-field class="form-full-width">
-                <input 
-                matInput 
+
+            <mat-form-field>
+                <mat-select 
+                placeholder="Kenteken"
                 id="licenseplate"
-                formControlName="licenseplate"
-                placeholder="Kenteken" 
-                value="">
+                formControlName="licenseplate">
+                  <mat-option 
+                  *ngFor="let licenseplate of licenseplates"
+                  value="{{licenseplate}}">{{licenseplate}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-select 
+                placeholder="Project nummer"
+                id="projectId"
+                formControlName="projectID">
+                  <mat-option 
+                  *ngFor="let project of projects"
+                  value="{{project}}">{{project}}</mat-option>
+                </mat-select>
             </mat-form-field>
 
             <app-gmaps-loc-search
@@ -27,7 +41,7 @@
             
             <app-gmaps-loc-search
             [gmap-search-index]="1" 
-            [gmap-input-placeholder]="'Voer uw tussenstop'">
+            [gmap-input-placeholder]="'Voer uw eindbestemming in'">
             </app-gmaps-loc-search>
         
             <mat-form-field class="form-full-width">
@@ -49,27 +63,6 @@
                 placeholder="Start kilometerstand" 
                 value="">
             </mat-form-field>
-
-            <!-- <mat-form-field class="form-full-width">
-                <input
-            
-                matInput
-                type="text"
-                id="endKmGauge"
-                formControlName="endKmGauge"
-                placeholder="Eind kilometerstand" 
-                value="">
-            </mat-form-field> -->
-
-            <mat-form-field class="form-full-width">
-                <input 
-                matInput
-                type="number" 
-                id="projectID"
-                formControlName="projectID"
-                placeholder="project nummer" 
-                value="">
-            </mat-form-field>
     
             <div class="button-row">
                 <button 
@@ -82,9 +75,7 @@
         </div>
 
         <div class="map">
-            <app-gmaps></app-gmaps>
-            
-             <!-- <app-gmaps-loc-search [gmap-search-index]="2" [gmap-input-placeholder]="'Voer uw eindlocatie in'"></app-gmaps-loc-search> -->
+            <app-gmaps></app-gmaps>            
         </div>
             
     </mat-card>

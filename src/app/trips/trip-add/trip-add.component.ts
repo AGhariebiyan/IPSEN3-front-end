@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClientService } from 'src/app/shared/http-client.service';
 import { GmapsService } from 'src/app/gmaps/gmaps.service';
+import { PeriodicElement } from 'src/app/project-overview-page/project-overview-page.component';
 
 @Component({
   selector: 'app-trip-add',
@@ -15,19 +16,29 @@ export class TripAddComponent implements OnInit {
 
   public drivenKilometers;
   public estTravelTime;
-  public displayedLicenseplates: string[];
+  public licenseplates = [];
+  public projects = [];
   private destination = {location: []};
 
   constructor(private httpClientService: HttpClientService, private cdr: ChangeDetectorRef, private mapService: GmapsService) {
-    this.displayedLicenseplates = ['licenseplates'];
     const fetchedObj = this.httpClientService.onGet('http://localhost:8080/vehicles/fetch/unique-licenseplates/1').pipe()
       .subscribe(
         data => {
-          data.array.forEach(element => {
-            
+          data.forEach(licenseplate => {
+            this.licenseplates.push(licenseplate);
           });
         }
       )
+
+      const projects = this.httpClientService.onGet('http://localhost:8080/trips/fetch/unique-projectids/1').pipe()
+      .subscribe(
+        data => {
+          data.forEach(project => {
+            this.projects.push(project);
+          });
+        }
+      )
+  
    }
 
   ngOnInit() {
@@ -44,6 +55,7 @@ export class TripAddComponent implements OnInit {
     this.mapService.drivenKilometers.subscribe((km) => {this.drivenKilometers = km; this.cdr.detectChanges(); } );
     this.mapService.estTravelTime.subscribe((time) => {this.estTravelTime = time; this.cdr.detectChanges(); } );
     this.mapService.destination.subscribe((place) => {this.destination.location[place.mIndex] = place.loc; console.log(place)} );
+
   }
 
 
