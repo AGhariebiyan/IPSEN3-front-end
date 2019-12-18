@@ -3,6 +3,7 @@ export class Trip {
   eindLocatie: string;
   projectId: number;
   kenteken: string;
+  drivenKm: number;
 
 
   constructor(startLocatie: string, eindLocatie: string, projectId: number, kenteken: string) {
@@ -10,5 +11,9 @@ export class Trip {
     this.eindLocatie = eindLocatie;
     this.projectId = projectId;
     this.kenteken = kenteken;
+  }
+
+  setDrivenKm(drivenKm: number){
+    this.drivenKm = drivenKm;
   }
 }
