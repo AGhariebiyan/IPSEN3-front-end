@@ -6,8 +6,6 @@ import { AppComponent } from './app.component';
 import { ViewTripsPageComponent } from './view-trips-page/view-trips-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-// Material imports
-import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProjectInzienPageComponent } from './project-inzien-page/project-inzien-page.component';
@@ -30,17 +28,12 @@ import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.compon
     TripsComponent,
     VoertuigenComponent,
     ViewTripsPageComponent,
-    HeaderComponent,
-    DashboardComponent,
-    ProjectInzienPageComponent,
     GmapsComponent,
     GmapsLocSearchComponent,
     ProjectInzienPageComponent,
     VehiclesComponent,
     VehicleAddComponent,
-    HeaderComponent,
     DashboardComponent,
-    TripsComponent,
     TripAddComponent,
     TripModifyComponent,
     VehicleModifyComponent
