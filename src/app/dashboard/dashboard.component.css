@@ -71,6 +71,10 @@
 
 /* phones and down */
 @media (max-width: 480px) {
+    body {
+        overflow: auto;
+    }
+
     .content-container {
         min-height: 100%;
     }
@@ -79,6 +83,8 @@
         width: auto;
         height: auto;
         flex-direction: column;
+        position: relative;
+        top: -20vw;
     }
 
     .content-row {
@@ -103,10 +109,23 @@
     }
 
     .add-trip-container {
+        flex: none;
         width: 85vw;
-        height: 50%;
+        height: 20vw;
         top: 0;
         margin: 0;
+    }
+
+    .trip-toevoegen-span {
+        position: relative;
+        top: 0;
+    }
+
+    #mat-icon-add-circle {
+        position: relative;
+        top: 7px;
+        left: 3vw;
+        font-size: 6vw;
     }
 }
 
