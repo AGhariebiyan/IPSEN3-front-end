@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ProjectInzienPageComponent } from './project-inzien-page/project-inzien-page.component';
+
 import { GmapsComponent } from './gmaps/gmaps.component';
 import { GmapsLocSearchComponent } from './gmaps/gmaps-loc-search/gmaps-loc-search.component';
 import { MaterialModule } from './material/material.module';
@@ -23,6 +23,9 @@ import { TripModifyComponent } from './trips/trip-modify/trip-modify.component';
 import { VehicleModifyComponent } from './vehicles/vehicle-modify/vehicle-modify.component';
 import { HttpClientModule } from '@angular/common/http';
 import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.component';
+import {ProjectInzienPageComponent} from './project/project-inzien-page/project-inzien-page.component';
+import {CookieService} from 'ngx-cookie-service';
+import {ProjectOverviewPageComponent} from './project/project-overview-page/project-overview-page.component';
 
 @NgModule({
   declarations: [
@@ -33,12 +36,11 @@ import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.compon
     HeaderComponent,
     DashboardComponent,
     ProjectInzienPageComponent,
+    ProjectOverviewPageComponent,
     GmapsComponent,
     GmapsLocSearchComponent,
-    ProjectInzienPageComponent,
     VehiclesComponent,
     VehicleAddComponent,
-    HeaderComponent,
     DashboardComponent,
     TripsComponent,
     TripAddComponent,
@@ -55,7 +57,7 @@ import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.compon
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

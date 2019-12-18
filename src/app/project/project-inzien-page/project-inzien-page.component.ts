@@ -32,8 +32,8 @@ export class ProjectInzienPageComponent implements OnInit {
     });
   }
 
-  public navigateBack(){
-    this.route.navigate(['projecten/'+event.target.parentNode.children[0].id]);
+  public navigateBack(event){
+    this.route.navigate(['/projecten']);
   }
 
 
