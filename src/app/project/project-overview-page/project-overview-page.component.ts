@@ -41,7 +41,7 @@ export class ProjectOverviewPageComponent implements OnInit {
 
   constructor(private httpClient: HttpClientService, private router: Router, private cookieService: CookieService) {
     this.displayedColumns = ['id', 'name', 'trips', 'km'];
-    if (cookieService.get('projectTableUpdate') === '' || this.getMinutesBetweenDates(cookieService.get('projectTableUpdate'), new Date()) >= 10) {
+    if (cookieService.get('projectTableUpdate') === '' || this.getMinutesBetweenDates(cookieService.get('projectTableUpdate'), new Date()) >= 60) {
       this.fetchProjectsFromBackEnd();
     } else {
       this.fetchProjectsFromCookie();
