@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClientService } from 'src/app/shared/http-client.service';
 import { GmapsService } from 'src/app/gmaps/gmaps.service';
 import { PeriodicElement } from 'src/app/project-overview-page/project-overview-page.component';
@@ -43,13 +43,11 @@ export class TripAddComponent implements OnInit {
 
   ngOnInit() {
     this.tripAddForm =  new FormGroup({
-      'licenseplate': new FormControl(null),
-      'startLocation': new FormControl(null),
-      'endLocation': new FormControl(null),
+      'licenseplate': new FormControl(null, Validators.required),
       'drivenKm': new FormControl(null),
-      'startKmGauge': new FormControl(null),
+      'startKmGauge': new FormControl(null, Validators.required),
       'endKmGauge': new FormControl(null),
-      'projectID': new FormControl(null)
+      'projectID': new FormControl(null, Validators.required)
     });
 
     this.mapService.drivenKilometers.subscribe((km) => {this.drivenKilometers = km; this.cdr.detectChanges(); } );
@@ -61,7 +59,7 @@ export class TripAddComponent implements OnInit {
 
   onSubmit(){
     const licenseplate = this.tripAddForm.value.licenseplate;
-    const drivenKm = this.tripAddForm.value.drivenKm;
+    const drivenKm = this.drivenKilometers;
     const startKmGauge = this.tripAddForm.value.startKmGauge;
     const endKmGauge = startKmGauge + drivenKm;
     const projectId = this.tripAddForm.value.projectID;
@@ -72,6 +70,7 @@ export class TripAddComponent implements OnInit {
     const postObj = this.httpClientService.onPost(
       'http://localhost:8080/trips/trip/add/for-project/' + projectId + '/1/' + licenseplate + '/' + this.destination.location[0] + '/' + this.destination.location[1] + '/' + startKmGauge + '/' + endKmGauge + '/' + drivenKm);
 
+    this.formSubmitted = true;
   }
 
 }
