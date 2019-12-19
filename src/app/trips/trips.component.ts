@@ -34,7 +34,6 @@ export class TripsComponent implements OnInit {
   constructor(private httpClientService: HttpClientService, private changeDetectorRefs: ChangeDetectorRef) {
     this.displayedColumns = ['startLocation', 'endLocation', 'licensePlate', 'project', 'verwijder'];
     this.getTrips();
-    this.dataSource1 = new MatTableDataSource(this.tripsArray);
   }
 
   ngOnInit() {
@@ -53,20 +52,18 @@ export class TripsComponent implements OnInit {
     this.httpClientService.onGet('http://localhost:8080/trips/user/1')
       .subscribe(
         data => {
-          console.log(data);
           data.forEach(dataE => {
               this.tripsArray.push({
                 endKilometergauge: dataE.endKilometergauge, startKilometergauge: dataE.startKilometergauge, tripId: dataE.tripId,
                 userId: dataE.userId,
                 startLocation: dataE.startLocation, endLocation: dataE.endLocation,
                 licensePlate: dataE.licensePlate, projectId: dataE.projectId
-            })
-              ;
+              });
+              this.dataSource1 = new MatTableDataSource(this.tripsArray);
             }
           );
         }
       );
-
 
   }
 
