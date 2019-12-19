@@ -74,13 +74,16 @@ export class TripAddComponent implements OnInit {
     const postObj = this.httpClientService.onPost(
       'http://localhost:8080/trips/trip/add/for-project/' + projectId + '/1/' + licenseplate + '/' + this.destination.location[0] + '/' + this.destination.location[1] + '/' + startKmGauge + '/' + endKmGauge + '/' + drivenKm);
 
+
+    this.formSubmitted = true;
   }
 
   retrieveKmGauge(event) {
     const trip = this.httpClientService.onGet('http://localhost:8080/trips/getByLicensePlate?licensePlate='+ event.target.innerText).pipe()
       .subscribe(
         data => {
-          this.startKilometerGauge = data.startKilometergauge;
+          console.log(data);
+          this.startKilometerGauge = data.endKilometergauge;
         }
       );
   }
