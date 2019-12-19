@@ -12,7 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ProjectInzienPageComponent } from './project-inzien-page/project-inzien-page.component';
+import { ProjectInzienPageComponent } from './project/project-inzien-page/project-inzien-page.component';
 import { GmapsComponent } from './gmaps/gmaps.component';
 import { GmapsLocSearchComponent } from './gmaps/gmaps-loc-search/gmaps-loc-search.component';
 import { MaterialModule } from './material/material.module';
@@ -25,7 +25,13 @@ import { TripModifyComponent } from './trips/trip-modify/trip-modify.component';
 import { VehicleModifyComponent } from './vehicles/vehicle-modify/vehicle-modify.component';
 import { HttpClientModule } from '@angular/common/http';
 import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.component';
-import { ProjectOverviewPageComponent } from './project-overview-page/project-overview-page.component';
+import { NotificationComponent } from './shared/notification/notification.component';
+import { MatButtonModule} from '@angular/material';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+
+import { ProjectOverviewPageComponent } from './project/project-overview-page/project-overview-page.component';
+import {CookieService} from 'ngx-cookie-service';
+
 
 @NgModule({
   declarations: [
@@ -44,12 +50,12 @@ import { ProjectOverviewPageComponent } from './project-overview-page/project-ov
     VehicleAddComponent,
     HeaderComponent,
     DashboardComponent,
-
+    NotificationComponent,
+    PageNotFoundComponent,
     TripsComponent,
     TripAddComponent,
     TripModifyComponent,
     VehicleModifyComponent
-
   ],
   imports: [
     BrowserModule,
@@ -57,11 +63,12 @@ import { ProjectOverviewPageComponent } from './project-overview-page/project-ov
     GooglePlaceModule,
     MaterialModule,
     AppRoutingModule,
+    MatButtonModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

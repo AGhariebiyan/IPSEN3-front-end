@@ -7,4 +7,5 @@ export class GmapsService {
   estTravelTime = new EventEmitter<String>();
   destination =  new EventEmitter<{}>();
 
+  locationByAddress = new EventEmitter<[String, String]>();
 }

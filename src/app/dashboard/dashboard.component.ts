@@ -18,13 +18,13 @@ export class DashboardComponent implements OnInit {
 
   fetchAmountOfTripsAndProjectsByUser() {
     const fetchedObj = this.httpClientService.onGet('http://localhost:8080/trips/fetch/unique-projectids-and-trips-amount/1').pipe()
-      .subscribe(
-        data => {
-          this.amountOfTripsByUser = data[0];
-          this.amountOfProjectsByUser = data[1];
-        },
-        error => {
-          console.log(error);
-        });
+    .subscribe(
+      data => {
+        this.amountOfTripsByUser = data[0];
+        this.amountOfProjectsByUser = data[1];
+      },
+      error => {
+        console.log(error);
+    });
   }
 }
