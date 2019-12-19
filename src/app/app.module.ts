@@ -44,13 +44,12 @@ import { ProjectOverviewPageComponent } from './project-overview-page/project-ov
     VehicleAddComponent,
     HeaderComponent,
     DashboardComponent,
-<<<<<<<<< Temporary merge branch 1
-=========
+
     TripsComponent,
     TripAddComponent,
     TripModifyComponent,
     VehicleModifyComponent
->>>>>>>>> Temporary merge branch 2
+
   ],
   imports: [
     BrowserModule,

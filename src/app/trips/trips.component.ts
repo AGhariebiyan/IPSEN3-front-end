@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {Trip} from './trip.model';
 import {HttpClientService} from '../shared/http-client.service';
 import {EventEmitter} from 'events';
@@ -24,16 +24,6 @@ import {log} from 'util';
 
 export class TripsComponent implements OnInit {
 
-  /*public tripsArray: Trip[] = [
-     new Trip('Den Haag', 'Maastricht', 45, 'AA-CV'),
-     new Trip('Aruba', 'Bonaire', 45, 'AA-CV'),
-     new Trip('Zaandam', 'Leiden', 45, 'AA-CV'),
-     new Trip('Den Haag', 'Maastricht', 45, 'AA-CV'),
-     new Trip('Den Haag', 'Maastricht', 45, 'AA-CV'),
-     new Trip('Den Haag', 'Maastricht', 45, 'AA-CV')
-   ];
- */
-
   p = 1;
   result: EventEmitter = new EventEmitter();
 
@@ -44,11 +34,12 @@ export class TripsComponent implements OnInit {
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatTableDataSource, {static: true}) data: MatTableDataSource<Trip>;
 
   value = '';
 
 
-  constructor(private httpClientService: HttpClientService) {
+  constructor(private httpClientService: HttpClientService, private changeDetectorRefs: ChangeDetectorRef) {
     this.displayedColumns = ['startLocation', 'endLocation', 'licensePlate', 'project', 'verwijder'];
     this.getTrips();
     this.dataSource1 = new MatTableDataSource(this.tripsArray);
@@ -58,7 +49,6 @@ export class TripsComponent implements OnInit {
 
     this.result.on('deleteTrip', () => {
       this.getTrips();
-      this.dataSource1 = new MatTableDataSource(this.tripsArray);
     });
 
 
@@ -68,16 +58,18 @@ export class TripsComponent implements OnInit {
 
 
   getTrips() {
-    this.httpClientService.onGet('http://localhost:8080/trips/user/1').pipe()
+    this.httpClientService.onGet('http://localhost:8080/trips/user/1')
       .subscribe(
         data => {
+          console.log(data);
           data.forEach(dataE => {
               this.tripsArray.push({
                 endKilometergauge: dataE.endKilometergauge, startKilometergauge: dataE.startKilometergauge, tripId: dataE.tripId,
                 userId: dataE.userId,
                 startLocation: dataE.startLocation, endLocation: dataE.endLocation,
                 licensePlate: dataE.licensePlate, projectId: dataE.projectId
-              });
+            })
+              ;
             }
           );
         }
@@ -93,11 +85,11 @@ export class TripsComponent implements OnInit {
   // }
 
   deleteTrip(id: number) {
-    this.httpClientService.onDelete('http://localhost:8080/trips/delete/' + id).subscribe((data: Trip[]) => {
+    this.httpClientService.onDelete('http://localhost:8080/trips/delete/' + id).subscribe(() => {
       this.result.emit('deleteTrip');
-      this.dataSource1.data = data;
     });
   }
+
 
   filterTripsTable(event) {
     this.dataSource1.filter = event.target.value;
