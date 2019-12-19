@@ -14,6 +14,19 @@
   cursor:pointer;
 }
 
+.projectOverviewTable tr:hover {
+  background-color: #DDDDDD;
+}
+
+.projectOverviewTable tr:first-of-type:hover {
+  background-color: #FFFFFF;
+}
+
+/* Probably the most controversial way to fix this but it works */
+.projectOverviewTable tr:nth-last-child(4):hover {
+  background-color: #DDDDDD;
+}
+
 .searchContainer {
     width: 50vw;
     display: flex;
