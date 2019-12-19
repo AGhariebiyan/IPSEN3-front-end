@@ -6,15 +6,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {Observable} from 'rxjs';
-import {ArrayType} from '@angular/compiler';
-import {log} from 'util';
 
-// export interface Trip {
-//   startLocation: string;
-//   endLocation: string;
-//   licensePlate: string;
-//   project: number;
-// }
 
 @Component({
   selector: 'app-trips',
