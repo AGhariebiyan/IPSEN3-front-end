@@ -1,29 +1,51 @@
-<app-trip-add></app-trip-add>
-<div class="cardContainer">
-  <div class ="buttonContainer">
-  <img class="plusButtonImage" src="assets/images/addButton.png" width="45" height="45">
+<div class="content">
+  <div class="searchContainer">
+    <mat-form-field class="example-form-field">
+      <input matInput type="text" (input)="filterTripsTable($event)" placeholder="Zoeken..." [value]='value'>
+<!--      <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">-->
+<!--        <mat-icon>close</mat-icon>-->
+<!--      </button>-->
+    </mat-form-field>
   </div>
-  <mat-card class="card">
-    <mat-card-title>Ritten overzicht</mat-card-title>
-    <mat-card-content>
-      <table>
-        <tr>
-          <th>Start locatie</th>
-          <th>Eind locatie</th>
-          <th>Project</th>
-          <th>Kenteken</th>
-          <th>Verwijderen</th>
-        </tr>
-        <tr *ngFor="let trip of tripsArray">
-          <td>{{trip.startLocatie}}</td>
-          <td>{{trip.eindLocatie}}</td>
-          <td>{{trip.projectId}}</td>
-          <td>{{trip.kenteken}}</td>
-          <td>
-            <i class="fa fa-trash fa-2x"></i>
-          </td>
-        </tr>
-      </table>
-    </mat-card-content>
-  </mat-card>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource1" matSort class="table-size">
+
+      <!-- Project nummer kolom -->
+      <ng-container matColumnDef="startLocation">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Start locatie:</th>
+        <td mat-cell *matCellDef="let trip"> {{trip.startLocation}} </td>
+      </ng-container>
+
+      <!-- Naam kolom -->
+      <ng-container matColumnDef="endLocation">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Eind locatie</th>
+        <td mat-cell *matCellDef="let trip"> {{trip.endLocation}}</td>
+      </ng-container>
+
+      <!-- Totaal geboekte trips op een project -->
+      <ng-container matColumnDef="project">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Project</th>
+        <td mat-cell *matCellDef="let trip"> {{trip.project}} </td>
+      </ng-container>
+
+       Totaal aantal km's op een project
+      <ng-container matColumnDef="licensePlate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Kenteken</th>
+        <td mat-cell *matCellDef="let trip"> {{trip.licensePlate}} </td>
+      </ng-container>
+
+      <!-- Totaal aantal km's op een project -->
+      <ng-container matColumnDef="verwijder">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Verwijder</th>
+        <td mat-cell *matCellDef="let trip">
+          <i (click)=deleteTrip(trip.tripId) class="fa fa-trash fa-2x"></i></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let trip; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
 </div>
+
+

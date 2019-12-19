@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { ViewTripsPageComponent } from './view-trips-page/view-trips-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// Material imports
+import { MatIconModule, MatToolbarModule, MatMenuModule, MatDividerModule, MatListModule} from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -49,6 +52,7 @@ import {CookieService} from 'ngx-cookie-service';
     DashboardComponent,
     NotificationComponent,
     PageNotFoundComponent,
+    TripsComponent,
     TripAddComponent,
     TripModifyComponent,
     VehicleModifyComponent
