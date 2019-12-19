@@ -82,7 +82,6 @@ export class TripAddComponent implements OnInit {
     const trip = this.httpClientService.onGet('http://localhost:8080/trips/getByLicensePlate?licensePlate='+ event.target.innerText).pipe()
       .subscribe(
         data => {
-          console.log(data);
           this.startKilometerGauge = data.endKilometergauge;
         }
       );
