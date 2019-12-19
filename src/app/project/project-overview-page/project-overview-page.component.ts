@@ -43,12 +43,14 @@ export class ProjectOverviewPageComponent implements OnInit {
     this.displayedColumns = ['id', 'name', 'trips', 'km'];
     if (cookieService.get('projectTableUpdate') === '' || this.getMinutesBetweenDates(cookieService.get('projectTableUpdate'), new Date()) >= 60) {
       this.fetchProjectsFromBackEnd();
+      console.log(this.sort);
     } else {
+      console.log(this.sort);
       this.fetchProjectsFromCookie();
     }
   }
 
-  ngOnInit(){}
+  ngOnInit(){this.onDataInit();}
 
   private fetchProjectsFromBackEnd() {
     const projectArr = [];
@@ -57,6 +59,7 @@ export class ProjectOverviewPageComponent implements OnInit {
       .subscribe(
         data => {
           this.ELEMENT_DATA = [];
+
           data.forEach(dataEl => {
             let drivenKm = 0;
             dataEl.trips.forEach(value => {
@@ -90,16 +93,16 @@ export class ProjectOverviewPageComponent implements OnInit {
     this.cookieService.set(cookieName, cookieValue, cookieExpiration, '/projecten');
   }
 
-  private fetchProjectsFromCookie(){
+  private fetchProjectsFromCookie() {
     this.parseUpdateTime(this.cookieService.get('projectTableUpdate'));
     JSON.parse(this.cookieService.get('projectArr')).forEach(projects => {
       this.ELEMENT_DATA.push({id: projects.id, name: projects.name, trips: projects.trips.length, km: projects.totalDrivenKm});
-      this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-      this.onDataInit();
     });
+    this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+    this.onDataInit();
   }
 
-  private parseUpdateTime(date: string){
+  private parseUpdateTime(date: string) {
     const dateObj = new Date(date);
     const minutes   = ('' + dateObj.getMinutes()).length === 1 ? '0' + dateObj.getMinutes() : dateObj.getMinutes();
     const hours     = ('' + dateObj.getHours()).length === 1  ? '0' + dateObj.getHours() : dateObj.getHours();

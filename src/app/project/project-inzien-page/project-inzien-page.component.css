@@ -22,7 +22,7 @@
   font-size: 14pt;
 }
 
-.top-left mat-icon, top-left i{
+.top-left mat-icon, .top-left i{
   cursor:pointer;
 }
 
