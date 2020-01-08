@@ -16,6 +16,7 @@ export class VehicleAddComponent implements OnInit {
   formSubmitted = false;
   vehicleAddForm: FormGroup;
   imageFound: boolean;
+  allowImage: boolean;
   imageSource: string;
 
   private brand: string;
@@ -45,6 +46,8 @@ export class VehicleAddComponent implements OnInit {
           this.brand = '';
           this.type = '';
           this.body = '';
+          this.allowImage = false;
+          this.imageSource = '';
         }
     });
   }
@@ -52,7 +55,6 @@ export class VehicleAddComponent implements OnInit {
     const licensplate = this.vehicleAddForm.value.licenseplate;
     const brand = this.brand;
     const type = this.type;
-    const fuel = this.vehicleAddForm.value.fuel;
     const vehicleBody =  this.body;
 
     const postObj = this.httpClientService.onPost('http://localhost:8080/vehicles/vehicle/add/for-user/1/0/' + licensplate.toUpperCase() + '/' + brand + '/' + type + '/' + vehicleBody);
@@ -73,15 +75,19 @@ export class VehicleAddComponent implements OnInit {
           this.brand = '';
           this.type = '';
           this.body = '';
+          this.allowImage = false;
+          this.imageSource = '';
           return {invalidRDW: true};
         } else {
-          console.log(res[0]);
           this.brand = res[0].merk;
           this.type = res[0].handelsbenaming;
-          // this.fuel =  res[0].;
           this.body = res[0].inrichting;
+          this.allowImage = true;
 
-          this.findImageByVehicle(this.brand + ' ' + this.type + ' ' + res[0].type );
+          if (res[0].type.includes('*') )
+            this.findImageByVehicle(this.brand + ' ' + this.type);
+          else
+            this.findImageByVehicle(this.brand + ' ' + this.type + ' ' + res[0].type );
 
           return null;
         }
@@ -93,13 +99,15 @@ export class VehicleAddComponent implements OnInit {
     return this.licensePlateService.checkLicensePlateDF(control.value.toUpperCase())
       .pipe(
         map(res => {
-          console.log(res);
           if ( res !== null ) {
             this.brand = '';
             this.type = '';
             this.body = '';
+            this.allowImage = false;
+            this.imageSource = '';
             return {licenseExists: true};
           } else {
+            this.allowImage = true;
             return null;
           }
         })
