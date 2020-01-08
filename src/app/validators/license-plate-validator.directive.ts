@@ -39,7 +39,7 @@ export class LicensePlateValidatorDirective implements Validator {
     // ];
 
     const licenseVal = c.value.toUpperCase();
-    console.log(licenseVal.length);
+
     if ( licenseVal.match(/([A-Z]{1,3}|[0-9]{1,3})-([A-Z]{2,3}|[0-9]{2,3})-([A-Z]{1,3}|[0-9]{1,3})/ ) && licenseVal.length === 8 ) {
       return null;
     } else {

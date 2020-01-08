@@ -15,11 +15,15 @@ import {ErrorStateMatcher} from '@angular/material';
 export class VehicleAddComponent implements OnInit {
   formSubmitted = false;
   vehicleAddForm: FormGroup;
+  imageFound: boolean;
+  imageSource: string;
 
   private brand: string;
   private type: string;
   private fuel: string;
   private body: string;
+
+
 
   constructor(private httpClientService: HttpClientService, private fb: FormBuilder, private licensePlateService: LicensePlateService) { }
 
@@ -71,11 +75,14 @@ export class VehicleAddComponent implements OnInit {
           this.body = '';
           return {invalidRDW: true};
         } else {
-          // console.log("KENTEKEN IS:");
+          console.log(res[0]);
           this.brand = res[0].merk;
           this.type = res[0].handelsbenaming;
           // this.fuel =  res[0].;
           this.body = res[0].inrichting;
+
+          this.findImageByVehicle(this.brand + ' ' + this.type + ' ' + res[0].type );
+
           return null;
         }
       })
@@ -97,10 +104,20 @@ export class VehicleAddComponent implements OnInit {
           }
         })
       );
+    }
+
+  private findImageByVehicle(searchUrl: string) {
+    const fetchedObj = this.httpClientService.onGet('http://localhost:5000/image?term='+searchUrl).pipe()
+      .subscribe(
+        data => {
+          this.imageFound = true;
+          this.imageSource = data['result'];
+        },
+        error => {
+          console.log(error);
+        });
 
   }
-
-
 }
 
 
