@@ -31,6 +31,8 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 
 import { ProjectOverviewPageComponent } from './project/project-overview-page/project-overview-page.component';
 import {CookieService} from 'ngx-cookie-service';
+import { LicensePlateValidatorDirective } from './validators/license-plate-validator.directive';
+
 
 
 @NgModule({
@@ -55,7 +57,8 @@ import {CookieService} from 'ngx-cookie-service';
     TripsComponent,
     TripAddComponent,
     TripModifyComponent,
-    VehicleModifyComponent
+    VehicleModifyComponent,
+    LicensePlateValidatorDirective,
   ],
   imports: [
     BrowserModule,

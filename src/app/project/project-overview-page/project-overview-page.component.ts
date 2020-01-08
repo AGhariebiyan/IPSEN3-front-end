@@ -43,18 +43,18 @@ export class ProjectOverviewPageComponent implements OnInit {
     this.displayedColumns = ['id', 'name', 'trips', 'km'];
     if (cookieService.get('projectTableUpdate') === '' || this.getMinutesBetweenDates(cookieService.get('projectTableUpdate'), new Date()) >= 60) {
       this.fetchProjectsFromBackEnd();
-      console.log(this.sort);
     } else {
-      console.log(this.sort);
       this.fetchProjectsFromCookie();
     }
   }
 
-  ngOnInit(){this.onDataInit();}
+  ngOnInit() {
+    // this.onDataInit();
+  }
 
   private fetchProjectsFromBackEnd() {
     const projectArr = [];
-
+    localStorage.clear();
     const fetchedObj = this.httpClient.onGet('http://localhost:8080/project/getAllProject').pipe()
       .subscribe(
         data => {
@@ -70,7 +70,9 @@ export class ProjectOverviewPageComponent implements OnInit {
             projectArr.push(new ProjectModel(dataEl.id, dataEl.name, dataEl.trips, drivenKm));
           });
 
-          this.setCookie('projectArr', JSON.stringify(projectArr), 1);
+
+          localStorage.setItem('projectArr',  JSON.stringify(projectArr));
+          // this.setCookie('projectArr', JSON.stringify(projectArr), 1);
           this.setCookie('projectTableUpdate', new Date().toISOString(), 1);
 
           this.parseUpdateTime(this.cookieService.get('projectTableUpdate'));
@@ -89,26 +91,35 @@ export class ProjectOverviewPageComponent implements OnInit {
     const cookieExpiration = new Date();
     cookieExpiration.setHours( cookieExpiration.getHours() + maxTimeInHours );
 
-    this.cookieService.set(cookieName, cookieValue, cookieExpiration, '/projecten');
+    console.log(cookieValue);
     this.cookieService.set(cookieName, cookieValue, cookieExpiration, '/projecten');
   }
+
 
   private fetchProjectsFromCookie() {
     this.parseUpdateTime(this.cookieService.get('projectTableUpdate'));
-    JSON.parse(this.cookieService.get('projectArr')).forEach(projects => {
+    JSON.parse(localStorage.getItem('projectArr')).forEach(projects => {
       this.ELEMENT_DATA.push({id: projects.id, name: projects.name, trips: projects.trips.length, km: projects.totalDrivenKm});
     });
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-    this.onDataInit();
+    // this.onDataInit();
   }
 
   private parseUpdateTime(date: string) {
-    const dateObj = new Date(date);
+    let dateObj;
+    if (date === ''){
+      dateObj = new Date();
+    } else {
+      dateObj = new Date(date);
+    }
+
     const minutes   = ('' + dateObj.getMinutes()).length === 1 ? '0' + dateObj.getMinutes() : dateObj.getMinutes();
     const hours     = ('' + dateObj.getHours()).length === 1  ? '0' + dateObj.getHours() : dateObj.getHours();
     const days      = ('' + dateObj.getDate()).length === 1  ? '0' + dateObj.getDate() : dateObj.getDate();
-    const month     = ('' + dateObj.getMonth()).length === 1  ? '0' + dateObj.getMonth() : dateObj.getMonth();
+    let month     = ('' + dateObj.getMonth()).length === 1  ? '0' + dateObj.getMonth() : dateObj.getMonth();
     const year      = dateObj.getFullYear();
+
+    month = month === '00' && '01';
 
     this.lastUpdate = days + '-' + month + '-' + year + ' ' + hours + ':' + minutes;
   }
