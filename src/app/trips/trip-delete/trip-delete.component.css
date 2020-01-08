@@ -10,9 +10,16 @@
   position: relative;
  top: 25px;
   z-index: 2;
-  left: 25px;
+  left: 97%;
   cursor: pointer;
-
+}
+#mat-icon-add_circle {
+  position: relative;
+  top: 29px;
+  left: 96.5%;
+  font-size: 50px;
+  cursor: pointer;
+  color: #52AE4F;
 }
 
 
@@ -32,10 +39,15 @@
 
 .table-size{
   width:50vw;
+  min-width: 400px;
 }
 
 .searchContainer {
   width: 50vw;
   display: flex;
   justify-content: flex-end;
+}
+
+.mat-elevation-z8{
+  position: absolute;
 }

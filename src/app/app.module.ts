@@ -19,25 +19,24 @@ import { MaterialModule } from './material/material.module';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import { VehicleAddComponent } from './vehicles/vehicle-add/vehicle-add.component';
-import { TripsComponent } from './trips/trips.component';
+import { TripDeleteComponent } from './trips/trip-delete/trip-delete.component';
 import { TripAddComponent } from './trips/trip-add/trip-add.component';
 import { TripModifyComponent } from './trips/trip-modify/trip-modify.component';
 import { VehicleModifyComponent } from './vehicles/vehicle-modify/vehicle-modify.component';
 import { HttpClientModule } from '@angular/common/http';
-import { VoertuigenComponent } from './vehicles/vehicle Delete/voertuigen.component';
 import { NotificationComponent } from './shared/notification/notification.component';
 import { MatButtonModule} from '@angular/material';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 import { ProjectOverviewPageComponent } from './project/project-overview-page/project-overview-page.component';
 import {CookieService} from 'ngx-cookie-service';
+import { VehicleDeleteComponent } from './vehicles/vehicle-delete/vehicle-delete.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TripsComponent,
-    VoertuigenComponent,
+    TripDeleteComponent,
     ViewTripsPageComponent,
     HeaderComponent,
     DashboardComponent,
@@ -52,10 +51,11 @@ import {CookieService} from 'ngx-cookie-service';
     DashboardComponent,
     NotificationComponent,
     PageNotFoundComponent,
-    TripsComponent,
+    TripDeleteComponent,
     TripAddComponent,
     TripModifyComponent,
-    VehicleModifyComponent
+    VehicleModifyComponent,
+    VehicleDeleteComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { HttpClientService } from 'src/app/shared/http-client.service';
-import { GmapsService } from 'src/app/gmaps/gmaps.service';
+import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
+import {FormGroup, FormControl} from '@angular/forms';
+import {HttpClientService} from 'src/app/shared/http-client.service';
+import {GmapsService} from 'src/app/gmaps/gmaps.service';
 
 @Component({
   selector: 'app-trip-add',
@@ -29,21 +29,21 @@ export class TripAddComponent implements OnInit {
             this.licenseplates.push(licenseplate);
           });
         }
-      )
+      );
 
-      const projects = this.httpClientService.onGet('http://localhost:8080/project/getAllProject').pipe()
+    const projects = this.httpClientService.onGet('http://localhost:8080/project/getAllProject').pipe()
       .subscribe(
         data => {
           data.forEach(project => {
             this.projects.push(project.name + ' #' + project.id);
           });
         }
-      )
+      );
 
-   }
+  }
 
   ngOnInit() {
-    this.tripAddForm =  new FormGroup({
+    this.tripAddForm = new FormGroup({
       'licenseplate': new FormControl(null),
       'startLocation': new FormControl(null),
       'endLocation': new FormControl(null),
@@ -57,14 +57,19 @@ export class TripAddComponent implements OnInit {
       this.drivenKilometers = km;
       this.endKilometerGauge = this.startKilometerGauge + km;
       this.cdr.detectChanges();
-    } );
-    this.mapService.estTravelTime.subscribe((time) => {this.estTravelTime = time; this.cdr.detectChanges(); } );
-    this.mapService.destination.subscribe((place) => {this.destination.location[place.mIndex] = place.loc;} );
+    });
+    this.mapService.estTravelTime.subscribe((time) => {
+      this.estTravelTime = time;
+      this.cdr.detectChanges();
+    });
+    this.mapService.destination.subscribe((place) => {
+      this.destination.location[place.mIndex] = place.loc;
+    });
 
   }
 
 
-  onSubmit(){
+  onSubmit() {
     const licenseplate = this.tripAddForm.value.licenseplate;
     const drivenKm = this.drivenKilometers;
     const startKmGauge = this.startKilometerGauge;
@@ -79,7 +84,7 @@ export class TripAddComponent implements OnInit {
   }
 
   retrieveKmGauge(event) {
-    const trip = this.httpClientService.onGet('http://localhost:8080/trips/getByLicensePlate?licensePlate='+ event.target.innerText).pipe()
+    const trip = this.httpClientService.onGet('http://localhost:8080/trips/getByLicensePlate?licensePlate=' + event.target.innerText).pipe()
       .subscribe(
         data => {
           this.startKilometerGauge = data.endKilometergauge;
@@ -90,15 +95,18 @@ export class TripAddComponent implements OnInit {
   customStartKilometers(value) {
     this.startKilometerGauge = value;
 
-    if(this.endKilometerGauge && this.startKilometerGauge)
-      this.drivenKilometers =  (this.endKilometerGauge - this.startKilometerGauge) > 0 ? this.endKilometerGauge - this.startKilometerGauge : 0;
+    if (this.endKilometerGauge && this.startKilometerGauge) {
+      this.drivenKilometers = (this.endKilometerGauge - this.startKilometerGauge) > 0 ? this.endKilometerGauge - this.startKilometerGauge : 0;
+    }
 
   }
+
   customEndKilometers(value) {
     this.endKilometerGauge = value;
 
-    if(this.endKilometerGauge && this.startKilometerGauge)
+    if (this.endKilometerGauge && this.startKilometerGauge) {
       this.drivenKilometers = (this.endKilometerGauge - this.startKilometerGauge) > 0 ? this.endKilometerGauge - this.startKilometerGauge : 0;
+    }
   }
 
 
