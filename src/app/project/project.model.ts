@@ -1,12 +1,12 @@
-import {Trip} from '../trips/trip.model';
+import {Trip} from '../trips/trip-delete/trip-delete.model';
 
-export class ProjectModel{
+export class ProjectModel {
   private id: number;
   private name: string;
   private trips: [Trip];
   private totalDrivenKm;
 
-  constructor(id: number, name: string, trips: [Trip], totalDrivenKm: number ) {
+  constructor(id: number, name: string, trips: [Trip], totalDrivenKm: number) {
     this.id = id;
     this.name = name;
     this.trips = trips;
@@ -16,26 +16,30 @@ export class ProjectModel{
   public getId() {
     return this.id;
   }
+
   public getName() {
     return this.name;
   }
+
   public getTrips() {
     return this.trips;
   }
-  public getTotalDrivenKm(){
+
+  public getTotalDrivenKm() {
     return this.totalDrivenKm;
   }
+
   public setName(name: string) {
     this.name = name;
   }
+
   public setTrips(trip: Trip) {
     this.trips.push(trip);
   }
-  public setTotalDrivenKm(drivenKm: number){
+
+  public setTotalDrivenKm(drivenKm: number) {
     this.totalDrivenKm = drivenKm;
   }
-
-
 
 
 }
