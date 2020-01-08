@@ -31,6 +31,7 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 
 import { ProjectOverviewPageComponent } from './project/project-overview-page/project-overview-page.component';
 import {CookieService} from 'ngx-cookie-service';
+import {VehicleDeleteComponent} from './vehicles/vehicle-delete/vehicle-delete.component';
 
 
 @NgModule({
@@ -55,7 +56,7 @@ import {CookieService} from 'ngx-cookie-service';
     TripsComponent,
     TripAddComponent,
     TripModifyComponent,
-    VehicleModifyComponent
+    VehicleModifyComponent,
   ],
   imports: [
     BrowserModule,
