@@ -31,6 +31,7 @@ import { ProjectOverviewPageComponent } from './project/project-overview-page/pr
 import {CookieService} from 'ngx-cookie-service';
 import { LicensePlateValidatorDirective } from './validators/license-plate-validator.directive';
 import {TripDeleteComponent} from './trips/trip-delete/trip-delete.component';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 
 
@@ -66,7 +67,8 @@ import {TripDeleteComponent} from './trips/trip-delete/trip-delete.component';
     MatButtonModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

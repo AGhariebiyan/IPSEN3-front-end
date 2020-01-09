@@ -3,6 +3,13 @@
   <div class="title">
     <h2>Voertuigen Toevoegen</h2>
   </div>
+  <div class="image-container">
+    <img *ngIf="imageSource && vehicleAddForm.valid" src="{{imageSource}}" class="card-image animation-fade-in"   />
+    <img *ngIf="!imageSource" src="../../../assets/imgs/image_placeholder.png" class="card-image" />
+    <div *ngIf="imageSource && vehicleAddForm.valid" class="text-container animation-slide-left">
+      <span>{{brand}} - {{type}}</span>
+    </div>
+  </div>
 
   <mat-card>
 
@@ -10,7 +17,6 @@
         <mat-icon>arrow_back_ios</mat-icon>
         <i>Voertuigen Overzicht</i>
       </div>
-
       <form [formGroup]="vehicleAddForm" (ngSubmit)="onSubmit()">
         <div>
         <mat-form-field class="form-full-width">
@@ -27,13 +33,13 @@
             <mat-error *ngIf="getForm.licenseplate.touched && getForm.licenseplate.errors?.required">
               Kenteken is verplicht!
             </mat-error>
-            <mat-error *ngIf="getForm.licenseplate.touched && getForm.licenseplate.errors?.licensePlateError">
+            <mat-error *ngIf="getForm.licenseplate.touched && getForm.licenseplate.errors?.licensePlateError && !getForm.licenseplate.errors?.required">
               Geen geldig kenteken!
             </mat-error>
-            <mat-error *ngIf="getForm.licenseplate.touched && getForm.licenseplate.errors?.invalidRDW">
+            <mat-error *ngIf="getForm.licenseplate.touched && getForm.licenseplate.errors?.invalidRDW && !getForm.licenseplate.errors?.licensePlateError && !getForm.licenseplate.errors?.required">
               Kenteken is niet bekend bij de RDW!
             </mat-error>
-            <mat-error *ngIf="getForm.licenseplate.touched && getForm.licenseplate.errors?.licenseExists">
+            <mat-error *ngIf="getForm.licenseplate.touched && getForm.licenseplate.errors?.licenseExists && !getForm.licenseplate.errors?.invalidRDW && !getForm.licenseplate.errors?.licensePlateError && !getForm.licenseplate.errors?.required">
               Kenteken is al geregistreerd!
             </mat-error>
 
@@ -45,7 +51,7 @@
             placeholder="Merk"
             id="brand"
             formControlName="brand"
-            value="{{brand}}"
+            [value]="vehicleAddForm.valid ? brand : ''"
 
             >
           </mat-form-field>
@@ -56,7 +62,7 @@
             placeholder="Type"
             formControlName="type"
             id="type"
-            value="{{type}}"
+            [value]="vehicleAddForm.valid ? type : ''"
             >
           </mat-form-field>
 
@@ -66,7 +72,7 @@
               placeholder="Carrosserie"
               id="body"
               formControlName="body"
-              value="{{body}}"
+              [value]="vehicleAddForm.valid ? body : ''"
             >
 
           </mat-form-field>
@@ -84,6 +90,14 @@
 
   </mat-card>
 
-  <img *ngIf="imageFound && allowImage" src="{{imageSource}}" width="30%" />
+
 
 </div>
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">Aan het laden...</p>
+</ngx-spinner>
