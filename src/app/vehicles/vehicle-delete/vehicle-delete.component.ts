@@ -14,7 +14,6 @@ import {Vehicle} from './vehicle.model';
 })
 export class VehicleDeleteComponent implements OnInit {
 
-  p = 1;
   result: EventEmitter = new EventEmitter();
 
   public vehiclesArray: Vehicle[] = [];
