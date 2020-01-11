@@ -5,9 +5,6 @@
 
 .menu-icon-button {
     all: initial;
-    * {
-      all: unset;
-    }
 }
 
 .mat-icon-menu {
