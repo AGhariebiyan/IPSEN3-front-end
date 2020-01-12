@@ -5,10 +5,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ViewTripsPageComponent } from './view-trips-page/view-trips-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-// Material imports
-import { MatIconModule, MatToolbarModule, MatMenuModule, MatDividerModule, MatListModule} from '@angular/material';
-import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,7 +20,6 @@ import { TripModifyComponent } from './trips/trip-modify/trip-modify.component';
 import { VehicleModifyComponent } from './vehicles/vehicle-modify/vehicle-modify.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NotificationComponent } from './shared/notification/notification.component';
-import { MatButtonModule} from '@angular/material';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 import { ProjectOverviewPageComponent } from './project/project-overview-page/project-overview-page.component';
@@ -64,7 +59,6 @@ import {NgxSpinnerModule} from 'ngx-spinner';
     GooglePlaceModule,
     MaterialModule,
     AppRoutingModule,
-    MatButtonModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
