@@ -12,7 +12,6 @@ import {PageNotFoundComponent} from './shared/page-not-found/page-not-found.comp
 import {ProjectOverviewPageComponent} from './project/project-overview-page/project-overview-page.component';
 import {VehicleAddComponent} from './vehicles/vehicle-add/vehicle-add.component';
 import {TripAddComponent} from './trips/trip-add/trip-add.component';
-import {VehicleDeleteComponent} from './vehicles/vehicle-delete/vehicle-delete.component';
 
 
 const appRoutes: Routes = [
@@ -21,7 +20,7 @@ const appRoutes: Routes = [
   {path: 'rittenOverzicht', component: TripDeleteComponent},
   {path: 'ritten/toevoegen', component: TripAddComponent},
   {path: 'voertuigen/toevoegen', component: VehicleAddComponent},
-  {path: 'voertuigenOverzicht', component: VehicleDeleteComponent},
+  {path: 'voertuigenOverzicht', component: VehiclesComponent},
   {path: 'ritten/inzien', component: ViewTripsPageComponent},
   {path: 'projecten', component: ProjectOverviewPageComponent},
   {path: 'projecten/:projectId', component: ProjectInzienPageComponent},

@@ -19,7 +19,6 @@ import { MaterialModule } from './material/material.module';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import { VehicleAddComponent } from './vehicles/vehicle-add/vehicle-add.component';
-import { TripDeleteComponent } from './trips/trip-delete/trip-delete.component';
 import { TripAddComponent } from './trips/trip-add/trip-add.component';
 import { TripModifyComponent } from './trips/trip-modify/trip-modify.component';
 import { VehicleModifyComponent } from './vehicles/vehicle-modify/vehicle-modify.component';
@@ -30,13 +29,15 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 
 import { ProjectOverviewPageComponent } from './project/project-overview-page/project-overview-page.component';
 import {CookieService} from 'ngx-cookie-service';
-import { VehicleDeleteComponent } from './vehicles/vehicle-delete/vehicle-delete.component';
+import { LicensePlateValidatorDirective } from './validators/license-plate-validator.directive';
+import {TripDeleteComponent} from './trips/trip-delete/trip-delete.component';
+import {NgxSpinnerModule} from 'ngx-spinner';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TripDeleteComponent,
     ViewTripsPageComponent,
     HeaderComponent,
     DashboardComponent,
@@ -51,11 +52,11 @@ import { VehicleDeleteComponent } from './vehicles/vehicle-delete/vehicle-delete
     DashboardComponent,
     NotificationComponent,
     PageNotFoundComponent,
-    TripDeleteComponent,
     TripAddComponent,
     TripModifyComponent,
     VehicleModifyComponent,
-    VehicleDeleteComponent
+    LicensePlateValidatorDirective,
+    TripDeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +67,8 @@ import { VehicleDeleteComponent } from './vehicles/vehicle-delete/vehicle-delete
     MatButtonModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
