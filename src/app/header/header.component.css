@@ -37,9 +37,9 @@
 }
 
 #overlay {
-    position: fixed; 
-    display: none; 
-    width: 15%; 
+    position: fixed;
+    display: none;
+    width: 15%;
     height: 100%;
     top: 64px;
     left: 0;
@@ -132,10 +132,10 @@ a:hover {
     }
 
     #overlay {
-        width: 100%; 
+        width: 100%;
         top: 57px;
     }
-    
+
     .overlayed-dropdown-menu {
         top: 20vh;
         padding: 0;
@@ -147,7 +147,7 @@ a:hover {
         left: 15%;
         margin-top: 4%;
     }
-    
+
     .logout-from-drop-down-menu-button {
         bottom: calc(10vh);
     }
