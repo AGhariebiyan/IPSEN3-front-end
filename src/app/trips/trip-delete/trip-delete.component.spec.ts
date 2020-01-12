@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GmapsComponent } from './gmaps.component';
+import { TripDeleteComponent } from './trip-delete.component';
 
-describe('GmapsComponent', () => {
-  let component: GmapsComponent;
-  let fixture: ComponentFixture<GmapsComponent>;
+describe('TripsComponent', () => {
+  let component: TripDeleteComponent;
+  let fixture: ComponentFixture<TripDeleteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GmapsComponent ]
+      declarations: [ TripDeleteComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GmapsComponent);
+    fixture = TestBed.createComponent(TripDeleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

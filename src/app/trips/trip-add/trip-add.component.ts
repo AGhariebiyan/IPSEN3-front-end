@@ -1,8 +1,7 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { HttpClientService } from 'src/app/shared/http-client.service';
-import { GmapsService } from 'src/app/gmaps/gmaps.service';
-import { PeriodicElement } from 'src/app/project-overview-page/project-overview-page.component';
+import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
+import {FormGroup, FormControl} from '@angular/forms';
+import {HttpClientService} from 'src/app/shared/http-client.service';
+import {GmapsService} from 'src/app/gmaps/gmaps.service';
 
 @Component({
   selector: 'app-trip-add',
@@ -18,6 +17,8 @@ export class TripAddComponent implements OnInit {
   public estTravelTime;
   public licenseplates = [];
   public projects = [];
+  public startKilometerGauge;
+  public endKilometerGauge;
   private destination = {location: []};
 
   constructor(private httpClientService: HttpClientService, private cdr: ChangeDetectorRef, private mapService: GmapsService) {
@@ -28,49 +29,85 @@ export class TripAddComponent implements OnInit {
             this.licenseplates.push(licenseplate);
           });
         }
-      )
+      );
 
-      const projects = this.httpClientService.onGet('http://localhost:8080/trips/fetch/unique-projectids/1').pipe()
+    const projects = this.httpClientService.onGet('http://localhost:8080/project/getAllProject').pipe()
       .subscribe(
         data => {
           data.forEach(project => {
-            this.projects.push(project);
+            this.projects.push(project.name + ' #' + project.id);
           });
         }
-      )
-  
-   }
+      );
+
+  }
 
   ngOnInit() {
-    this.tripAddForm =  new FormGroup({
-      'licenseplate': new FormControl(null, Validators.required),
+    this.tripAddForm = new FormGroup({
+      'licenseplate': new FormControl(null),
+      'startLocation': new FormControl(null),
+      'endLocation': new FormControl(null),
       'drivenKm': new FormControl(null),
-      'startKmGauge': new FormControl(null, Validators.required),
+      'startKmGauge': new FormControl(null),
       'endKmGauge': new FormControl(null),
-      'projectID': new FormControl(null, Validators.required)
+      'projectID': new FormControl(null)
     });
 
-    this.mapService.drivenKilometers.subscribe((km) => {this.drivenKilometers = km; this.cdr.detectChanges(); } );
-    this.mapService.estTravelTime.subscribe((time) => {this.estTravelTime = time; this.cdr.detectChanges(); } );
-    this.mapService.destination.subscribe((place) => {this.destination.location[place.mIndex] = place.loc; console.log(place)} );
+    this.mapService.drivenKilometers.subscribe((km) => {
+      this.drivenKilometers = km;
+      this.endKilometerGauge = this.startKilometerGauge + km;
+      this.cdr.detectChanges();
+    });
+    this.mapService.estTravelTime.subscribe((time) => {
+      this.estTravelTime = time;
+      this.cdr.detectChanges();
+    });
+    this.mapService.destination.subscribe((place) => {
+      this.destination.location[place.mIndex] = place.loc;
+    });
 
   }
 
 
-  onSubmit(){
+  onSubmit() {
     const licenseplate = this.tripAddForm.value.licenseplate;
     const drivenKm = this.drivenKilometers;
-    const startKmGauge = this.tripAddForm.value.startKmGauge;
-    const endKmGauge = startKmGauge + drivenKm;
-    const projectId = this.tripAddForm.value.projectID;
-
-    console.log(this.destination.location[0]);
-    console.log(this.destination.location[1]);
+    const startKmGauge = this.startKilometerGauge;
+    const endKmGauge = this.endKilometerGauge;
+    const projectId = this.tripAddForm.value.projectID.split('#')[1];
 
     const postObj = this.httpClientService.onPost(
       'http://localhost:8080/trips/trip/add/for-project/' + projectId + '/1/' + licenseplate + '/' + this.destination.location[0] + '/' + this.destination.location[1] + '/' + startKmGauge + '/' + endKmGauge + '/' + drivenKm);
 
+
     this.formSubmitted = true;
   }
+
+  retrieveKmGauge(event) {
+    const trip = this.httpClientService.onGet('http://localhost:8080/trips/getByLicensePlate?licensePlate=' + event.target.innerText).pipe()
+      .subscribe(
+        data => {
+          this.startKilometerGauge = data.endKilometergauge;
+        }
+      );
+  }
+
+  customStartKilometers(value) {
+    this.startKilometerGauge = value;
+
+    if (this.endKilometerGauge && this.startKilometerGauge) {
+      this.drivenKilometers = (this.endKilometerGauge - this.startKilometerGauge) > 0 ? this.endKilometerGauge - this.startKilometerGauge : 0;
+    }
+
+  }
+
+  customEndKilometers(value) {
+    this.endKilometerGauge = value;
+
+    if (this.endKilometerGauge && this.startKilometerGauge) {
+      this.drivenKilometers = (this.endKilometerGauge - this.startKilometerGauge) > 0 ? this.endKilometerGauge - this.startKilometerGauge : 0;
+    }
+  }
+
 
 }

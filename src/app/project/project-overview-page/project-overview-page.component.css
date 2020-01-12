@@ -1,0 +1,113 @@
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.table-size{
+  width:50vw;
+}
+.projectOverviewTable tr{
+  cursor:pointer;
+}
+
+.projectOverviewTable tr:hover {
+  background-color: #DDDDDD;
+}
+
+.projectOverviewTable tr:first-of-type:hover {
+  background-color: #FFFFFF;
+}
+
+/* Probably the most controversial way to fix this but it works */
+.projectOverviewTable tr:nth-last-child(4):hover {
+  background-color: #DDDDDD;
+}
+
+.searchContainer {
+    width: 50vw;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.footerContainer{
+  width: 50vw;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 10px;
+}
+.footerContainer small{
+  margin-top:10px;
+  margin-right: 10px;
+}
+
+.btn {
+  background: #34495e;
+  border: none;
+  border-radius: .3rem;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.4rem;
+  height: 3.2rem;
+  line-height: 1.6rem;
+  outline: 0;
+  padding: .7rem 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.loading {
+  color: transparent !important;
+  min-height: 1.6rem;
+  pointer-events: none;
+  position: relative;
+}
+.loading::after {
+  -webkit-animation: loading 500ms infinite linear;
+  animation: loading 500ms infinite linear;
+  border: .2rem solid white;
+  border-radius: .8rem;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: block;
+  height: 1.2rem;
+  left: 50%;
+  margin-left: -.8rem;
+  margin-top: -.8rem;
+  position: absolute;
+  top: 50%;
+  width: 1.2rem;
+}
+
+@-webkit-keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
