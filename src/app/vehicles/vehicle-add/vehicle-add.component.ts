@@ -5,8 +5,6 @@ import { LicensePlateService } from '../license-plate-service';
 import {map} from 'rxjs/operators';
 import {NgxSpinnerService} from 'ngx-spinner';
 
-
-
 @Component({
   selector: 'app-vehicle-add',
   templateUrl: './vehicle-add.component.html',
@@ -22,8 +20,6 @@ export class VehicleAddComponent implements OnInit {
   private body: string;
   private year: string;
   //private color: string;
-
-
 
   constructor(private httpClientService: HttpClientService, private fb: FormBuilder, private licensePlateService: LicensePlateService, private spinner: NgxSpinnerService) { }
 
@@ -55,11 +51,8 @@ export class VehicleAddComponent implements OnInit {
 
   onSubmit() {
     const licensplate = this.vehicleAddForm.value.licenseplate;
-    this.httpClientService.onPost('http://localhost:8080/vehicles/vehicle/add/for-user/1/0/' + licensplate.toUpperCase() + '/' + this.brand + '/' + this.type + '/' + this.body);
+    this.httpClientService.onPost('http://localhost:8080/vehicles/vehicle/add/for-user/1/' + licensplate.toUpperCase() + '/' + this.brand + '/' + this.type + '/' + this.body);
     this.formSubmitted = true;
-    /**
-     * TODO:
-     * navigatie naar voertuigen overzicht*/
     // this.vehicleAddForm.reset();
   }
 
