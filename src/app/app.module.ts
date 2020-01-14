@@ -27,9 +27,9 @@ import { CookieService} from 'ngx-cookie-service';
 import { LicensePlateValidatorDirective } from './validators/license-plate-validator.directive';
 import { TripDeleteComponent} from './trips/trip-delete/trip-delete.component';
 import { NgxSpinnerModule} from 'ngx-spinner';
-// import { LoginComponent } from './login/login.component';
-// import { AuthGuard } from './auth/auth.guard';
-// import { AuthService } from './auth/auth.service';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth/auth.guard';
+import { AuthService } from './auth/auth.service';
 
 
 @NgModule({
@@ -53,8 +53,8 @@ import { NgxSpinnerModule} from 'ngx-spinner';
     TripModifyComponent,
     VehicleModifyComponent,
     LicensePlateValidatorDirective,
-    TripDeleteComponent
-    // LoginComponent
+    TripDeleteComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -67,8 +67,7 @@ import { NgxSpinnerModule} from 'ngx-spinner';
     HttpClientModule,
     NgxSpinnerModule
   ],
-  // , AuthService, AuthGuard
-  providers: [CookieService],
+  providers: [CookieService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

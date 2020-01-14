@@ -41,7 +41,7 @@ export class HttpClientService {
     return this.http.delete(delUrl);
   }
 
-  // checkJWTToken() {
-  //   localStorage.getItem("jwtoken");
-  // }
+  checkJWTToken() {
+    localStorage.getItem('jwtoken');
+  }
 }

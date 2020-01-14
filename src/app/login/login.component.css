@@ -1,4 +1,4 @@
-/* body {
+body {
     background-image: url("../../assets/imgs/homepageBackground.png");
     background-size: cover;
 }
@@ -29,11 +29,11 @@ mat-card {
   width: 80%;
 }
 
-/*.mat-stroked-button {*/
-/*    float: left;*/
-/*    left: 10%;*/
-/*}*/
-/* 
+.mat-stroked-button {
+    float: left;
+    left: 10%;
+}
+
 .mat-button {
     float: right;
     right: 10%;
@@ -115,4 +115,4 @@ a:-webkit-any-link {
 
 .register_button {
   right: 10%;
-} */
+}
