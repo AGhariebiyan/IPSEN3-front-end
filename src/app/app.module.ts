@@ -27,6 +27,7 @@ import {CookieService} from 'ngx-cookie-service';
 import { LicensePlateValidatorDirective } from './validators/license-plate-validator.directive';
 import {TripDeleteComponent} from './trips/trip-delete/trip-delete.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import {GmapsService} from './gmaps/gmaps.service';
 
 
 
@@ -64,7 +65,10 @@ import {NgxSpinnerModule} from 'ngx-spinner';
     HttpClientModule,
     NgxSpinnerModule
   ],
-  providers: [CookieService],
+  providers: [
+    CookieService,
+    GmapsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
