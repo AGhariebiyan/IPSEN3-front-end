@@ -1,0 +1,60 @@
+.logo {
+  margin: 0 10px;
+}
+
+.menuButton {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+  border-radius: 5px;
+}
+
+.menuButton:hover {
+  background: #2f4256;
+  cursor: pointer;
+}
+
+.appContent {
+
+}
+
+.appHeader {
+  height: inherit;
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerLeft, .headerRight {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.appContainer {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 9fr;
+}
+
+.menu {
+  width: 300px;
+  background-color: #526476;
+  display: flex;
+  justify-content: center;
+}
+
+.menuList {
+  list-style: none;
+  margin-top: 50px;
+}
+
+.menuList li {
+  margin: 20px 0;
+  font-size: 1.75em;
+}
+
+.menuList a {
+  text-decoration: none;
+  color: #FAFAFA;
+}

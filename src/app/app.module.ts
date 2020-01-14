@@ -5,7 +5,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ViewTripsPageComponent } from './view-trips-page/view-trips-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProjectInzienPageComponent } from './project/project-inzien-page/project-inzien-page.component';
@@ -35,16 +34,12 @@ import {GmapsService} from './gmaps/gmaps.service';
   declarations: [
     AppComponent,
     ViewTripsPageComponent,
-    HeaderComponent,
-    DashboardComponent,
-    ProjectInzienPageComponent,
     GmapsComponent,
     GmapsLocSearchComponent,
     ProjectInzienPageComponent,
     ProjectOverviewPageComponent,
     VehiclesComponent,
     VehicleAddComponent,
-    HeaderComponent,
     DashboardComponent,
     NotificationComponent,
     PageNotFoundComponent,
