@@ -15,10 +15,11 @@
           <mat-select
             placeholder="Kenteken"
             id="licenseplate"
-            formControlName="licenseplate">
+            formControlName="licenseplate"
+            [value]="getForm.licenseplate.value">
             <mat-option (click) = "retrieveKmGauge($event);"
                         *ngFor="let licenseplate of licenseplates"
-                        value="{{licenseplate}}">{{licenseplate}}</mat-option>
+                        [value]="licenseplate">{{licenseplate}}</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -26,21 +27,24 @@
           <mat-select
             placeholder="Project nummer"
             id="projectId"
-            formControlName="projectID">
+            formControlName="projectID"
+            [(value)]="getForm.projectID.value">
             <mat-option
-              *ngFor="let project of projects"
-              value="{{project}}">{{project}}</mat-option>
+              *ngFor="let projectName of projectNames; let i = index"
+              [value]="projectIds[i]">{{projectName}} #{{projectIds[i]}}</mat-option>
           </mat-select>
         </mat-form-field>
 
         <app-gmaps-loc-search
           [gmap-search-index]="0"
-          [gmap-input-placeholder]="'Voer uw startlocatie in'">
+          [gmap-input-placeholder]="'Voer uw startlocatie in'"
+          [custom-value]="getForm.startLocation.value">
         </app-gmaps-loc-search>
 
         <app-gmaps-loc-search
           [gmap-search-index]="1"
-          [gmap-input-placeholder]="'Voer uw eindbestemming in'">
+          [gmap-input-placeholder]="'Voer uw eindbestemming in'"
+          [custom-value]="getForm.endLocation.value">
         </app-gmaps-loc-search>
 
         <mat-form-field>
@@ -50,8 +54,9 @@
             id="startKmGauge"
             formControlName="startKmGauge"
             placeholder="Start kilometerstand"
-            value="{{startKilometerGauge}}"
-            (input)="customStartKilometers($event.target.value)">
+            (input)="customStartKilometers($event.target.value)"
+            [value]="getForm.startKmGauge.value"
+            >
         </mat-form-field>
 
         <mat-form-field>
@@ -61,8 +66,9 @@
             id="endKmGauge"
             formControlName="endKmGauge"
             placeholder="Eind kilometerstand"
-            value="{{endKilometerGauge}}"
-            (input)="customEndKilometers($event.target.value)" >
+            [value]="getForm.endKmGauge.value"
+            (input)="customEndKilometers($event.target.value)"
+            >
 
         </mat-form-field>
 
@@ -81,9 +87,9 @@
           <button
             mat-flat-button
             color="primary"
-            [disabled]="!tripUpdateForm.valid">Toevoegen</button>
+            [disabled]="!tripUpdateForm.valid">Aanpassen</button>
         </div>
-        <p *ngIf="formSubmitted">Rit is toegevoegd!</p>
+        <p *ngIf="formSubmitted">Rit is aangepast!</p>
       </form>
     </div>
 
@@ -92,7 +98,4 @@
     </div>
 
   </mat-card>
-  {{estTravelTime}}
-
-
 </div>
