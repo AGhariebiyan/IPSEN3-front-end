@@ -4,16 +4,17 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  padding: 25px 0;
 }
 .mat-card{
-  border-top-left-radius:0px;
-  border-top-right-radius:0px;
+  border-top-left-radius:0;
+  border-top-right-radius:0;
 }
 .title{
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
+  padding-bottom: 5px;
 }
 
 .top-left {
@@ -41,7 +42,7 @@ form {
   height: 320px;
   border-top-left-radius:4px;
   border-top-right-radius:4px;
-  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
   position:relative;
 }
 .card-image{
@@ -50,9 +51,6 @@ form {
 }
 
 .text-container{
-  position: absolute;
-  z-index: 10;
-  bottom: 40px;
   position: absolute;
   z-index: 10;
   bottom: 40px;
