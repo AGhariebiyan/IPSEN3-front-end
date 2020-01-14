@@ -12,10 +12,12 @@ import {PageNotFoundComponent} from './shared/page-not-found/page-not-found.comp
 import {ProjectOverviewPageComponent} from './project/project-overview-page/project-overview-page.component';
 import {VehicleAddComponent} from './vehicles/vehicle-add/vehicle-add.component';
 import {TripAddComponent} from './trips/trip-add/trip-add.component';
+import { LoginComponent } from './login/login.component';
 
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'rittenOverzicht', component: TripDeleteComponent},
   {path: 'ritten/toevoegen', component: TripAddComponent},

@@ -40,4 +40,8 @@ export class HttpClientService {
   onDelete(delUrl: string) {
     return this.http.delete(delUrl);
   }
+
+  // checkJWTToken() {
+  //   localStorage.getItem("jwtoken");
+  // }
 }

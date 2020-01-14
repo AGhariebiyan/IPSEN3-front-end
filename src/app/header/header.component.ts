@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+// import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   overlayNavMenuValue: string = 'none';
-
-  constructor() { }
+  username: string;
+  // private authService: AuthService
+  constructor(
+    ) {}
 
   ngOnInit() {
+    // this.username = localStorage.getItem("username")
   }
 
   onOverlay() {
@@ -24,5 +28,9 @@ export class HeaderComponent implements OnInit {
       (document.querySelector('body') as HTMLElement).style.overflow = 'hidden';
       document.getElementById("mat-icon-menu-id").innerHTML = "arrow_back";
     }
+  }
+
+  onLogout() {
+    // this.authService.logout();
   }
 }

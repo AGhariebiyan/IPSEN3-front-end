@@ -28,7 +28,7 @@
                     </a>
                 </li>
             </ul>
-            <button class="logout-from-drop-down-menu-button" mat-icon-button aria-label="menu icon-button with a nav-menu">
+            <button class="logout-from-drop-down-menu-button" mat-icon-button aria-label="menu icon-button with a nav-menu" (click)="onLogout()">
                 <mat-icon>power_settings_new</mat-icon>&nbsp;
                 <span>uitloggen</span>
             </button>
@@ -48,12 +48,12 @@
         <mat-menu #userMenu="matMenu">
             <button mat-menu-item>
                 <mat-icon>power_settings_new</mat-icon>
-                <span>uitloggen</span>
+                <span (click)="onLogout()">uitloggen</span>
             </button>
         </mat-menu>
 
         <mat-icon class="mat-icon-account-circle">account_circle</mat-icon>
-        <span id="span-username">username</span>
+        <span id="span-username">{{username}}</span>
     </mat-toolbar-row>
 </mat-toolbar>
 
