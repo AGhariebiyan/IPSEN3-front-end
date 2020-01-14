@@ -1,0 +1,89 @@
+body {
+    background-image: url("../../assets/imgs/homepageBackground.png");
+    background-size: cover;
+}
+
+img {
+    position: relative;
+    padding: 10px 0px 10px 0px;
+    transform: translateX(-25%);
+}
+
+mat-card {
+    width: 50%;
+    max-width: 450px;
+    height: 300px;
+}
+
+mat-form-field {
+    width: 80%;
+}
+
+mat-card {
+  max-width: 400px;
+  margin: 2em auto;
+  text-align: center;
+  position: absolute;
+}
+.full-width-input {
+  width: 80%;
+}
+
+/*.mat-stroked-button {*/
+/*    float: left;*/
+/*    left: 10%;*/
+/*}*/
+
+.mat-button {
+    float: right;
+    right: 10%;
+}
+
+span {
+    text-align: center;
+}
+
+.centered-horizontal {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.centered-vertical {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.centered-hor-and-vert {
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%,-50%);
+}
+
+button {
+  position: absolute;
+  bottom: 10%;
+  color: #34495e;
+  text-decoration: none;
+  transition-duration: 0.3s;
+}
+
+button:hover {
+  background-color: #19BA9D;
+  color: white;
+  transition-duration: 0.3s;
+}
+
+a:-webkit-any-link {
+  color: unset;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.login_button {
+  left: 10%;
+}
+
+.register_button {
+  right: 10%;
+}

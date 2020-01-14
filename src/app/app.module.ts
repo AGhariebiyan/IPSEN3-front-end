@@ -27,6 +27,8 @@ import {CookieService} from 'ngx-cookie-service';
 import { LicensePlateValidatorDirective } from './validators/license-plate-validator.directive';
 import {TripDeleteComponent} from './trips/trip-delete/trip-delete.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import { LoginComponent } from './login/login.component';
+import { AuthComponent } from './auth/auth.component';
 
 
 
@@ -51,7 +53,9 @@ import {NgxSpinnerModule} from 'ngx-spinner';
     TripModifyComponent,
     VehicleModifyComponent,
     LicensePlateValidatorDirective,
-    TripDeleteComponent
+    TripDeleteComponent,
+    LoginComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
