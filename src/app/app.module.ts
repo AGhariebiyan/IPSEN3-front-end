@@ -63,7 +63,8 @@ import {VehicleDeleteComponent} from './vehicles/vehicle-delete/vehicle-delete.c
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule
   ],
   providers: [CookieService, GmapsService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
