@@ -24,7 +24,6 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 import { ProjectOverviewPageComponent } from './project/project-overview-page/project-overview-page.component';
 import {CookieService} from 'ngx-cookie-service';
 import { LicensePlateValidatorDirective } from './validators/license-plate-validator.directive';
-import { TripDeleteComponent} from './trips/trip-delete/trip-delete.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthService } from './auth/auth.service';
@@ -38,24 +37,23 @@ import {VehicleDeleteComponent} from './vehicles/vehicle-delete/vehicle-delete.c
 @NgModule({
   declarations: [
     AppComponent,
-    ViewTripsPageComponent,
     GmapsComponent,
     GmapsLocSearchComponent,
     ProjectInzienPageComponent,
     ProjectOverviewPageComponent,
-    VehiclesComponent,
-    VehicleAddComponent,
     DashboardComponent,
     NotificationComponent,
     PageNotFoundComponent,
     TripAddComponent,
     TripModifyComponent,
-    VehicleModifyComponent,
-    LicensePlateValidatorDirective,
-    TripDeleteComponent,
-    LoginComponent
     TripsOverviewComponent,
-    VehicleDeleteComponent
+    ViewTripsPageComponent,
+    VehiclesComponent,
+    VehicleAddComponent,
+    VehicleModifyComponent,
+    VehicleDeleteComponent,
+    LicensePlateValidatorDirective,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -65,8 +63,7 @@ import {VehicleDeleteComponent} from './vehicles/vehicle-delete/vehicle-delete.c
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule,
-    NgxSpinnerModule
+    HttpClientModule
   ],
   providers: [CookieService, GmapsService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
