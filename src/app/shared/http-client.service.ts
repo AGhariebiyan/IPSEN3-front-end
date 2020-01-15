@@ -15,13 +15,18 @@ export class HttpClientService {
   constructor(private http: HttpClient) {}
 
   onGet(getUrl: string): Observable<any> {
-    console.log(this.httpHeaders.get('jwtoken'));
+    // console.log(this.httpHeaders.get('jwtoken'));
     if(localStorage.getItem('jwtoken') !== null && this.httpHeaders.get('Token') === null){
       this.httpHeaders = this.httpHeaders.append('Token', localStorage.getItem('jwtoken'));
     }
-    console.log(this.httpHeaders);
+    // console.log(this.httpHeaders);
     return this.http.get(getUrl, {headers: this.httpHeaders});
   }
+
+  onGetWithoutHeaders(getUrl: string): Observable<any> {
+    return this.http.get(getUrl);
+  }
+
 
   onPost(postUrl: string) {
     this.http.post(postUrl, null, {headers: this.httpHeaders}).subscribe();

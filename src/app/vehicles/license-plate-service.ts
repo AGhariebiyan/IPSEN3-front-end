@@ -12,7 +12,7 @@ export class LicensePlateService {
 
   checkRdwLicensePlate(licensePlate: string) {
     licensePlate = licensePlate.replace(/-/g, '');
-    const fetchedObj = this.httpClientService.onGet('https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=' + licensePlate);
+    const fetchedObj = this.httpClientService.onGetWithoutHeaders('https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=' + licensePlate);
     return fetchedObj;
   }
 
