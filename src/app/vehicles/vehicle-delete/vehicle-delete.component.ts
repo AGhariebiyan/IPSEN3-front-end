@@ -5,6 +5,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {HttpClientService} from '../../shared/http-client.service';
 import {Vehicle} from './vehicle.model';
+import {SelectionModel} from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-vehicle-delete',
@@ -13,11 +14,16 @@ import {Vehicle} from './vehicle.model';
 })
 export class VehicleDeleteComponent implements OnInit {
 
-  result: EventEmitter = new EventEmitter();
 
+
+  selectedIdsArray: Array<number> = [];
+
+  result: EventEmitter = new EventEmitter();
   public vehiclesArray: Vehicle[] = [];
+  data = Object.assign(this.vehiclesArray);
   displayedColumns: string[];
   dataSource1: MatTableDataSource<Vehicle> = new MatTableDataSource<Vehicle>();
+  selection = new SelectionModel<Vehicle>(true, []);
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -26,7 +32,7 @@ export class VehicleDeleteComponent implements OnInit {
 
 
   constructor(private httpClientService: HttpClientService) {
-    this.displayedColumns = ['licensePlate', 'vehicleName', 'vehicleType', 'totalTrips', 'verwijder', 'wijzigen'];
+    this.displayedColumns = ['select', 'licensePlate', 'vehicleName', 'vehicleType', 'verwijder', 'wijzigen'];
     this.getVehicles();
   }
 
@@ -38,6 +44,61 @@ export class VehicleDeleteComponent implements OnInit {
     });
   }
 
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource1.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource1.data.forEach(row => this.selection.select(row));
+  }
+
+  deleteSelected(selectedID: number, event) {
+
+    if (event.checked) {
+      this.selectedIdsArray.push(selectedID);
+    }
+    console.log(selectedID);
+  }
+
+  select(event, vehicleId: number, index: number) {
+    // console.log(event.checked);
+    // console.log(tripId);
+    if (event.checked) {
+      this.selectedIdsArray.push(vehicleId);
+    } else {
+      this.selectedIdsArray.splice(index, 1);
+    }
+    console.log(this.selectedIdsArray, 'at select');
+  }
+
+  editVehicle(id: number) {
+    return id;
+  }
+
+  deleteVehicle(id: number) {
+    this.httpClientService.onDelete('http://localhost:8080/vehicles/delete/' + id).subscribe(() => {
+      this.result.emit('deleteVehicle');
+    });
+  }
+
+
+  removeSelectedRows() {
+    console.log(this.selectedIdsArray, 'at row selected');
+    // this.httpClientService.deleteSelected('http://localhost:8080/trips/selectedIds', this.selectedIdsArray).subscribe(() => {
+    //   this.result.emit('deleteTrip');
+    // });
+    for (const tripId of this.selectedIdsArray) {
+      this.httpClientService.onDelete('http://localhost:8080/trips/delete/' + tripId).subscribe(() => {
+        this.result.emit('refreshTrip');
+      });
+    }
+  }
 
   getVehicles() {
 
@@ -53,7 +114,8 @@ export class VehicleDeleteComponent implements OnInit {
                 licensePlate: dataE.licensePlate,
                 vehicleName: dataE.vehicleName,
                 vehicleType: dataE.vehicleType,
-                totalTrips: dataE.totalTrips,
+                fuel: dataE.fuel,
+                vehicleBody: dataE.vehicleBody
               });
             }
           );
@@ -65,16 +127,6 @@ export class VehicleDeleteComponent implements OnInit {
 
   }
 
-
-  editVehicle(id: number) {
-    return id;
-  }
-
-  deleteVehicle(id: number) {
-    this.httpClientService.onDelete('http://localhost:8080/vehicles/delete/' + id).subscribe(() => {
-      this.result.emit('deleteVehicle');
-    });
-  }
 
   filterTripsTable(event) {
     this.dataSource1.filter = event.target.value;

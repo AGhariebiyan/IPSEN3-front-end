@@ -25,8 +25,9 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 import { ProjectOverviewPageComponent } from './project/project-overview-page/project-overview-page.component';
 import {CookieService} from 'ngx-cookie-service';
 import { LicensePlateValidatorDirective } from './validators/license-plate-validator.directive';
-import {TripDeleteComponent} from './trips/trip-delete/trip-delete.component';
+import {TripsOverviewComponent} from './trips/trip-overview-delete/trips-overview.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import {VehicleDeleteComponent} from './vehicles/vehicle-delete/vehicle-delete.component';
 
 
 
@@ -41,7 +42,7 @@ import {NgxSpinnerModule} from 'ngx-spinner';
     GmapsLocSearchComponent,
     ProjectInzienPageComponent,
     ProjectOverviewPageComponent,
-    VehiclesComponent,
+    VehicleDeleteComponent,
     VehicleAddComponent,
     HeaderComponent,
     DashboardComponent,
@@ -51,7 +52,7 @@ import {NgxSpinnerModule} from 'ngx-spinner';
     TripModifyComponent,
     VehicleModifyComponent,
     LicensePlateValidatorDirective,
-    TripDeleteComponent
+    TripsOverviewComponent
   ],
   imports: [
     BrowserModule,

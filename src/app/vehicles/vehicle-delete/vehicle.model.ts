@@ -4,14 +4,15 @@ export class Vehicle {
   licensePlate: string
    vehicleName: string
    vehicleType: string
-   totalTrips: number
+fuel: string;
+  vehicleBody: string
 
-
-  constructor(vehicleId: number, userId: number, licensePlate: string, vehicleName: string, vehicleType: string, totalTrips: number) {
+  constructor(vehicleId: number, userId: number, licensePlate: string, vehicleName: string, vehicleType: string, fuel: string, vehicleBody: string) {
     this.userId = userId;
     this.licensePlate = licensePlate;
     this.vehicleName = vehicleName;
     this.vehicleType = vehicleType;
-    this.totalTrips = totalTrips;
+    this.fuel = fuel;
+    this.vehicleBody = vehicleBody;
   }
 }

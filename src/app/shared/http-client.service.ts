@@ -1,7 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {map, catchError} from 'rxjs/operators';
-import {ArrayType} from '@angular/compiler';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -15,19 +13,6 @@ export class HttpClientService {
     return this.http.get(getUrl);
   }
 
-  // onGet(getUrl: string): any {
-  //   const objArray = [];
-  //
-  //   this.http.get(getUrl).pipe(
-  //     map(responseData => {
-  //       for (const key in responseData) {
-  //         objArray.push(responseData[key]);
-  //       }
-  //     })
-  //   ).subscribe();
-  //
-  //   return objArray;
-  // }
 
   onPost(postUrl: string) {
     this.http.post(postUrl, null).subscribe();
@@ -40,4 +25,5 @@ export class HttpClientService {
   onDelete(delUrl: string) {
     return this.http.delete(delUrl);
   }
+
 }
