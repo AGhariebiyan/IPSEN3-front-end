@@ -94,8 +94,8 @@ export class VehicleDeleteComponent implements OnInit {
     // this.httpClientService.deleteSelected('http://localhost:8080/trips/selectedIds', this.selectedIdsArray).subscribe(() => {
     //   this.result.emit('deleteTrip');
     // });
-    for (const tripId of this.selectedIdsArray) {
-      this.httpClientService.onDelete('http://localhost:8080/trips/delete/' + tripId).subscribe(() => {
+    for (const vehicleId of this.selectedIdsArray) {
+      this.httpClientService.onDelete('http://localhost:8080/vehicles/delete/' + vehicleId).subscribe(() => {
         this.result.emit('refreshTrip');
       });
     }

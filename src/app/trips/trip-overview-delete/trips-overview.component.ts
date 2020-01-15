@@ -70,6 +70,8 @@ export class TripsOverviewComponent implements OnInit {
     } else {
       this.selectedIdsArray.splice(index, 1);
     }
+    console.log('Selected:', this.selectedIdsArray);
+
   }
 
   getTrips() {
@@ -103,6 +105,7 @@ export class TripsOverviewComponent implements OnInit {
   }
 
   removeSelectedRows() {
+    console.log('removeSelected:', this.selectedIdsArray);
     for (const tripId of this.selectedIdsArray) {
       this.httpClientService.onDelete('http://localhost:8080/trips/delete/' + tripId).subscribe(() => {
         this.result.emit('refreshTrip');
