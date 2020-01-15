@@ -4,7 +4,6 @@ import {HttpClientService} from 'src/app/shared/http-client.service';
 import {GmapsService} from 'src/app/gmaps/gmaps.service';
 import {ActivatedRoute} from '@angular/router';
 import {Trip} from '../trip-delete/trip-delete.model';
-import { start } from 'repl';
 
 @Component({
   selector: 'app-trip-modify',
@@ -24,8 +23,12 @@ export class TripModifyComponent implements OnInit {
   private destination = {location: []};
   private dbData = true;
 
-  constructor(private httpClientService: HttpClientService, private cdr: ChangeDetectorRef, private mapService: GmapsService, private activatedRoute: ActivatedRoute) {
-    const fetchedObj = this.httpClientService.onGet('http://localhost:8080/vehicles/fetch/unique-licenseplates/1').pipe()
+  constructor(private httpClientService: HttpClientService,
+              private cdr: ChangeDetectorRef,
+              private mapService: GmapsService,
+              private activatedRoute: ActivatedRoute
+  ) {
+    this.httpClientService.onGet('http://localhost:8080/vehicles/fetch/unique-licenseplates/1').pipe()
       .subscribe(
         data => {
           data.forEach(licenseplate => {
@@ -34,7 +37,7 @@ export class TripModifyComponent implements OnInit {
         }
       );
 
-    const projects = this.httpClientService.onGet('http://localhost:8080/project/getAllProject').pipe()
+    this.httpClientService.onGet('http://localhost:8080/project/getAllProject').pipe()
       .subscribe(
         data => {
           data.forEach(project => {
@@ -43,26 +46,25 @@ export class TripModifyComponent implements OnInit {
           });
         }
       );
-
   }
 
   ngOnInit() {
     this.getTrip();
 
     this.tripUpdateForm = new FormGroup({
-      'licenseplate': new FormControl(null),
-      'startLocation': new FormControl(null),
-      'endLocation': new FormControl(null),
-      'drivenKm': new FormControl(null),
-      'startKmGauge': new FormControl(null),
-      'endKmGauge': new FormControl(null),
-      'projectID': new FormControl(null)
+      licenseplate: new FormControl(null),
+      startLocation: new FormControl(null),
+      endLocation: new FormControl(null),
+      drivenKm: new FormControl(null),
+      startKmGauge: new FormControl(null),
+      endKmGauge: new FormControl(null),
+      projectID: new FormControl(null)
     });
     this.setSubscribes();
   }
 
   getTrip() {
-    const postObj = this.httpClientService.onGet('http://localhost:8080/trips/trip/' + this.tripId)
+    this.httpClientService.onGet('http://localhost:8080/trips/trip/' + this.tripId)
       .subscribe(
         (trip) => {
           this.trip = trip;
@@ -90,13 +92,21 @@ export class TripModifyComponent implements OnInit {
     const endKmGauge = this.tripUpdateForm.value.endKmGauge;
     const projectId = this.tripUpdateForm.value.projectID;
 
-    const postObj = this.httpClientService.onPut(
-      'http://localhost:8080/trips/trip/update/for-project/' + this.tripId + '/' +projectId + '/1/' + licenseplate + '/' + this.destination.location[0] + '/' + this.destination.location[1] + '/' + startKmGauge + '/' + endKmGauge + '/' + drivenKm);
+    this.httpClientService.onPut(
+      'http://localhost:8080/trips/trip/update/for-project/' +
+      this.tripId + '/' +
+      projectId + '/1/' +
+      licenseplate + '/' +
+      this.destination.location[0] + '/' +
+      this.destination.location[1] + '/' +
+      startKmGauge + '/' +
+      endKmGauge + '/' +
+      drivenKm);
     this.formSubmitted = true;
   }
 
   retrieveKmGauge(event) {
-    const trip = this.httpClientService.onGet('http://localhost:8080/trips/getByLicensePlate?licensePlate=' + event.target.innerText).pipe()
+    this.httpClientService.onGet('http://localhost:8080/trips/getByLicensePlate?licensePlate=' + event.target.innerText).pipe()
       .subscribe(
         data => {
           this.tripUpdateForm.patchValue({
@@ -107,14 +117,14 @@ export class TripModifyComponent implements OnInit {
       );
   }
 
-  private setSubscribes(){
+  private setSubscribes() {
     this.mapService.drivenKilometers.subscribe((km) => {
-      if(this.dbData === false){
+      if (this.dbData === false) {
         this.tripUpdateForm.patchValue({
           endKmGauge: this.tripUpdateForm.value.startKmGauge + km,
           drivenKm: km
         });
-      }else{
+      } else {
         this.dbData = false;
       }
       this.cdr.detectChanges();
@@ -144,7 +154,7 @@ export class TripModifyComponent implements OnInit {
     }
   }
 
-  private alertGmapService(startLoc: string, endLoc: string){
+  private alertGmapService(startLoc: string, endLoc: string) {
     this.mapService.locationByAddress.emit([startLoc, endLoc]);
   }
 
