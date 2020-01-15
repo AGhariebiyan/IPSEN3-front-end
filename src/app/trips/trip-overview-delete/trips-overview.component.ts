@@ -38,7 +38,7 @@ export class TripsOverviewComponent implements OnInit {
 
 
   constructor(private httpClientService: HttpClientService, private router: Router) {
-    this.displayedColumns = ['select', 'startLocation', 'endLocation', 'licensePlate', 'project', 'verwijder', 'wijzigen'];
+    this.displayedColumns = ['select', 'startLocation', 'endLocation', 'licensePlate', 'project'];
     this.getTrips();
   }
 

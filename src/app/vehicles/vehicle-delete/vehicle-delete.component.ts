@@ -32,7 +32,7 @@ export class VehicleDeleteComponent implements OnInit {
 
 
   constructor(private httpClientService: HttpClientService) {
-    this.displayedColumns = ['select', 'licensePlate', 'vehicleName', 'vehicleType', 'verwijder', 'wijzigen'];
+    this.displayedColumns = ['select', 'licensePlate', 'vehicleName', 'vehicleType'];
     this.getVehicles();
   }
 

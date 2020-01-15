@@ -51,7 +51,7 @@
 .mat-button{
   position: relative;
   margin-top: -3%;
-  left: 85.5%;
+  left: 1%;
   top: 5px;
 }
 
@@ -63,9 +63,12 @@
 }
 
 .searchContainer {
+  position: relative;
   width: 50vw;
   display: flex;
   justify-content: flex-end;
+  top: 10px;
+
 }
 
 .mat-elevation-z8{

@@ -3,8 +3,9 @@ import {FormGroup, FormControl} from '@angular/forms';
 import {HttpClientService} from 'src/app/shared/http-client.service';
 import {GmapsService} from 'src/app/gmaps/gmaps.service';
 import {ActivatedRoute} from '@angular/router';
-import {Trip} from '../trip-delete/trip-delete.model';
-import { start } from 'repl';
+import {Trip} from '../trip-overview-delete/trip.model';
+// import {Trip} from '../trip-delete/trip-delete.model';
+// import { start } from 'repl';
 
 @Component({
   selector: 'app-trip-modify',
@@ -91,7 +92,7 @@ export class TripModifyComponent implements OnInit {
     const projectId = this.tripUpdateForm.value.projectID;
 
     const postObj = this.httpClientService.onPut(
-      'http://localhost:8080/trips/trip/update/for-project/' + this.tripId + '/' +projectId + '/1/' + licenseplate + '/' + this.destination.location[0] + '/' + this.destination.location[1] + '/' + startKmGauge + '/' + endKmGauge + '/' + drivenKm);
+      'http://localhost:8080/trips/trip/update/for-project/' + this.tripId + '/' + projectId + '/1/' + licenseplate + '/' + this.destination.location[0] + '/' + this.destination.location[1] + '/' + startKmGauge + '/' + endKmGauge + '/' + drivenKm);
     this.formSubmitted = true;
   }
 
