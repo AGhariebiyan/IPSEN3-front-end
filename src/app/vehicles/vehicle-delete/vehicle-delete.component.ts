@@ -16,7 +16,7 @@ export class VehicleDeleteComponent implements OnInit {
 
 
 
-  selectedIdsArray: Array<number> = [];
+  selectedVehiclesIdsArray: Array<number> = [];
 
   result: EventEmitter = new EventEmitter();
   public vehiclesArray: Vehicle[] = [];
@@ -61,7 +61,7 @@ export class VehicleDeleteComponent implements OnInit {
   deleteSelected(selectedID: number, event) {
 
     if (event.checked) {
-      this.selectedIdsArray.push(selectedID);
+      this.selectedVehiclesIdsArray.push(selectedID);
     }
     console.log(selectedID);
   }
@@ -70,11 +70,11 @@ export class VehicleDeleteComponent implements OnInit {
     // console.log(event.checked);
     // console.log(tripId);
     if (event.checked) {
-      this.selectedIdsArray.push(vehicleId);
+      this.selectedVehiclesIdsArray.push(vehicleId);
     } else {
-      this.selectedIdsArray.splice(index, 1);
+      this.selectedVehiclesIdsArray.splice(index, 1);
     }
-    console.log(this.selectedIdsArray, 'at select');
+    console.log(this.selectedVehiclesIdsArray, 'at select');
   }
 
   editVehicle(id: number) {
@@ -90,12 +90,9 @@ export class VehicleDeleteComponent implements OnInit {
 
 
   removeSelectedRows() {
-    console.log(this.selectedIdsArray, 'at row selected');
-    // this.httpClientService.deleteSelected('http://localhost:8080/trips/selectedIds', this.selectedIdsArray).subscribe(() => {
-    //   this.result.emit('deleteTrip');
-    // });
-    for (const tripId of this.selectedIdsArray) {
-      this.httpClientService.onDelete('http://localhost:8080/trips/delete/' + tripId).subscribe(() => {
+    console.log(this.selectedVehiclesIdsArray, 'at row selected');
+    for (const vehicleId of this.selectedVehiclesIdsArray) {
+      this.httpClientService.onDelete('http://localhost:8080/vehicles/delete/' + vehicleId).subscribe(() => {
         this.result.emit('refreshTrip');
       });
     }
