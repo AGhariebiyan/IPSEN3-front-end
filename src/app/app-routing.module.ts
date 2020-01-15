@@ -13,6 +13,7 @@ import {ProjectOverviewPageComponent} from './project/project-overview-page/proj
 import {VehicleAddComponent} from './vehicles/vehicle-add/vehicle-add.component';
 import {TripAddComponent} from './trips/trip-add/trip-add.component';
 import {VehicleDeleteComponent} from './vehicles/vehicle-delete/vehicle-delete.component';
+import {VehicleModifyComponent} from './vehicles/vehicle-modify/vehicle-modify.component';
 
 
 const appRoutes: Routes = [
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
   {path: 'projecten/:projectId', component: ProjectInzienPageComponent},
   {path: 'melding', component: NotificationComponent},
   {path: 'pagina-niet-gevonden', component: PageNotFoundComponent},
-  {path: '**', redirectTo: '/pagina-niet-gevonden'}
+  {path: '**', redirectTo: '/pagina-niet-gevonden'},
+  {path: 'ritten/wijzigen/:rittenId', component: VehicleModifyComponent}
 ];
 
 @NgModule({

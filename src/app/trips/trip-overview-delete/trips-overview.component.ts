@@ -6,6 +6,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {SelectionModel} from '@angular/cdk/collections';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -36,7 +37,7 @@ export class TripsOverviewComponent implements OnInit {
   value = '';
 
 
-  constructor(private httpClientService: HttpClientService) {
+  constructor(private httpClientService: HttpClientService, private router: Router) {
     this.displayedColumns = ['select', 'startLocation', 'endLocation', 'licensePlate', 'project', 'verwijder', 'wijzigen'];
     this.getTrips();
   }
@@ -115,6 +116,8 @@ export class TripsOverviewComponent implements OnInit {
   }
 
   editTrip(tripId: number) {
+    console.log('voertuigen/wijzigen/' + tripId);
+    this.router.navigate(['ritten/wijzigen/' + tripId]);
     return tripId;
   }
 

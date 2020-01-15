@@ -62,7 +62,7 @@
       <ng-container matColumnDef="wijzigen">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Wijzigen</th>
         <td mat-cell *matCellDef="let vehicle">
-          <mat-icon (click)=editVehicle(vehicle.licensePlate) id="mat-icon-edit">edit</mat-icon>
+          <mat-icon (click)=editVehicle(vehicle.vehicleId) id="mat-icon-edit">edit</mat-icon>
         </td>
       </ng-container>
 

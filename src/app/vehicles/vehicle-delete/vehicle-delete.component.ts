@@ -78,6 +78,7 @@ export class VehicleDeleteComponent implements OnInit {
   }
 
   editVehicle(id: number) {
+
     return id;
   }
 
