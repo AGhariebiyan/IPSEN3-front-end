@@ -54,7 +54,7 @@ export class ProjectOverviewPageComponent implements OnInit {
 
   private fetchProjectsFromBackEnd() {
     const projectArr = [];
-    localStorage.clear();
+    localStorage.removeItem('projectArr');
     const fetchedObj = this.httpClient.onGet('http://localhost:8080/project/getAllProject').pipe()
       .subscribe(
         data => {

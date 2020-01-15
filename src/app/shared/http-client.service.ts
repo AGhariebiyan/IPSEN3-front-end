@@ -9,33 +9,33 @@ import {Observable} from 'rxjs';
 })
 export class HttpClientService {
   httpHeaders = new HttpHeaders({
-    'Content-Type' : 'application/json',
-    'Token' : localStorage.getItem('jwtoken')
+    'Content-Type' : 'application/json'
   }); 
 
-  options = {
-    headers: this.httpHeaders
-  };  
-  
   constructor(private http: HttpClient) {}
 
   onGet(getUrl: string): Observable<any> {
-    return this.http.get(getUrl, this.options);
+    console.log(this.httpHeaders.get('jwtoken'));
+    if(localStorage.getItem('jwtoken') !== null && this.httpHeaders.get('Token') === null){
+      this.httpHeaders = this.httpHeaders.append('Token', localStorage.getItem('jwtoken'));
+    }
+    console.log(this.httpHeaders);
+    return this.http.get(getUrl, {headers: this.httpHeaders});
   }
   
   onPost(postUrl: string) {
-    this.http.post(postUrl, null, this.options).subscribe();
+    this.http.post(postUrl, null, {headers: this.httpHeaders}).subscribe();
   }
 
   onPostNew(postUrl: string, Object) {
-    this.http.post<any>(postUrl, JSON.stringify(Object), this.options).subscribe();
+    this.http.post<any>(postUrl, JSON.stringify(Object), {headers: this.httpHeaders}).subscribe();
   }
 
   onPut(putUrl: string) {
-    this.http.put<any>(putUrl, JSON.stringify(Object), this.options).subscribe();
+    this.http.put<any>(putUrl, JSON.stringify(Object), {headers: this.httpHeaders}).subscribe();
   }
 
   onDelete(delUrl: string) {
-    return this.http.delete(delUrl, this.options);
+    return this.http.delete(delUrl, {headers: this.httpHeaders});
   }
 }

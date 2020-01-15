@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { User } from './user';
 import { Observable } from 'rxjs';
 import { HttpClientService } from '../shared/http-client.service';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
@@ -10,7 +11,8 @@ export class AuthService {
 
   constructor(
     private router: Router,
-    private httpClientService: HttpClientService
+    private httpClientService: HttpClientService,
+    private http: HttpClient
   ) {}
 
   login(user: User) {
@@ -18,7 +20,7 @@ export class AuthService {
       const fetchedObj = this.httpClientService.onGet('http://localhost:8080/login/' + user.userName + '/' + user.password).pipe()
       .subscribe(
       data => {
-
+        console.log(data);
         localStorage.setItem('jwtoken', data.authToken);
         localStorage.setItem('username', data.username);
         localStorage.setItem('userid', data.userId);
@@ -28,7 +30,7 @@ export class AuthService {
       },
       error => {
         console.log(error);
-    });
+      });
     }
   }
 
