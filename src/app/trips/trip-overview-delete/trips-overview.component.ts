@@ -65,14 +65,11 @@ export class TripsOverviewComponent implements OnInit {
   }
 
   select(event, tripId: number, index: number) {
-    // console.log(event.checked);
-    // console.log(tripId);
     if (event.checked) {
       this.selectedIdsArray.push(tripId);
     } else {
       this.selectedIdsArray.splice(index, 1);
     }
-    console.log(this.selectedIdsArray, 'at select');
   }
 
   getTrips() {
@@ -80,7 +77,6 @@ export class TripsOverviewComponent implements OnInit {
     this.httpClientService.onGet('http://localhost:8080/trips/user/1')
       .subscribe(
         data => {
-          console.log(this.tripsArray);
           this.tripsArray = [];
           data.forEach(dataE => {
               this.tripsArray.push({
@@ -107,7 +103,6 @@ export class TripsOverviewComponent implements OnInit {
   }
 
   removeSelectedRows() {
-    console.log(this.selectedIdsArray, 'at row selected');
     for (const tripId of this.selectedIdsArray) {
       this.httpClientService.onDelete('http://localhost:8080/trips/delete/' + tripId).subscribe(() => {
         this.result.emit('refreshTrip');
@@ -116,7 +111,6 @@ export class TripsOverviewComponent implements OnInit {
   }
 
   editTrip(tripId: number) {
-    console.log('voertuigen/wijzigen/' + tripId);
     this.router.navigate(['ritten/wijzigen/' + tripId]);
     return tripId;
   }
