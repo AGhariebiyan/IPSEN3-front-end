@@ -10,7 +10,7 @@ import {Observable} from 'rxjs';
 export class HttpClientService {
   httpHeaders = new HttpHeaders({
     'Content-Type' : 'application/json'
-  }); 
+  });
 
   constructor(private http: HttpClient) {}
 
@@ -22,7 +22,7 @@ export class HttpClientService {
     console.log(this.httpHeaders);
     return this.http.get(getUrl, {headers: this.httpHeaders});
   }
-  
+
   onPost(postUrl: string) {
     this.http.post(postUrl, null, {headers: this.httpHeaders}).subscribe();
   }

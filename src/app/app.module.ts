@@ -5,7 +5,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ViewTripsPageComponent } from './view-trips-page/view-trips-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProjectInzienPageComponent } from './project/project-inzien-page/project-inzien-page.component';
@@ -23,29 +22,29 @@ import { NotificationComponent } from './shared/notification/notification.compon
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 import { ProjectOverviewPageComponent } from './project/project-overview-page/project-overview-page.component';
-import { CookieService} from 'ngx-cookie-service';
+import {CookieService} from 'ngx-cookie-service';
 import { LicensePlateValidatorDirective } from './validators/license-plate-validator.directive';
 import { TripDeleteComponent} from './trips/trip-delete/trip-delete.component';
-import { NgxSpinnerModule} from 'ngx-spinner';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthService } from './auth/auth.service';
+import {NgxSpinnerModule} from 'ngx-spinner';
+import {GmapsService} from './gmaps/gmaps.service';
+import {TripsOverviewComponent} from './trips/trip-overview-delete/trips-overview.component';
+import {VehicleDeleteComponent} from './vehicles/vehicle-delete/vehicle-delete.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ViewTripsPageComponent,
-    HeaderComponent,
-    DashboardComponent,
-    ProjectInzienPageComponent,
     GmapsComponent,
     GmapsLocSearchComponent,
     ProjectInzienPageComponent,
     ProjectOverviewPageComponent,
     VehiclesComponent,
     VehicleAddComponent,
-    HeaderComponent,
     DashboardComponent,
     NotificationComponent,
     PageNotFoundComponent,
@@ -55,6 +54,8 @@ import { AuthService } from './auth/auth.service';
     LicensePlateValidatorDirective,
     TripDeleteComponent,
     LoginComponent
+    TripsOverviewComponent,
+    VehicleDeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +68,7 @@ import { AuthService } from './auth/auth.service';
     HttpClientModule,
     NgxSpinnerModule
   ],
-  providers: [CookieService, AuthService, AuthGuard],
+  providers: [CookieService, GmapsService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

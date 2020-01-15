@@ -1,4 +1,4 @@
-import {Trip} from '../trips/trip-delete/trip-delete.model';
+import {Trip} from '../trips/trip-overview-delete/trip.model';
 
 export class ProjectModel {
   private id: number;

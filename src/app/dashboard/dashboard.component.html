@@ -1,17 +1,18 @@
 <div class="flex-container content-container">
     <div class="flex-item content-item">
         <div class="row content-row">
-            <div class="flex-container totalContainer">
+            <div class="flex-container totalContainer card">
                 <span class="aantal-span">Aantal ritten: {{ amountOfTripsByUser }}</span>
             </div>
-            <div class="flex-container totalContainer">
+            <div class="flex-container totalContainer card">
                 <span class="aantal-span">Aantal projecten: {{ amountOfProjectsByUser }}</span>
             </div>
         </div>
 
         <div class="row content-row">
-            <div class="flex-container add-trip-container">
-                <span class="aantal-span trip-toevoegen-span">Rit toevoegen<mat-icon id="mat-icon-add-circle" routerLink="/ritten/toevoegen">add_circle</mat-icon></span>
+            <div class="flex-container add-trip-container card">
+                <span class="aantal-span trip-toevoegen-span">Rit toevoegen</span>
+              <mat-icon inline="true" id="mat-icon-add-circle" routerLink="/ritten/toevoegen">add_circle</mat-icon>
             </div>
         </div>
     </div>

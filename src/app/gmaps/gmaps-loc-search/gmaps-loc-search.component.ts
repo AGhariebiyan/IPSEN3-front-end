@@ -14,6 +14,7 @@ export class GmapsLocSearchComponent implements OnInit {
   @ViewChild('placesRef', {static: false}) placesRef: GooglePlaceDirective;
   @Input('gmap-search-index') index: number;
   @Input('gmap-input-placeholder') placeholder: string;
+  @Input('custom-value') value = '';
 
   constructor(private mapService: GmapsService) { }
 
