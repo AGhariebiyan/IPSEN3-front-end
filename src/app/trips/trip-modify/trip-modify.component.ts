@@ -3,7 +3,7 @@ import {FormGroup, FormControl} from '@angular/forms';
 import {HttpClientService} from 'src/app/shared/http-client.service';
 import {GmapsService} from 'src/app/gmaps/gmaps.service';
 import {ActivatedRoute} from '@angular/router';
-import {Trip} from '../trip-delete/trip-delete.model';
+import {Trip} from '../trip-overview-delete/trip.model';
 
 @Component({
   selector: 'app-trip-modify',
@@ -92,6 +92,7 @@ export class TripModifyComponent implements OnInit {
     const endKmGauge = this.tripUpdateForm.value.endKmGauge;
     const projectId = this.tripUpdateForm.value.projectID;
 
+
     this.httpClientService.onPut(
       'http://localhost:8080/trips/trip/update/for-project/' +
       this.tripId + '/' +
@@ -101,7 +102,8 @@ export class TripModifyComponent implements OnInit {
       this.destination.location[1] + '/' +
       startKmGauge + '/' +
       endKmGauge + '/' +
-      drivenKm);
+      drivenKm
+    );
     this.formSubmitted = true;
   }
 
