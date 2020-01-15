@@ -11,7 +11,7 @@
         <mat-icon class="mat-icon-menu">arrow_drop_down</mat-icon>
       </button>
       <mat-menu #userMenu="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item (click)="onLogout()">
           <mat-icon>power_settings_new</mat-icon>
           <span>Uitloggen</span>
         </button>
