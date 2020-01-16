@@ -88,11 +88,11 @@ export class VehicleDeleteComponent implements OnInit {
     return id;
   }
 
-  deleteVehicle(id: number) {
-    this.httpClientService.onDelete('http://localhost:8080/vehicles/delete/' + id).subscribe(() => {
-      this.result.emit('deleteVehicle');
-    });
-  }
+  // deleteVehicle(id: number) {
+  //   this.httpClientService.onDelete('http://localhost:8080/vehicles/delete/' + id).subscribe(() => {
+  //     this.result.emit('deleteVehicle');
+  //   });
+  // }
 
 
   removeSelectedRows() {
@@ -100,11 +100,14 @@ export class VehicleDeleteComponent implements OnInit {
     // this.httpClientService.deleteSelected('http://localhost:8080/trips/selectedIds', this.selectedIdsArray).subscribe(() => {
     //   this.result.emit('deleteTrip');
     // });
-    for (const vehicleId of this.selectedVehiclesIdsArray) {
-      this.httpClientService.onDelete('http://localhost:8080/vehicles/delete/' + vehicleId).subscribe(() => {
-        this.result.emit('refreshTrip');
-      });
-    }
+    // for (const vehicleId of this.selectedVehiclesIdsArray) {
+    //     this.httpClientService.onDelete('http://localhost:8080/vehicles/delete/' + this.selectedVehiclesIdsArray).subscribe(() => {
+    //       this.result.emit('refreshTrip');
+    //     });
+    // }
+    this.httpClientService.onDelete('http://localhost:8080/vehicles/delete/' , this.selectedVehiclesIdsArray).subscribe(() => {
+      this.result.emit('refreshTrip');
+    });
   }
 
   getVehicles() {

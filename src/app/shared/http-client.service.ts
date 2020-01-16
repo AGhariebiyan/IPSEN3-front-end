@@ -40,8 +40,8 @@ export class HttpClientService {
     this.http.put<any>(putUrl, JSON.stringify(Object), {headers: this.httpHeaders}).subscribe();
   }
 
-  onDelete(delUrl: string) {
-    return this.http.delete(delUrl, {headers: this.httpHeaders});
+  onDelete(delUrl: string, Object) {
+    return this.http.delete(delUrl,  {headers: this.httpHeaders});
 
   }
 }
