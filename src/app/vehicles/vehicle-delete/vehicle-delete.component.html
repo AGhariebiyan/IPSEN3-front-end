@@ -15,7 +15,8 @@
       <button mat-menu-item (click)="removeSelectedRows()">Verwijderen</button>
       <button mat-menu-item routerLink="/voertuigen/toevoegen">Toevoegen</button>
     </mat-menu>
-    <table mat-table [dataSource]="dataSource1" matSort class="table-size">
+    <div class="shadowcontainer">
+      <table mat-table [dataSource]="dataSource1" matSort class="table-size">
 
       <ng-container matColumnDef="select">
         <mat-header-cell *matHeaderCellDef>
@@ -55,7 +56,8 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let vehicle; columns: displayedColumns;"></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
   </div>
 </div>
 
