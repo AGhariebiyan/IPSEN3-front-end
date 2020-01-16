@@ -105,7 +105,7 @@ export class VehicleDeleteComponent implements OnInit {
     //       this.result.emit('refreshTrip');
     //     });
     // }
-    this.httpClientService.onDelete('http://localhost:8080/vehicles/delete/' , this.selectedVehiclesIdsArray).subscribe(() => {
+    this.httpClientService.onDelete('http://localhost:8080/vehicles/delete' , this.selectedVehiclesIdsArray).subscribe(() => {
       this.result.emit('refreshTrip');
     });
   }

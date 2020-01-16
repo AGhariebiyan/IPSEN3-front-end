@@ -75,7 +75,7 @@ export class TripsOverviewComponent implements OnInit {
         }
       }
       }
-    console.log(this.selectedIdsArray);
+    // console.log(this.selectedIdsArray);
   }
 
   getTrips() {
@@ -115,9 +115,8 @@ export class TripsOverviewComponent implements OnInit {
     //     this.result.emit('refreshTrip');
     //   });
     // }
-    this.httpClientService.onDelete('http://localhost:8080/trips/delete/' , this.selectedIdsArray).subscribe(() => {
-          this.result.emit('refreshTrip');
-        });
+    this.httpClientService.onPostNew('http://localhost:8080/trips/delete', this.selectedIdsArray);
+    this.result.emit('refreshTrip');
   }
 
   editTrip(tripId: number) {
