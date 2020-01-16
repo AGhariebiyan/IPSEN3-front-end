@@ -27,7 +27,6 @@ export class HttpClientService {
     return this.http.get(getUrl);
   }
 
-
   onPost(postUrl: string) {
     this.http.post(postUrl, null, {headers: this.httpHeaders}).subscribe();
   }
@@ -42,6 +41,5 @@ export class HttpClientService {
 
   onDelete(delUrl: string, Object) {
     return this.http.delete(delUrl,  {headers: this.httpHeaders});
-
   }
 }

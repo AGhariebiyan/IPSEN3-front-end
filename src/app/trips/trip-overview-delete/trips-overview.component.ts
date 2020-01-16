@@ -116,7 +116,7 @@ export class TripsOverviewComponent implements OnInit {
     //   });
     // }
     this.httpClientService.onPostNew('http://localhost:8080/trips/delete', this.selectedIdsArray);
-    this.result.emit('refreshTrip');
+    // this.result.emit('refreshTrip');
   }
 
   editTrip(tripId: number) {
