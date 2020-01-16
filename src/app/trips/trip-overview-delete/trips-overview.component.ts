@@ -66,11 +66,26 @@ export class TripsOverviewComponent implements OnInit {
 
   select(event, tripId: number, index: number) {
     if (event.checked) {
+      // console.log(this.selectedIdsArray);
       this.selectedIdsArray.push(tripId);
+      // console.log(this.selectedIdsArray);
     } else {
-      this.selectedIdsArray.splice(index, 1);
-    }
-    console.log('Selected:', this.selectedIdsArray);
+      // this.selectedIdsArray.splice(index, 1);
+      console.log(this.selectedIdsArray);
+      for( let  i = 0; i <= this.selectedIdsArray.length; i++) {
+        if ( this.selectedIdsArray[i] === tripId ) {
+          this.selectedIdsArray.splice(i, 1);
+        }
+      }
+      // console.log(event.checked);
+      // console.log('unchecked index', index);
+      // if (this.selectedIdsArray.length === 1) {
+      //   console.log( this.selectedIdsArray);
+      //   this.selectedIdsArray = [];
+      }
+    // }
+    // console.log(this.selectedIdsArray);
+    // console.log('Selected:', this.selectedIdsArray);
 
   }
 
@@ -106,11 +121,14 @@ export class TripsOverviewComponent implements OnInit {
 
   removeSelectedRows() {
     console.log('removeSelected:', this.selectedIdsArray);
-    for (const tripId of this.selectedIdsArray) {
-      this.httpClientService.onDelete('http://localhost:8080/trips/delete/' + tripId).subscribe(() => {
-        this.result.emit('refreshTrip');
-      });
-    }
+    // for (const tripId of this.selectedIdsArray) {
+    //   this.httpClientService.onDelete('http://localhost:8080/trips/delete/' + tripId).subscribe(() => {
+    //     this.result.emit('refreshTrip');
+    //   });
+    // }
+    this.httpClientService.onDelete('http://localhost:8080/trips/delete/' + this.selectedIdsArray).subscribe(() => {
+          this.result.emit('refreshTrip');
+        });
   }
 
   editTrip(tripId: number) {

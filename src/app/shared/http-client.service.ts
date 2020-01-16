@@ -42,5 +42,6 @@ export class HttpClientService {
 
   onDelete(delUrl: string) {
     return this.http.delete(delUrl, {headers: this.httpHeaders});
+
   }
 }

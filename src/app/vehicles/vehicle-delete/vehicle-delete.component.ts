@@ -72,7 +72,13 @@ export class VehicleDeleteComponent implements OnInit {
     if (event.checked) {
       this.selectedVehiclesIdsArray.push(vehicleId);
     } else {
-      this.selectedVehiclesIdsArray.splice(index, 1);
+      console.log(index);
+      for( let  i = 0; i <= this.selectedVehiclesIdsArray.length; i++) {
+        if ( this.selectedVehiclesIdsArray[i] === vehicleId ) {
+          this.selectedVehiclesIdsArray.splice(i, 1);
+        }
+      }
+
     }
     console.log(this.selectedVehiclesIdsArray, 'at select');
   }
