@@ -90,11 +90,11 @@ export class VehicleDeleteComponent implements OnInit {
 
 
   removeSelectedRows() {
-    console.log(this.selectedIdsArray, 'at row selected');
+    console.log(this.selectedVehiclesIdsArray, 'at row selected');
     // this.httpClientService.deleteSelected('http://localhost:8080/trips/selectedIds', this.selectedIdsArray).subscribe(() => {
     //   this.result.emit('deleteTrip');
     // });
-    for (const vehicleId of this.selectedIdsArray) {
+    for (const vehicleId of this.selectedVehiclesIdsArray) {
       this.httpClientService.onDelete('http://localhost:8080/vehicles/delete/' + vehicleId).subscribe(() => {
         this.result.emit('refreshTrip');
       });
