@@ -1,0 +1,47 @@
+
+.table-size{
+  width:50vw;
+  min-width: 400px;
+}
+
+.optionLabel{
+  position: relative;
+  top: 4px;
+  left: 82%;
+}
+
+.mat-button{
+  position: relative;
+  margin-top: -3%;
+  left: 1%;
+  top: 5px;
+}
+
+#more_horz{
+  position: relative;
+  margin-top: -3%;
+  left: 3.5%;
+  top: -1px;
+}
+
+.searchContainer {
+  width: 50vw;
+  display: flex;
+  justify-content: flex-end;
+  top: 50%;
+}
+
+.mat-elevation-z8{
+  position: absolute;
+}
+
+
+/*.mat-table {*/
+/*  overflow: auto;*/
+/*  max-height: 500px;*/
+/*}*/
+
+.mat-column-select {
+  overflow: visible;
+  padding-top: 23%;
+}

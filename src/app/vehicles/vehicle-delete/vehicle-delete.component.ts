@@ -6,6 +6,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {HttpClientService} from '../../shared/http-client.service';
 import {Vehicle} from './vehicle.model';
 import {SelectionModel} from '@angular/cdk/collections';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-vehicle-delete',
@@ -31,14 +32,14 @@ export class VehicleDeleteComponent implements OnInit {
   value = '';
 
 
-  constructor(private httpClientService: HttpClientService) {
+  constructor(private httpClientService: HttpClientService, private router: Router) {
     this.displayedColumns = ['select', 'licensePlate', 'vehicleName', 'vehicleType'];
     this.getVehicles();
   }
 
   ngOnInit() {
 
-    this.result.on('deleteVehicle', () => {
+    this.result.on('refreshVehiclesTable', () => {
       this.getVehicles();
       // window.location.reload();
     });
@@ -63,24 +64,23 @@ export class VehicleDeleteComponent implements OnInit {
     if (event.checked) {
       this.selectedVehiclesIdsArray.push(selectedID);
     }
-    console.log(selectedID);
+    // console.log(selectedID);
   }
 
   select(event, vehicleId: number, index: number) {
-    // console.log(event.checked);
-    // console.log(tripId);
+    // console.log(vehicleId);
+    console.log(this.selectedVehiclesIdsArray);
     if (event.checked) {
       this.selectedVehiclesIdsArray.push(vehicleId);
     } else {
-      console.log(index);
-      for( let  i = 0; i <= this.selectedVehiclesIdsArray.length; i++) {
-        if ( this.selectedVehiclesIdsArray[i] === vehicleId ) {
+      // this.selectedVehiclesIdsArray.splice(index, 1);
+      for (let i = 0; i <= this.selectedVehiclesIdsArray.length; i++) {
+        if (this.selectedVehiclesIdsArray[i] === vehicleId) {
           this.selectedVehiclesIdsArray.splice(i, 1);
         }
       }
-
     }
-    console.log(this.selectedVehiclesIdsArray, 'at select');
+    // console.log(this.selectedVehiclesIdsArray);
   }
 
   editVehicle(id: number) {
@@ -96,17 +96,9 @@ export class VehicleDeleteComponent implements OnInit {
 
 
   removeSelectedRows() {
-    console.log(this.selectedVehiclesIdsArray, 'at row selected');
-    // this.httpClientService.deleteSelected('http://localhost:8080/trips/selectedIds', this.selectedIdsArray).subscribe(() => {
-    //   this.result.emit('deleteTrip');
-    // });
-    // for (const vehicleId of this.selectedVehiclesIdsArray) {
-    //     this.httpClientService.onDelete('http://localhost:8080/vehicles/delete/' + this.selectedVehiclesIdsArray).subscribe(() => {
-    //       this.result.emit('refreshTrip');
-    //     });
-    // }
-    this.httpClientService.onDelete('http://localhost:8080/vehicles/delete' , this.selectedVehiclesIdsArray).subscribe(() => {
-      this.result.emit('refreshTrip');
+    console.log('Removed:', this.selectedVehiclesIdsArray);
+    this.httpClientService.onPostNew('http://localhost:8080/vehicles/delete', this.selectedVehiclesIdsArray).subscribe(() => {
+      this.result.emit('refreshVehiclesTable');
     });
   }
 
@@ -119,7 +111,7 @@ export class VehicleDeleteComponent implements OnInit {
           this.vehiclesArray = [];
           data.forEach(dataE => {
               this.vehiclesArray.push({
-                vehicleId: dataE.vehicleId,
+                vehicleId: dataE.vehicle_id,
                 userId: dataE.userId,
                 licensePlate: dataE.licensePlate,
                 vehicleName: dataE.vehicleName,

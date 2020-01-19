@@ -28,11 +28,11 @@ export class HttpClientService {
   }
 
   onPost(postUrl: string) {
-    this.http.post(postUrl, null, {headers: this.httpHeaders}).subscribe();
+   return this.http.post(postUrl, null, {headers: this.httpHeaders}).subscribe();
   }
 
-  onPostNew(postUrl: string, Object) {
-    this.http.post<any>(postUrl, JSON.stringify(Object), {headers: this.httpHeaders}).subscribe();
+  onPostNew(postUrl: string, Object): Observable<any> {
+   return this.http.post<any>(postUrl, JSON.stringify(Object), {headers: this.httpHeaders});
   }
 
   onPut(putUrl: string) {
