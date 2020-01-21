@@ -63,7 +63,7 @@ export class TripsOverviewComponent implements OnInit {
       this.dataSource1.data.forEach(row => this.selection.select(row));
   }
 
-  select(event, tripId: number, index: number) {
+  select(event, tripId: number) {
     if (event.checked) {
       this.selectedIdsArray.push(tripId);
     } else {
@@ -85,10 +85,15 @@ export class TripsOverviewComponent implements OnInit {
           this.tripsArray = [];
           data.forEach(dataE => {
               this.tripsArray.push({
-                endKilometergauge: dataE.endKilometergauge, startKilometergauge: dataE.startKilometergauge, tripId: dataE.tripId,
+                endKilometergauge: dataE.endKilometergauge,
+                startKilometergauge: dataE.startKilometergauge,
+                tripId: dataE.tripId,
                 userId: dataE.userId,
-                startLocation: dataE.startLocation, endLocation: dataE.endLocation,
-                licensePlate: dataE.licensePlate, projectId: dataE.projectId
+                startLocation: dataE.startLocation,
+                endLocation: dataE.endLocation,
+                drivenKm: dataE.drivenKm,
+                licensePlate: dataE.licensePlate,
+                projectId: dataE.projectId
               });
             }
           );
@@ -102,7 +107,7 @@ export class TripsOverviewComponent implements OnInit {
 
 
   deleteTrip(tripId: number) {
-    this.httpClientService.onDelete('http://localhost:8080/trips/delete/', tripId).subscribe(() => {
+    this.httpClientService.onDelete('http://localhost:8080/trips/delete/').subscribe(() => {
       this.result.emit('refreshTrip');
     });
   }
