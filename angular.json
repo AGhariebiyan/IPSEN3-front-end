@@ -27,7 +27,6 @@
               "src/custom-theme.scss",
               "src/styles.css",
               "./node_modules/font-awesome/css/font-awesome.css"
-
             ],
             "scripts": []
           },
@@ -125,5 +124,10 @@
       }
     }
   },
-  "defaultProject": "IPSEN3-front-end"
+  "defaultProject": "IPSEN3-front-end",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

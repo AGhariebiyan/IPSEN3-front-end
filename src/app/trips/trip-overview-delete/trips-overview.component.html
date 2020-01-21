@@ -77,7 +77,14 @@
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <ng-container matColumnDef="verwijderen">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Verwijderen</th>
+          <td mat-cell *matCellDef="let vehicle">
+            <mat-icon>delete</mat-icon>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let trip; columns: displayedColumns;"></tr>
     </table>
       <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

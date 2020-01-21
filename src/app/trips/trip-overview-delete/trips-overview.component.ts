@@ -16,9 +16,8 @@ import {Router} from '@angular/router';
 })
 
 export class TripsOverviewComponent implements OnInit {
-
-  checked = false;
   public tripsArray: Trip[] = [];
+  checked = false;
   displayedColumns: string[];
   dataSource1: MatTableDataSource<Trip> = new MatTableDataSource<Trip>();
   result: EventEmitter = new EventEmitter();
@@ -38,13 +37,13 @@ export class TripsOverviewComponent implements OnInit {
 
 
   constructor(private httpClientService: HttpClientService, private router: Router) {
-    this.displayedColumns = ['select', 'startLocation', 'endLocation', 'licensePlate', 'project', 'wijzigen'];
+    this.displayedColumns = ['select', 'startLocation', 'endLocation', 'licensePlate', 'project', 'wijzigen', 'verwijderen'];
     this.getTrips();
   }
 
   ngOnInit() {
 
-    this.result.on('refreshTrip', () => {
+    this.result.on('refreshTripsTable', () => {
       this.getTrips();
       // window.location.reload();
     });
@@ -68,10 +67,14 @@ export class TripsOverviewComponent implements OnInit {
     if (event.checked) {
       this.selectedIdsArray.push(tripId);
     } else {
-      this.selectedIdsArray.splice(index, 1);
+      // this.selectedIdsArray.splice(index, 1);
+      for (let i = 0; i <= this.selectedIdsArray.length; i++) {
+        if (this.selectedIdsArray[i] === tripId) {
+          this.selectedIdsArray.splice(i, 1);
+        }
+      }
     }
-    console.log('Selected:', this.selectedIdsArray);
-
+    // console.log(this.selectedIdsArray);
   }
 
   getTrips() {
@@ -99,18 +102,16 @@ export class TripsOverviewComponent implements OnInit {
 
 
   deleteTrip(tripId: number) {
-    this.httpClientService.onDelete('http://localhost:8080/trips/delete/' + tripId).subscribe(() => {
+    this.httpClientService.onDelete('http://localhost:8080/trips/delete/', tripId).subscribe(() => {
       this.result.emit('refreshTrip');
     });
   }
 
   removeSelectedRows() {
     console.log('removeSelected:', this.selectedIdsArray);
-    for (const tripId of this.selectedIdsArray) {
-      this.httpClientService.onDelete('http://localhost:8080/trips/delete/' + tripId).subscribe(() => {
-        this.result.emit('refreshTrip');
-      });
-    }
+    this.httpClientService.onPostNew('http://localhost:8080/trips/delete', this.selectedIdsArray).subscribe(() => {
+      this.result.emit('refreshTripsTable');
+    });
   }
 
   editTrip(tripId: number) {
