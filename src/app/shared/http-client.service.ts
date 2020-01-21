@@ -1,7 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {map, catchError} from 'rxjs/operators';
-import {ArrayType} from '@angular/compiler';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -15,11 +13,9 @@ export class HttpClientService {
   constructor(private http: HttpClient) {}
 
   onGet(getUrl: string): Observable<any> {
-    // console.log(this.httpHeaders.get('jwtoken'));
-    if(localStorage.getItem('jwtoken') !== null && this.httpHeaders.get('Token') === null){
+    if (localStorage.getItem('jwtoken') !== null && this.httpHeaders.get('Token') === null) {
       this.httpHeaders = this.httpHeaders.append('Token', localStorage.getItem('jwtoken'));
     }
-    // console.log(this.httpHeaders);
     return this.http.get(getUrl, {headers: this.httpHeaders});
   }
 
@@ -39,7 +35,7 @@ export class HttpClientService {
     this.http.put<any>(putUrl, JSON.stringify(Object), {headers: this.httpHeaders}).subscribe();
   }
 
-  onDelete(delUrl: string, Object) {
+  onDelete(delUrl: string) {
     return this.http.delete(delUrl,  {headers: this.httpHeaders});
   }
 }
