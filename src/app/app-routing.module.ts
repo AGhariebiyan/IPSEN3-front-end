@@ -13,6 +13,7 @@ import {TripModifyComponent} from './trips/trip-modify/trip-modify.component';
 import {TripsOverviewComponent} from './trips/trip-overview-delete/trips-overview.component';
 import {VehicleDeleteComponent} from './vehicles/vehicle-delete/vehicle-delete.component';
 import { LoginComponent } from './login/login.component';
+import {VehicleTripsOverviewComponent} from "./vehicles/vehicle-trips-overview/vehicle-trips-overview.component";
 
 
 const appRoutes: Routes = [
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
   {path: 'voertuigen/wijzigen/:licenseplate', component: VehicleModifyComponent},
   {path: 'voertuigenOverzicht', component: VehicleDeleteComponent},
   {path: 'ritten/inzien', component: ViewTripsPageComponent},
+  {path: 'ritten/voertuig/:licenseplate', component: VehicleTripsOverviewComponent},
   {path: 'projecten', component: ProjectOverviewPageComponent},
   {path: 'projecten/:projectId', component: ProjectInzienPageComponent},
   {path: 'melding', component: NotificationComponent},

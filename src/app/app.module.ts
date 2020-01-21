@@ -31,6 +31,7 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import {GmapsService} from './gmaps/gmaps.service';
 import {TripsOverviewComponent} from './trips/trip-overview-delete/trips-overview.component';
 import {VehicleDeleteComponent} from './vehicles/vehicle-delete/vehicle-delete.component';
+import { VehicleTripsOverviewComponent } from './vehicles/vehicle-trips-overview/vehicle-trips-overview.component';
 
 
 
@@ -53,7 +54,8 @@ import {VehicleDeleteComponent} from './vehicles/vehicle-delete/vehicle-delete.c
     VehicleModifyComponent,
     VehicleDeleteComponent,
     LicensePlateValidatorDirective,
-    LoginComponent
+    LoginComponent,
+    VehicleTripsOverviewComponent
   ],
   imports: [
     BrowserModule,

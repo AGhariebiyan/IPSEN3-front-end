@@ -105,6 +105,12 @@
   display: table-cell;
   width: 10%;
 }
+
+.mat-row:hover {
+  cursor: pointer;
+  background-color: #DDDDDD;
+}
+
 @media screen and (max-width: 767px) {
   .table-size {
     width: 100%;
