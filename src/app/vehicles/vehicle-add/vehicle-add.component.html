@@ -1,19 +1,18 @@
 <div class="content">
-
-  <div class="title">
-    <h2>Voertuigen Toevoegen</h2>
-  </div>
-  <div class="image-container">
-    <img *ngIf="imageSource && vehicleAddForm.valid" src="{{imageSource}}" class="card-image animation-fade-in"   />
-    <img *ngIf="!imageSource" src="../../../assets/imgs/image_placeholder.png" class="card-image" />
-    <div *ngIf="imageSource && vehicleAddForm.valid" class="text-container animation-slide-left">
-      <span>{{brand}} - {{type}}</span>
+  <div class="cardwrapper">
+    <div class="title">
+      <h2>Voertuigen Toevoegen</h2>
+      </div>
+    <div class="image-container">
+      <img *ngIf="imageSource && vehicleAddForm.valid" src="{{imageSource}}" class="card-image animation-fade-in"   />
+      <img *ngIf="!imageSource" src="../../../assets/imgs/image_placeholder.png" class="card-image" />
+      <div *ngIf="imageSource && vehicleAddForm.valid" class="text-container animation-slide-left">
+        <span>{{brand}} - {{type}}</span>
+      </div>
     </div>
-  </div>
+    <mat-card>
 
-  <mat-card>
-
-      <div class="top-left">
+      <div class="top-left" routerLink="/voertuigenOverzicht">
         <mat-icon>arrow_back_ios</mat-icon>
         <i>Voertuigen Overzicht</i>
       </div>
@@ -80,7 +79,7 @@
           <div class="button-row">
             <button
             mat-flat-button
-            color="primary"
+            color="accent"
             type="submit"
             [disabled]="!vehicleAddForm.valid">Toevoegen</button>
           </div>
@@ -89,9 +88,7 @@
       </form>
 
   </mat-card>
-
-
-
+  </div>
 </div>
 <ngx-spinner
   bdColor="rgba(51,51,51,0.8)"
