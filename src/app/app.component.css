@@ -58,3 +58,44 @@
   text-decoration: none;
   color: #FAFAFA;
 }
+
+.li-uitloggen {
+  display: none;
+}
+
+/* phones and down */
+@media (max-width: 480px) {
+  .headerRight {
+    display: none;
+  }
+
+  .header-logo-name {
+    display: none;
+  }
+  
+  .logo {
+    position: relative;
+    width: 18vw;
+    height: auto;
+    left: 0;
+    left: calc(45vw - 20vw);
+  }
+
+  .li-uitloggen {
+    display: flex;
+    width: 100%;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    right: 10px;
+    bottom: 0;
+  }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+  p {
+      margin: 0;
+  }
+}
+

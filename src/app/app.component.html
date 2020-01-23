@@ -3,7 +3,7 @@
     <div class="headerLeft">
       <mat-icon class="menuButton" (click)="menu.toggle()" inline="true">menu</mat-icon>
       <img src="assets/imgs/logo.png" class="logo" alt="logo digitale factuur" style="max-height: 50px;">
-      <p>Digitale Factuur</p>
+      <p class="header-logo-name">Digitale Factuur</p>
     </div>
 
     <div class="headerRight">
@@ -28,22 +28,28 @@
       <ul class="menuList">
         <li>
           <a routerLink="/dashboard" (click)="menu.close()">
-            <mat-icon>assessment</mat-icon>Dashboard
+            <mat-icon>assessment</mat-icon> Dashboard
           </a>
         </li>
         <li >
           <a routerLink="/rittenOverzicht" (click)="menu.close()">
-            <mat-icon class="nav-menu-icon">gesture</mat-icon>Ritten
+            <mat-icon class="nav-menu-icon">gesture</mat-icon> Ritten
           </a>
         </li>
         <li>
           <a routerLink="/voertuigenOverzicht" (click)="menu.close()">
-            <mat-icon>directions_car</mat-icon>Voertuigen
+            <mat-icon>directions_car</mat-icon> Voertuigen
           </a>
         </li>
         <li>
           <a routerLink="/projecten" (click)="menu.close()">
-            <mat-icon>table_chart</mat-icon>Projecten
+            <mat-icon>table_chart</mat-icon> Projecten
+          </a>
+        </li>
+
+        <li class="li-uitloggen">
+          <a routerLink="/dashboard" (click)="menu.close()">
+            <mat-icon>power_settings_new</mat-icon>
           </a>
         </li>
       </ul>
