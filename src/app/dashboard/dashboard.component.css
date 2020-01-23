@@ -30,6 +30,7 @@
 .totalContainer {
     display: flex;
     flex: 1;
+    min-width: 300px;
     height: 100%;
     position: relative;
     top: 25px;
@@ -55,7 +56,11 @@
     justify-content: center;
     align-items: center;
     border-radius: 2px;
-  padding: 50px 0;
+    padding: 50px 0;
+}
+
+.a-d-c {
+    min-width: 650px;
 }
 
 .aantal-span {
@@ -91,7 +96,7 @@
         height: auto;
         flex-direction: column;
         position: relative;
-        top: -20vw;
+        top: -10vw;
     }
 
     .content-row {
@@ -123,24 +128,67 @@
         margin: 0;
     }
 
+    .a-d-c {
+        min-width: auto;
+    }
+
     .trip-toevoegen-span {
         position: relative;
         top: 0;
+        width: 100%;
+        text-align: center;
     }
 
     #mat-icon-add-circle {
         position: relative;
-        top: 7px;
-        left: 3vw;
-        font-size: 6vw;
+        top: 2px;
+        right: 17vw;
+        font-size: 8vw;
+        width: auto;
+        height: auto;
     }
 }
 
 /* Landscape phone to portrait tablet */
-@media (max-width: 767px) {}
+@media (max-width: 767px) {
+    .content-row {
+        flex-direction: column;
+    }
 
-/* Portrait tablet to landscape and desktop */
-@media (min-width: 768px) and (max-width: 979px) {}
+    .totalContainer {
+        flex: none;
+        width: 80vw;
+        height: 25vw;
+    }
 
-/* Large desktop */
-@media (min-width: 1200px) {}
+    .add-trip-container {
+        flex: none;
+        width: 80vw;
+        height: 25vw;
+    }
+
+    .a-d-c {
+        min-width: auto;
+    }
+
+    .trip-toevoegen-span {
+        position: relative;
+        top: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    #mat-icon-add-circle {
+        position: relative;
+        top: 2px;
+        right: 19vw;
+        font-size: 30px;
+        width: auto;
+        height: auto;
+    }
+
+    .content-item {
+        width: 100%;
+    }
+}
+
