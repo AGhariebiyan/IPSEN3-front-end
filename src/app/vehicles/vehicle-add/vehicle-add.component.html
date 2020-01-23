@@ -14,7 +14,9 @@
 
       <div class="top-left" routerLink="/voertuigenOverzicht">
         <mat-icon>arrow_back_ios</mat-icon>
-        <i>Voertuigen Overzicht</i>
+        <a routerLink="voertuigenOverzicht" class="terugKnop" >
+          <i>Voertuigen Overzicht</i>
+        </a>
       </div>
       <form [formGroup]="vehicleAddForm" (ngSubmit)="onSubmit()">
         <div>
