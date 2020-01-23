@@ -102,9 +102,9 @@ export class TripsOverviewComponent implements OnInit {
 
 
   deleteTrip(tripId: number) {
-    this.httpClientService.onDelete('http://localhost:8080/trips/delete/', tripId).subscribe(() => {
-      this.result.emit('refreshTrip');
-    });
+    // this.httpClientService.onDelete('http://localhost:8080/trips/delete/', tripId).subscribe(() => {
+    //   this.result.emit('refreshTrip');
+    // });
   }
 
   removeSelectedRows() {
