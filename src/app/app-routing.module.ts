@@ -13,23 +13,23 @@ import {TripModifyComponent} from './trips/trip-modify/trip-modify.component';
 import {TripsOverviewComponent} from './trips/trip-overview-delete/trips-overview.component';
 import {VehicleDeleteComponent} from './vehicles/vehicle-delete/vehicle-delete.component';
 import { LoginComponent } from './login/login.component';
-
+import { AuthGuardService } from './shared/guards/auth-guard.service';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
-  {path: 'dashboard', component: DashboardComponent},
-  {path: 'rittenOverzicht', component: TripsOverviewComponent},
-  {path: 'ritten/toevoegen', component: TripAddComponent},
-  {path: 'ritten/wijzigen/:tripId', component: TripModifyComponent},
-  {path: 'voertuigen/toevoegen', component: VehicleAddComponent},
-  {path: 'voertuigen/wijzigen/:licenseplate', component: VehicleModifyComponent},
-  {path: 'voertuigenOverzicht', component: VehicleDeleteComponent},
-  {path: 'ritten/inzien', component: ViewTripsPageComponent},
-  {path: 'projecten', component: ProjectOverviewPageComponent},
-  {path: 'projecten/:projectId', component: ProjectInzienPageComponent},
-  {path: 'melding', component: NotificationComponent},
-  {path: 'pagina-niet-gevonden', component: PageNotFoundComponent},
+  {path: 'dashboard', canActivate: [AuthGuardService], component: DashboardComponent},
+  {path: 'rittenOverzicht', canActivate: [AuthGuardService], component: TripsOverviewComponent},
+  {path: 'ritten/toevoegen', canActivate: [AuthGuardService], component: TripAddComponent},
+  {path: 'ritten/wijzigen/:tripId', canActivate: [AuthGuardService], component: TripModifyComponent},
+  {path: 'voertuigen/toevoegen', canActivate: [AuthGuardService], component: VehicleAddComponent},
+  {path: 'voertuigen/wijzigen/:licenseplate', canActivate: [AuthGuardService], component: VehicleModifyComponent},
+  {path: 'voertuigenOverzicht', canActivate: [AuthGuardService], component: VehicleDeleteComponent},
+  {path: 'ritten/inzien', canActivate: [AuthGuardService], component: ViewTripsPageComponent},
+  {path: 'projecten', canActivate: [AuthGuardService], component: ProjectOverviewPageComponent},
+  {path: 'projecten/:projectId', canActivate: [AuthGuardService], component: ProjectInzienPageComponent},
+  {path: 'melding', canActivate: [AuthGuardService], component: NotificationComponent},
+  {path: 'pagina-niet-gevonden', canActivate: [AuthGuardService], component: PageNotFoundComponent},
   {path: '**', redirectTo: '/pagina-niet-gevonden'}
 ];
 
