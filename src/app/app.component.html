@@ -1,4 +1,4 @@
-<div class="appContainer">
+<div *ngIf="isLoggedIn;else login" class="appContainer">
   <mat-toolbar color="primary" class="appHeader">
     <div class="headerLeft">
       <mat-icon class="menuButton" (click)="menu.toggle()" inline="true">menu</mat-icon>
@@ -86,3 +86,6 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
+<ng-template #login>
+  <app-login></app-login>
+</ng-template>
