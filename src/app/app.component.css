@@ -15,10 +15,6 @@
   cursor: pointer;
 }
 
-.appContent {
-
-}
-
 .appHeader {
   height: inherit;
   display: flex;
@@ -56,6 +52,14 @@
 
 .menuList a {
   text-decoration: none;
+}
+
+.activeLink {
+  color: #1abc9c;
+  outline: 0;
+}
+
+.nonActiveLink {
   color: #FAFAFA;
 }
 
@@ -72,12 +76,11 @@
   .header-logo-name {
     display: none;
   }
-  
+
   .logo {
     position: relative;
     width: 18vw;
     height: auto;
-    left: 0;
     left: calc(45vw - 20vw);
   }
 
