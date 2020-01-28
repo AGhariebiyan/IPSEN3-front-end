@@ -58,3 +58,14 @@
   text-decoration: none;
   color: #FAFAFA;
 }
+
+@media screen and (max-width: 567px) {
+  span#span-username {
+    display: none;
+
+  }
+
+  .DgText{
+    display: none;
+  }
+}
