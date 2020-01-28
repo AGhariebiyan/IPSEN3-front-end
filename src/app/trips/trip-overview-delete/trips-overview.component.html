@@ -1,6 +1,7 @@
 <script src="../trip-add/trip-add.component.spec.ts"></script>
 <div class="content">
-  <div class="searchContainer">
+  <div class="overlay">
+    <div class="searchContainer">
     <mat-form-field class="example-form-field">
       <label>
         <input matInput type="text" (input)="filterTripsTable($event)" placeholder="Zoeken..." [value]='value'>
@@ -10,7 +11,7 @@
       <!--            </button>-->
     </mat-form-field>
   </div>
-  <div class="table-size">
+    <div class="table-size">
     <button mat-button [matMenuTriggerFor]="menu">
       Opties <mat-icon id="more_horz" >more_horiz</mat-icon>
     </button>
@@ -96,6 +97,7 @@
       <mat-paginator id="pagination" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
       </div>
     </div>
+  </div>
   </div>
 </div>
 

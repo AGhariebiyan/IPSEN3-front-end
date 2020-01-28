@@ -4,8 +4,15 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
+  background-image: url("/assets/imgs/homepageBackground.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.cardwrapper {
   padding: 25px 0;
 }
+
 .mat-card{
   border-top-left-radius:0;
   border-top-right-radius:0;
@@ -15,12 +22,18 @@
   justify-content: center;
   align-items: flex-start;
   padding-bottom: 5px;
+  background-color: #FFFFFF;
+  width: 532px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
 .top-left {
   display: flex;
   flex-direction: row;
   font-size: 14pt;
+  cursor: pointer;
+  width: fit-content;
 }
 
 form {
@@ -38,7 +51,7 @@ form {
   margin-right: 8px;
 }
 .image-container{
-  width: 531px;
+  width: 532px;
   height: 320px;
   border-top-left-radius:4px;
   border-top-right-radius:4px;

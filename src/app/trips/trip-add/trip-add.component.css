@@ -5,7 +5,10 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-  }
+  background-image: url("/assets/imgs/homepageBackground.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
   hr{
     border-color: black;
@@ -21,6 +24,8 @@
     font-size: 14pt;
     display: flex;
     flex-direction: row;
+    cursor: pointer;
+    width: fit-content;
   }
 
   form {

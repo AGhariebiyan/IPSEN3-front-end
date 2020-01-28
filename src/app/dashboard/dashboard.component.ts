@@ -7,8 +7,8 @@ import { HttpClientService } from '../shared/http-client.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  amountOfTripsByUser = "loading..";
-  amountOfProjectsByUser = "loading..";
+  amountOfTripsByUser = 'loading..';
+  amountOfProjectsByUser = 'loading..';
 
   constructor(private httpClientService: HttpClientService) {}
 
@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   }
 
   fetchAmountOfTripsAndProjectsByUser() {
-    const fetchedObj = this.httpClientService.onGet('http://localhost:8080/trips/fetch/unique-projectids-and-trips-amount/1').pipe()
+    this.httpClientService.onGet('http://localhost:8080/trips/fetch/unique-projectids-and-trips-amount/' + localStorage.getItem('userid')).pipe()
     .subscribe(
       data => {
         this.amountOfTripsByUser = data[0];

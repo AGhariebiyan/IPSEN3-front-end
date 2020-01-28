@@ -7,7 +7,7 @@ import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
-  public isLoggedIn: Observable<boolean>;
+  public loggedIn;
 
   constructor(
     private router: Router,
@@ -20,13 +20,12 @@ export class AuthService {
       const fetchedObj = this.httpClientService.onGet('http://localhost:8080/login/' + user.userName + '/' + user.password).pipe()
       .subscribe(
       data => {
-        console.log(data);
         localStorage.setItem('jwtoken', data.authToken);
         localStorage.setItem('username', data.username);
         localStorage.setItem('userid', data.userId);
 
+        this.loggedIn = true;
         this.router.navigate(['/dashboard']);
-
       },
       error => {
         console.log(error);
@@ -36,7 +35,17 @@ export class AuthService {
 
   logout() {
     localStorage.clear();
-
+    this.loggedIn = false;
     this.router.navigate(['/login']);
+  }
+
+  isLoggedIn() {
+    const promise = new Promise(
+      (resolve, reject) =>{
+        resolve(this.loggedIn);
+      }
+    );
+
+    return promise;
   }
 }
