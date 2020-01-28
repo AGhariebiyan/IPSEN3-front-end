@@ -36,7 +36,7 @@ export class HttpClientService {
     this.http.put<any>(putUrl, JSON.stringify(Object), {headers: this.httpHeaders}).subscribe();
   }
 
-  onDelete(delUrl: string) {
+  onDelete(delUrl: string): Observable<any> {
     return this.http.delete(delUrl,  {headers: this.httpHeaders});
   }
 }

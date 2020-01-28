@@ -7,10 +7,11 @@ export class Trip {
   endLocation: string;
   startKilometergauge: number;
   endKilometergauge: number;
+  drivenKm: number;
 
 
   constructor(id: number, projectId: number, userId: number, licensePlate: string, startLocation: string,
-              endLocation: string, startKilometergauge: number, endKilometergauge: number) {
+              endLocation: string, startKilometergauge: number, endKilometergauge: number, drivenKm: number) {
     this.tripId = id;
     this.projectId = projectId;
     this.userId = userId;
@@ -19,5 +20,6 @@ export class Trip {
     this.endLocation = endLocation;
     this.startKilometergauge = startKilometergauge;
     this.endKilometergauge = endKilometergauge;
+    this.drivenKm = drivenKm;
   }
 }
