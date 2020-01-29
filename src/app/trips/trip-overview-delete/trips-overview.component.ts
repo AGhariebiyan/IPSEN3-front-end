@@ -25,15 +25,12 @@ export class TripsOverviewComponent implements OnInit {
   result: EventEmitter = new EventEmitter();
 
   selectedIdsArray: Array<number> = [];
-
-  // selectedIdsArray: number[] = [];
   data = Object.assign(this.tripsArray);
   selection = new SelectionModel<Trip>(true, []);
 
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  // @ViewChild(MatTableDataSource, {static: true}) data: MatTableDataSource<Trip>;
 
   value = '';
 
@@ -47,7 +44,6 @@ export class TripsOverviewComponent implements OnInit {
 
     this.result.on('refreshTripsTable', () => {
       this.getTrips();
-      // window.location.reload();
     });
   }
 
@@ -69,14 +65,12 @@ export class TripsOverviewComponent implements OnInit {
     if (event.checked) {
       this.selectedIdsArray.push(tripId);
     } else {
-      // this.selectedIdsArray.splice(index, 1);
       for (let i = 0; i <= this.selectedIdsArray.length; i++) {
         if (this.selectedIdsArray[i] === tripId) {
           this.selectedIdsArray.splice(i, 1);
         }
       }
     }
-    // console.log(this.selectedIdsArray);
   }
 
   getTrips() {
@@ -99,7 +93,6 @@ export class TripsOverviewComponent implements OnInit {
               });
             }
           );
-          console.log(this.tripsArray);
           this.dataSource1.data = this.tripsArray;
           this.dataSource1.sort = this.sort;
           this.dataSource1.paginator = this.paginator;
@@ -116,7 +109,6 @@ export class TripsOverviewComponent implements OnInit {
   }
 
   removeSelectedRows() {
-    console.log('removeSelected:', this.selectedIdsArray);
     this.httpClientService.onPostNew('http://localhost:8080/trips/delete', this.selectedIdsArray).subscribe(() => {
       this.result.emit('refreshTripsTable');
     });

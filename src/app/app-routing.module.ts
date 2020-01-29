@@ -11,7 +11,7 @@ import {TripAddComponent} from './trips/trip-add/trip-add.component';
 import {VehicleModifyComponent} from './vehicles/vehicle-modify/vehicle-modify.component';
 import {TripModifyComponent} from './trips/trip-modify/trip-modify.component';
 import {TripsOverviewComponent} from './trips/trip-overview-delete/trips-overview.component';
-import {VehicleDeleteComponent} from './vehicles/vehicle-delete/vehicle-delete.component';
+import {VehicleOverviewComponent} from './vehicles/vehicle-overview-delete/vehicle-overview.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuardService } from './shared/guards/auth-guard.service';
 
@@ -24,7 +24,7 @@ const appRoutes: Routes = [
   {path: 'ritten/wijzigen/:tripId', canActivate: [AuthGuardService], component: TripModifyComponent},
   {path: 'voertuigen/toevoegen', canActivate: [AuthGuardService], component: VehicleAddComponent},
   {path: 'voertuigen/wijzigen/:licenseplate', canActivate: [AuthGuardService], component: VehicleModifyComponent},
-  {path: 'voertuigenOverzicht', canActivate: [AuthGuardService], component: VehicleDeleteComponent},
+  {path: 'voertuigenOverzicht', canActivate: [AuthGuardService], component: VehicleOverviewComponent},
   {path: 'ritten/inzien', canActivate: [AuthGuardService], component: ViewTripsPageComponent},
   {path: 'projecten', canActivate: [AuthGuardService], component: ProjectOverviewPageComponent},
   {path: 'projecten/:projectId', canActivate: [AuthGuardService], component: ProjectInzienPageComponent},

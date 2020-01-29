@@ -1,3 +1,6 @@
+.deleteVehicleIcon {
+  cursor: pointer;
+}
 .buttonContainer {
   /*border: 1px red solid;*/
   width: 750px;
