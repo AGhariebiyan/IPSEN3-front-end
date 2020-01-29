@@ -9,17 +9,23 @@ import {AuthService} from './auth/auth.service';
 export class AppComponent implements OnInit {
   private authService: AuthService;
   username = 'loading...';
+  isLoggedIn: boolean;
 
   constructor(private auth: AuthService) {
     this.authService = auth;
     this.username = localStorage.getItem('username');
+    this.auth.isLoggedIn().then((result: boolean) => this.isLoggedIn = result);
   }
 
   ngOnInit() {
-    addEventListener('usernameChange', this.handleStorageChange);
+    addEventListener('loginEvent', this.handleLoginChange);
   }
 
-  handleStorageChange = () => {
+  handleLoginChange = () => {
+    this.auth.isLoggedIn().then((result: boolean) => {
+      this.isLoggedIn = result;
+      console.log(result);
+    });
     this.username = localStorage.getItem('username');
   }
 

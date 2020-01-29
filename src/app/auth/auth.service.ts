@@ -21,8 +21,8 @@ export class AuthService {
         localStorage.setItem('username', data.username);
         localStorage.setItem('userid', data.userId);
 
-        dispatchEvent(new Event('usernameChange'));
         this.loggedIn = true;
+        dispatchEvent(new Event('loginEvent'));
         this.router.navigate(['/dashboard']);
       },
       error => {
@@ -34,6 +34,7 @@ export class AuthService {
   logout() {
     localStorage.clear();
     this.loggedIn = false;
+    dispatchEvent(new Event('loginEvent'));
     this.router.navigate(['/login']);
   }
 
