@@ -28,7 +28,7 @@ export class TripModifyComponent implements OnInit {
               private mapService: GmapsService,
               private activatedRoute: ActivatedRoute
   ) {
-    this.httpClientService.onGet('http://localhost:8080/vehicles/fetch/unique-licenseplates/1').pipe()
+    this.httpClientService.onGet('http://37.97.209.18:8080/vehicles/fetch/unique-licenseplates/1').pipe()
       .subscribe(
         data => {
           data.forEach(licenseplate => {
@@ -37,7 +37,7 @@ export class TripModifyComponent implements OnInit {
         }
       );
 
-    this.httpClientService.onGet('http://localhost:8080/project/getAllProject').pipe()
+    this.httpClientService.onGet('http://37.97.209.18:8080/project/getAllProject').pipe()
       .subscribe(
         data => {
           data.forEach(project => {
@@ -64,7 +64,7 @@ export class TripModifyComponent implements OnInit {
   }
 
   getTrip() {
-    this.httpClientService.onGet('http://localhost:8080/trips/trip/' + this.tripId)
+    this.httpClientService.onGet('http://37.97.209.18:8080/trips/trip/' + this.tripId)
       .subscribe(
         (trip) => {
           this.trip = trip;
@@ -94,9 +94,10 @@ export class TripModifyComponent implements OnInit {
 
 
     this.httpClientService.onPut(
-      'http://localhost:8080/trips/trip/update/for-project/' +
+      'http://37.97.209.18:8080/trips/trip/update/for-project/' +
       this.tripId + '/' +
-      projectId + '/1/' +
+      projectId + '/' +
+      localStorage.getItem('userid') + '/' +
       licenseplate + '/' +
       this.destination.location[0] + '/' +
       this.destination.location[1] + '/' +
@@ -108,7 +109,7 @@ export class TripModifyComponent implements OnInit {
   }
 
   retrieveKmGauge(event) {
-    this.httpClientService.onGet('http://localhost:8080/trips/getByLicensePlate?licensePlate=' + event.target.innerText).pipe()
+    this.httpClientService.onGet('http://37.97.209.18:8080/trips/getByLicensePlate?licensePlate=' + event.target.innerText).pipe()
       .subscribe(
         data => {
           this.tripUpdateForm.patchValue({

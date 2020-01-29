@@ -22,7 +22,7 @@ export class TripAddComponent implements OnInit {
   private destination = {location: []};
 
   constructor(private httpClientService: HttpClientService, private cdr: ChangeDetectorRef, private mapService: GmapsService) {
-    const fetchedObj = this.httpClientService.onGet('http://localhost:8080/vehicles/fetch/unique-licenseplates/1').pipe()
+    const fetchedObj = this.httpClientService.onGet('http://37.97.209.18:8080/vehicles/fetch/unique-licenseplates/1').pipe()
       .subscribe(
         data => {
           data.forEach(licenseplate => {
@@ -31,7 +31,7 @@ export class TripAddComponent implements OnInit {
         }
       );
 
-    const projects = this.httpClientService.onGet('http://localhost:8080/project/getAllProject').pipe()
+    const projects = this.httpClientService.onGet('http://37.97.209.18:8080/project/getAllProject').pipe()
       .subscribe(
         data => {
           data.forEach(project => {
@@ -77,14 +77,14 @@ export class TripAddComponent implements OnInit {
     const projectId = this.tripAddForm.value.projectID.split('#')[1];
 
     const postObj = this.httpClientService.onPost(
-      'http://localhost:8080/trips/trip/add/for-project/' + projectId + '/1/' + licenseplate + '/' + this.destination.location[0] + '/' + this.destination.location[1] + '/' + startKmGauge + '/' + endKmGauge + '/' + drivenKm);
+      'http://37.97.209.18:8080/trips/trip/add/for-project/' + projectId + '/' + localStorage.getItem('userid') + '/' + licenseplate + '/' + this.destination.location[0] + '/' + this.destination.location[1] + '/' + startKmGauge + '/' + endKmGauge + '/' + drivenKm);
 
 
     this.formSubmitted = true;
   }
 
   retrieveKmGauge(event) {
-    const trip = this.httpClientService.onGet('http://localhost:8080/trips/getByLicensePlate?licensePlate=' + event.target.innerText).pipe()
+    const trip = this.httpClientService.onGet('http://37.97.209.18:8080/trips/getByLicensePlate?licensePlate=' + event.target.innerText).pipe()
       .subscribe(
         data => {
           this.startKilometerGauge = data.endKilometergauge;

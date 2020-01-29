@@ -13,10 +13,11 @@
         <div class="containerHeader">
           <h3>Rit #{{tripId}}: {{startLocation}} - {{endLocation}}</h3>
           <div *ngIf="publicTripMap.size > 1">
-            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>keyboard_arrow_down</mat-icon></button>
             <mat-menu #menu="matMenu" >
               <button *ngFor="let trips of publicTripMap | keyvalue" (click)="fetchNewTrip(trips.key)" mat-menu-item>{{trips.value}}</button>
             </mat-menu>
+            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>keyboard_arrow_down</mat-icon></button>
+
           </div>
         </div>
         <hr/>

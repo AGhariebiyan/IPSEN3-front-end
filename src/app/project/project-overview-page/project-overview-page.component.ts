@@ -7,9 +7,6 @@ import {Router} from '@angular/router';
 import {ProjectModel} from '../project.model';
 import {CookieService} from 'ngx-cookie-service';
 
-
-
-
 export interface ProjectElement {
   id: number;
   name: string;
@@ -26,8 +23,8 @@ export interface ProjectElement {
 
 export class ProjectOverviewPageComponent implements OnInit {
 
-  private ELEMENT_DATA: ProjectElement[] = [];
-  private lastUpdate: string;
+  public ELEMENT_DATA: ProjectElement[] = [];
+  public lastUpdate: string;
 
   public displayedColumns: string[];
   public dataSource: MatTableDataSource<ProjectElement>;
@@ -55,7 +52,7 @@ export class ProjectOverviewPageComponent implements OnInit {
   private fetchProjectsFromBackEnd() {
     const projectArr = [];
     localStorage.removeItem('projectArr');
-    const fetchedObj = this.httpClient.onGet('http://localhost:8080/project/getAllProject').pipe()
+    const fetchedObj = this.httpClient.onGet('http://37.97.209.18:8080/project/getAllProject').pipe()
       .subscribe(
         data => {
           this.ELEMENT_DATA = [];
@@ -129,7 +126,7 @@ export class ProjectOverviewPageComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  private filterProjectTable(event) {
+  public filterProjectTable(event) {
     this.dataSource.filter = event.target.value;
     this.value = event.target.value;
   }

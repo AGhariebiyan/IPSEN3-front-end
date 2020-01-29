@@ -69,7 +69,7 @@ export class ProjectInzienPageComponent implements OnInit {
   }
 
 
-  public navigateBack(event) {
+  public navigateBack() {
     this.route.navigate(['/projecten']);
   }
 

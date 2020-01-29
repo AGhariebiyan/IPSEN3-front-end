@@ -17,7 +17,7 @@ export class LicensePlateService {
   }
 
   checkLicensePlateDF(licensePlate: string) {
-    const fetchedObj = this.httpClientService.onGet('http://localhost:8080/vehicles/vehicle/' + licensePlate);
+    const fetchedObj = this.httpClientService.onGet('http://37.97.209.18:8080/vehicles/vehicle/' + licensePlate);
     return fetchedObj;
   }
 

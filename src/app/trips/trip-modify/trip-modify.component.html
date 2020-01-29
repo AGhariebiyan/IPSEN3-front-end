@@ -1,5 +1,4 @@
 <div class="content">
-
   <mat-card>
 
     <div class='dataContainer'>
@@ -28,7 +27,7 @@
             placeholder="Project nummer"
             id="projectId"
             formControlName="projectID"
-            [(value)]="getForm.projectID.value">
+            [value]="getForm.projectID.value">
             <mat-option
               *ngFor="let projectName of projectNames; let i = index"
               [value]="projectIds[i]">{{projectName}} #{{projectIds[i]}}</mat-option>
