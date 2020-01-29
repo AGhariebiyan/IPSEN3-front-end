@@ -5,8 +5,6 @@ import { HttpClientService } from '../shared/http-client.service';
 
 @Injectable()
 export class AuthService {
-  public loggedIn;
-
   constructor(
     private router: Router,
     private httpClientService: HttpClientService,
@@ -20,8 +18,8 @@ export class AuthService {
         localStorage.setItem('jwtoken', data.authToken);
         localStorage.setItem('username', data.username);
         localStorage.setItem('userid', data.userId);
+        localStorage.setItem('loggedIn', 'true');
 
-        this.loggedIn = true;
         dispatchEvent(new Event('loginEvent'));
         this.router.navigate(['/dashboard']);
       },
@@ -33,15 +31,19 @@ export class AuthService {
 
   logout() {
     localStorage.clear();
-    this.loggedIn = false;
+    localStorage.setItem('loggedIn', 'false');
     dispatchEvent(new Event('loginEvent'));
     this.router.navigate(['/login']);
   }
 
   isLoggedIn() {
     return new Promise(
-      (resolve, reject) => {
-        resolve(this.loggedIn);
+      (resolve, reject) =>{
+        if (localStorage.getItem('loggedIn') === 'true') {
+          resolve(true);
+        } else {
+          resolve(false);
+        }
       }
     );
   }

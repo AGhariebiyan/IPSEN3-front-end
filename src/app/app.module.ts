@@ -31,6 +31,7 @@ import {GmapsService} from './gmaps/gmaps.service';
 import {TripsOverviewComponent} from './trips/trip-overview-delete/trips-overview.component';
 import {VehicleOverviewComponent} from './vehicles/vehicle-overview-delete/vehicle-overview.component';
 import { AuthGuardService } from './shared/guards/auth-guard.service';
+import { MenuComponent } from './menu/menu.component';
 
 
 
@@ -53,7 +54,8 @@ import { AuthGuardService } from './shared/guards/auth-guard.service';
     VehicleModifyComponent,
     VehicleOverviewComponent,
     LicensePlateValidatorDirective,
-    LoginComponent
+    LoginComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
