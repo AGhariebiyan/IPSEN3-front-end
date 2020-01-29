@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class NotificationService {
-  goFurtherRouterLinkPath = 'https://www.youtube.com/watch?v=oHg5SJYRHA0';
+  goFurtherRouterLinkPath = '';
   goBackRouterLinkPath = 'dashboard';
   melding = 'Helaas is het niet gelukt. Probeert u het nog een keer.';
 

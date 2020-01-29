@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {EventEmitter} from 'events';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
@@ -11,7 +11,8 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-vehicle-delete',
   templateUrl: './vehicle-delete.component.html',
-  styleUrls: ['./vehicle-delete.component.css']
+  styleUrls: ['./vehicle-delete.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class VehicleDeleteComponent implements OnInit {
 
@@ -88,11 +89,11 @@ export class VehicleDeleteComponent implements OnInit {
     return id;
   }
 
-  // deleteVehicle(id: number) {
-  //   this.httpClientService.onDelete('http://localhost:8080/vehicles/delete/' + id).subscribe(() => {
-  //     this.result.emit('deleteVehicle');
-  //   });
-  // }
+  deleteVehicle(id: number) {
+    this.httpClientService.onDelete('http://localhost:8080/vehicles/delete/' + id).subscribe(() => {
+      this.result.emit('deleteVehicle');
+    });
+  }
 
 
   removeSelectedRows() {

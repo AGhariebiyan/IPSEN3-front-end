@@ -48,10 +48,118 @@
   width: 50vw;
   display: flex;
   justify-content: flex-end;
-  top: 30px;
-
+  top: 50%;
+}
+.mat-elevation-z8 {
+  position: absolute;
 }
 
 #mat-icon-edit {
   cursor: pointer;
+}
+
+/*.mat-table {*/
+/*  overflow: auto;*/
+/*  max-height: 500px;*/
+/*}*/
+.mat-table {
+  width: 100%;
+  max-width: 900px;
+  padding: 0 20px;
+  table-layout: fixed;
+}
+.mat-table tr.mat-row {
+  height: auto;
+}
+.mat-table .mat-header-row {
+  height: auto;
+}
+.mat-table .mat-column-select .mat-checkbox,
+.mat-table .mat-cell .mat-checkbox {
+  width: 16px;
+  height: 16px;
+  display: block;
+  margin: auto;
+}
+.mat-table .mat-header-cell,
+.mat-table .mat-cell {
+  padding: 20px 0 20px 10px;
+  width: 18%;
+}
+.mat-table mat-header-cell.mat-header-cell,
+.mat-table mat-cell.mat-cell {
+  display: table-cell;
+  width: 10%;
+}
+@media screen and (max-width: 767px) {
+  .mat-table {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 567px) {
+  .mat-table td,
+  .mat-table th {
+    font-size: 12px;
+  }
+
+  .mat-table th,
+  .mat-table td {
+    width: 25%;
+    padding: 20px 10px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .mat-table th:last-of-type,
+  .mat-table td:last-of-type {
+    display: none;
+  }
+
+  .mat-table th:nth-of-type(5),
+  .mat-table td:nth-of-type(5) {
+    display: none;
+  }
+
+  .mat-table th:nth-of-type(6),
+  .mat-table td:nth-of-type(6) {
+    display: none;
+  }
+
+  .mat-table th:nth-of-type(7),
+  .mat-table td:nth-of-type(7) {
+    display: none;
+  }
+
+  .mat-table .mat-header-cell,
+  .mat-table .mat-cell {
+    width: 25%;
+    padding: 20px 10px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .pagination-container .mat-paginator-range-actions {
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .pagination-container .mat-paginator-range-actions .mat-paginator-range-label {
+    margin: 0 10px 0 10px;
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .pagination-container .mat-paginator-page-size {
+    margin-right: 8px;
+    align-items: center;
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }

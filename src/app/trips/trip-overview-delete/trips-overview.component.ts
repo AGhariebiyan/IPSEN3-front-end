@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {Trip} from './trip.model';
+import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+
 import {HttpClientService} from '../../shared/http-client.service';
 import {EventEmitter} from 'events';
 import {MatTableDataSource} from '@angular/material/table';
@@ -7,12 +7,14 @@ import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {SelectionModel} from '@angular/cdk/collections';
 import {Router} from '@angular/router';
+import {Trip} from './trip.model';
 
 
 @Component({
   selector: 'app-trips',
   templateUrl: './trips-overview.component.html',
   styleUrls: ['./trips-overview.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class TripsOverviewComponent implements OnInit {
@@ -37,7 +39,7 @@ export class TripsOverviewComponent implements OnInit {
 
 
   constructor(private httpClientService: HttpClientService, private router: Router) {
-    this.displayedColumns = ['select', 'startLocation', 'endLocation', 'licensePlate', 'project', 'wijzigen', 'verwijderen'];
+    this.displayedColumns = ['select', 'startLocation', 'endLocation', 'KM', 'licensePlate', 'project', 'wijzigen', 'verwijderen'];
     this.getTrips();
   }
 
@@ -91,9 +93,9 @@ export class TripsOverviewComponent implements OnInit {
                 userId: dataE.userId,
                 startLocation: dataE.startLocation,
                 endLocation: dataE.endLocation,
-                drivenKm: dataE.drivenKm,
                 licensePlate: dataE.licensePlate,
-                projectId: dataE.projectId
+                projectId: dataE.projectId,
+                drivenKm: dataE.drivenKm,
               });
             }
           );
@@ -107,8 +109,8 @@ export class TripsOverviewComponent implements OnInit {
 
 
   deleteTrip(tripId: number) {
-    this.httpClientService.onDelete('http://localhost:8080/trips/delete/').subscribe(() => {
-      this.result.emit('refreshTrip');
+    this.httpClientService.onDelete('http://localhost:8080/trips/delete/' + tripId).subscribe(() => {
+      this.result.emit('refreshTripsTable');
     });
   }
 
