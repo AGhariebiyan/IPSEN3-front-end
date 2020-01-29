@@ -30,7 +30,7 @@ import { AuthService } from './auth/auth.service';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {GmapsService} from './gmaps/gmaps.service';
 import {TripsOverviewComponent} from './trips/trip-overview-delete/trips-overview.component';
-import {VehicleDeleteComponent} from './vehicles/vehicle-delete/vehicle-delete.component';
+import {VehicleOverviewComponent} from './vehicles/vehicle-overview-delete/vehicle-overview.component';
 
 
 
@@ -51,7 +51,7 @@ import {VehicleDeleteComponent} from './vehicles/vehicle-delete/vehicle-delete.c
     VehiclesComponent,
     VehicleAddComponent,
     VehicleModifyComponent,
-    VehicleDeleteComponent,
+    VehicleOverviewComponent,
     LicensePlateValidatorDirective,
     LoginComponent
   ],

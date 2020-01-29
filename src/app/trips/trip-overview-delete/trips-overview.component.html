@@ -38,19 +38,18 @@
         </mat-cell>
       </ng-container>
 
-      <!-- Project nummer kolom -->
       <ng-container matColumnDef="startLocation">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Start locatie</th>
         <td mat-cell *matCellDef="let trip"> {{trip.startLocation}} </td>
       </ng-container>
 
-      <!-- Naam kolom -->
+
       <ng-container matColumnDef="endLocation">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Eind locatie</th>
         <td mat-cell *matCellDef="let trip"> {{trip.endLocation}}</td>
       </ng-container>
 
-      <!-- Totaal geboekte trips op een project -->
+
       <ng-container matColumnDef="project">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Project</th>
         <td mat-cell *matCellDef="let trip"> {{trip.projectId}} </td>
@@ -62,12 +61,6 @@
         <td mat-cell *matCellDef="let trip"> {{trip.licensePlate}} </td>
       </ng-container>
 
-<!--      &lt;!&ndash; Totaal aantal km's op een project &ndash;&gt;-->
-<!--      <ng-container matColumnDef="verwijder">-->
-<!--        <th mat-header-cell *matHeaderCellDef mat-sort-header> Verwijder</th>-->
-<!--        <td mat-cell *matCellDef="let trip">-->
-<!--          <i (click)=deleteTrip(trip.tripId) class="fa fa-trash fa-2x"></i></td>-->
-<!--      </ng-container>-->
 
       <ng-container matColumnDef="wijzigen">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Wijzigen</th>
