@@ -33,6 +33,10 @@ import {VehicleOverviewComponent} from './vehicles/vehicle-overview-delete/vehic
 import { AuthGuardService } from './shared/guards/auth-guard.service';
 import { MenuComponent } from './menu/menu.component';
 
+// Toaster messages
+import { CommonModule } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
+
 
 
 @NgModule({
@@ -58,6 +62,11 @@ import { MenuComponent } from './menu/menu.component';
     MenuComponent
   ],
   imports: [
+    CommonModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+      countDuplicates: true
+    }),
     BrowserModule,
     BrowserAnimationsModule,
     GooglePlaceModule,
