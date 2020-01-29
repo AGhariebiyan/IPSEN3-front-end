@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {Trip} from '../../trips/trip-overview-delete/trip.model';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClientService} from '../../shared/http-client.service';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
@@ -13,19 +13,20 @@ import {MatPaginator} from '@angular/material/paginator';
 })
 export class VehicleTripsOverviewComponent implements OnInit {
 
+  licensePlate = this.activatedRoute.snapshot.params.licenseplate;
   displayedColumns: string[];
   vehicleTripData: MatTableDataSource<Trip> = new MatTableDataSource<Trip>();
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  constructor(private router: Router, private httpClientService: HttpClientService) {
+  constructor(private router: Router, private httpClientService: HttpClientService, private activatedRoute: ActivatedRoute) {
     this.displayedColumns = ['startLocation', 'endLocation', 'drivenKm', 'project', 'wijzigen', 'verwijderen'];
   }
 
   getTrips() {
 
-    this.httpClientService.onGet('http://localhost:8080/trips/user/1') // TODO: change request to proper one.
+    this.httpClientService.onGet('http://localhost:8080/trips/getallByLicensePlate?licensePlate=' + this.licensePlate)
       .subscribe(
         data => {
           data.forEach(fetchedTrip => {
