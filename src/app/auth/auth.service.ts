@@ -7,8 +7,6 @@ import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
-  public loggedIn;
-
   constructor(
     private router: Router,
     private httpClientService: HttpClientService,
@@ -23,8 +21,8 @@ export class AuthService {
         localStorage.setItem('jwtoken', data.authToken);
         localStorage.setItem('username', data.username);
         localStorage.setItem('userid', data.userId);
+        localStorage.setItem('loggedIn', 'true');
 
-        this.loggedIn = true;
         this.router.navigate(['/dashboard']);
       },
       error => {
@@ -35,14 +33,18 @@ export class AuthService {
 
   logout() {
     localStorage.clear();
-    this.loggedIn = false;
+    localStorage.setItem('loggedIn', 'false');
     this.router.navigate(['/login']);
   }
 
   isLoggedIn() {
     const promise = new Promise(
       (resolve, reject) =>{
-        resolve(this.loggedIn);
+        if(localStorage.getItem('loggedIn') == 'true') {
+          resolve(true);
+        } else {
+          resolve(false);
+        }
       }
     );
 
