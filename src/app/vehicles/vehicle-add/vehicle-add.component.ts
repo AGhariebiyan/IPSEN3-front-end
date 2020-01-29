@@ -4,6 +4,7 @@ import { HttpClientService } from 'src/app/shared/http-client.service';
 import { LicensePlateService } from '../license-plate-service';
 import {map} from 'rxjs/operators';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-vehicle-add',
@@ -19,9 +20,12 @@ export class VehicleAddComponent implements OnInit {
   private vehicleAddForm: FormGroup;
   private body: string;
   private year: string;
-  //private color: string;
 
-  constructor(private httpClientService: HttpClientService, private fb: FormBuilder, private licensePlateService: LicensePlateService, private spinner: NgxSpinnerService) { }
+  constructor(private httpClientService: HttpClientService,
+              private fb: FormBuilder,
+              private licensePlateService: LicensePlateService,
+              private spinner: NgxSpinnerService,
+              private toaster: ToastrService) { }
 
   ngOnInit() {
     this.vehicleAddForm = new FormGroup({
@@ -51,8 +55,17 @@ export class VehicleAddComponent implements OnInit {
 
   onSubmit() {
     const licensplate = this.vehicleAddForm.value.licenseplate;
-    this.httpClientService.onPost('http://localhost:8080/vehicles/vehicle/add/for-user/1/' + licensplate.toUpperCase() + '/' + this.brand + '/' + this.type + '/' + this.body);
+    this.httpClientService.onPost(
+      'http://localhost:8080/vehicles/vehicle/add/for-user/1/' +
+      licensplate.toUpperCase() + '/'
+      + this.brand + '/' +
+      this.type + '/' +
+      this.body
+    );
     this.formSubmitted = true;
+    this.toaster.success('Het voertuig is succesvol toegevoegd.', 'Voertuig toegevoegd!', {
+      positionClass: 'toast-bottom-left'
+    });
     // this.vehicleAddForm.reset();
   }
 
@@ -67,7 +80,6 @@ export class VehicleAddComponent implements OnInit {
           this.type = res[0].handelsbenaming;
           this.body = res[0].inrichting;
           this.year = res[0].datum_eerste_toelating.substr(0, 4);
-          //this.color = res[0].eerste_kleur;
           return null;
         }
       })
@@ -89,11 +101,11 @@ export class VehicleAddComponent implements OnInit {
 
   private findImageByVehicle(searchUrl: string) {
     this.imageSource = null;
-    const fetchedObj = this.httpClientService.onGet('http://localhost:5000/image?term=' + searchUrl ).pipe()
+    this.httpClientService.onGet('http://localhost:5000/image?term=' + searchUrl ).pipe()
       .subscribe(
         data => {
           this.spinner.hide();
-          this.imageSource = data['result'];
+          this.imageSource = data.result;
         },
         error => {
           this.spinner.hide();
