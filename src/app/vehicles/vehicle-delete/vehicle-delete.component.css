@@ -70,9 +70,7 @@
   justify-content: flex-end;
   top: 50%;
 }
-.mat-elevation-z8 {
-  position: absolute;
-}
+
 /*.mat-table {*/
 /*  overflow: auto;*/
 /*  max-height: 500px;*/
