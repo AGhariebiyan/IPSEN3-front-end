@@ -3,10 +3,13 @@
     <div class="headerLeft">
       <mat-icon class="menuButton" (click)="menu.toggle()" inline="true">menu</mat-icon>
       <img src="assets/imgs/logo.png" class="logo" alt="logo digitale factuur" style="max-height: 50px;">
-      <p class = DgText>Digitale Factuur</p>
+      <p class="header-logo-name">Digitale Factuur</p>
     </div>
 
     <div class="headerRight">
+      <mat-icon class="mat-icon-account-circle">account_circle</mat-icon>
+      <span id="span-username"> username</span>
+
       <button class="menu-icon-button" mat-icon-button [matMenuTriggerFor]="userMenu" aria-label="arrow drop down menu user log out">
         <mat-icon class="mat-icon-menu">arrow_drop_down</mat-icon>
       </button>
@@ -16,9 +19,6 @@
           <span>Uitloggen</span>
         </button>
       </mat-menu>
-
-      <mat-icon class="mat-icon-account-circle">account_circle</mat-icon>
-      <span id="span-username">username</span>
     </div>
   </mat-toolbar>
 
@@ -27,23 +27,53 @@
 
       <ul class="menuList">
         <li>
-          <a routerLink="/dashboard" (click)="menu.close()">
-            <mat-icon>assessment</mat-icon>Dashboard
+          <a
+            routerLink="/dashboard"
+            routerLinkActive
+            #dashboard="routerLinkActive"
+            [ngClass]="dashboard.isActive ? 'activeLink' : 'nonActiveLink'"
+            (click)="menu.close()"
+          >
+            <mat-icon>assessment</mat-icon> Dashboard
           </a>
         </li>
         <li >
-          <a routerLink="/rittenOverzicht" (click)="menu.close()">
-            <mat-icon class="nav-menu-icon">gesture</mat-icon>Ritten
+          <a
+            routerLink="/rittenOverzicht"
+            routerLinkActive
+            #tripOverview="routerLinkActive"
+            [ngClass]="tripOverview.isActive ? 'activeLink' : 'nonActiveLink'"
+            (click)="menu.close()"
+          >
+            <mat-icon class="nav-menu-icon">gesture</mat-icon> Ritten
           </a>
         </li>
         <li>
-          <a routerLink="/voertuigenOverzicht" (click)="menu.close()">
-            <mat-icon>directions_car</mat-icon>Voertuigen
+          <a
+            routerLink="/voertuigenOverzicht"
+            routerLinkActive
+            #vehicleOverview="routerLinkActive"
+            [ngClass]="vehicleOverview.isActive ? 'activeLink' : 'nonActiveLink'"
+            (click)="menu.close()"
+          >
+            <mat-icon>directions_car</mat-icon> Voertuigen
           </a>
         </li>
         <li>
-          <a routerLink="/projecten" (click)="menu.close()">
-            <mat-icon>table_chart</mat-icon>Projecten
+          <a
+            routerLink="/projecten"
+            routerLinkActive
+            #projectOverView="routerLinkActive"
+            [ngClass]="projectOverView.isActive? 'activeLink' : 'nonActiveLink'"
+            (click)="menu.close()"
+          >
+            <mat-icon>table_chart</mat-icon> Projecten
+          </a>
+        </li>
+
+        <li class="li-uitloggen">
+          <a routerLink="/dashboard" (click)="menu.close()">
+            <mat-icon>power_settings_new</mat-icon>
           </a>
         </li>
       </ul>

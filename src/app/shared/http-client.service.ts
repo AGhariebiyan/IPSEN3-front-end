@@ -16,6 +16,7 @@ export class HttpClientService {
     if (localStorage.getItem('jwtoken') !== null && this.httpHeaders.get('Token') === null) {
       this.httpHeaders = this.httpHeaders.append('Token', localStorage.getItem('jwtoken'));
     }
+    
     return this.http.get(getUrl, {headers: this.httpHeaders});
   }
 

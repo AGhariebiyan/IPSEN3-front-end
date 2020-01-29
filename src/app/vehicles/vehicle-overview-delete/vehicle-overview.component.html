@@ -1,13 +1,14 @@
 <div class="content">
-  <div class="searchContainer">
-    <mat-form-field class="example-form-field">
-      <input matInput type="text" (input)="filterTripsTable($event)" placeholder="Zoeken..." [value]='value'>
-      <!--      <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">-->
-      <!--        <mat-icon>close</mat-icon>-->
-      <!--      </button>-->
-    </mat-form-field>
-  </div>
-  <div class="table-size">
+  <div class="overlay">
+    <div class="searchContainer">
+      <mat-form-field class="example-form-field">
+        <input matInput type="text" (input)="filterTripsTable($event)" placeholder="Zoeken..." [value]='value'>
+        <!--      <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">-->
+        <!--        <mat-icon>close</mat-icon>-->
+        <!--      </button>-->
+      </mat-form-field>
+    </div>
+    <div class="table-size">
     <button mat-button [matMenuTriggerFor]="menu">Opties
       <mat-icon id="more_horz" >more_horiz</mat-icon>
     </button>
@@ -66,6 +67,7 @@
         <mat-paginator id="pagination" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
       </div>
     </div>
+  </div>
   </div>
 </div>
 

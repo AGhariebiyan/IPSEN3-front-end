@@ -25,12 +25,12 @@ import { ProjectOverviewPageComponent } from './project/project-overview-page/pr
 import {CookieService} from 'ngx-cookie-service';
 import { LicensePlateValidatorDirective } from './validators/license-plate-validator.directive';
 import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './auth/auth.guard';
 import { AuthService } from './auth/auth.service';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {GmapsService} from './gmaps/gmaps.service';
 import {TripsOverviewComponent} from './trips/trip-overview-delete/trips-overview.component';
 import {VehicleOverviewComponent} from './vehicles/vehicle-overview-delete/vehicle-overview.component';
+import { AuthGuardService } from './shared/guards/auth-guard.service';
 
 
 
@@ -66,7 +66,7 @@ import {VehicleOverviewComponent} from './vehicles/vehicle-overview-delete/vehic
     HttpClientModule,
     NgxSpinnerModule
   ],
-  providers: [CookieService, GmapsService, AuthService, AuthGuard],
+  providers: [CookieService, GmapsService, AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

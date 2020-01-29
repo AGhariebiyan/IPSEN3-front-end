@@ -1,9 +1,8 @@
 <div class="content">
-
     <mat-card>
 
         <div class='dataContainer'>
-        <div class="top-left">
+        <div class="top-left" routerLink="/rittenOverzicht">
             <mat-icon>arrow_back_ios</mat-icon>
             <i>Ritten Overzicht</i>
         </div>
@@ -81,7 +80,7 @@
             <div class="button-row">
                 <button
                 mat-flat-button
-                color="primary"
+                color="accent"
                 [disabled]="!tripAddForm.valid">Toevoegen</button>
             </div>
             <p *ngIf="formSubmitted">Rit is toegevoegd!</p>
@@ -94,6 +93,5 @@
 
     </mat-card>
     {{estTravelTime}}
-
 
 </div>
