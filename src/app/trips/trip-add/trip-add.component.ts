@@ -2,6 +2,7 @@ import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import {HttpClientService} from 'src/app/shared/http-client.service';
 import {GmapsService} from 'src/app/gmaps/gmaps.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-trip-add',
@@ -21,7 +22,10 @@ export class TripAddComponent implements OnInit {
   public endKilometerGauge;
   private destination = {location: []};
 
-  constructor(private httpClientService: HttpClientService, private cdr: ChangeDetectorRef, private mapService: GmapsService) {
+  constructor(private httpClientService: HttpClientService,
+              private cdr: ChangeDetectorRef,
+              private mapService: GmapsService,
+              private toaster: ToastrService) {
     const fetchedObj = this.httpClientService.onGet('/vehicles/fetch/unique-licenseplates/1').pipe()
       .subscribe(
         data => {
@@ -44,13 +48,13 @@ export class TripAddComponent implements OnInit {
 
   ngOnInit() {
     this.tripAddForm = new FormGroup({
-      'licenseplate': new FormControl(null),
-      'startLocation': new FormControl(null),
-      'endLocation': new FormControl(null),
-      'drivenKm': new FormControl(null),
-      'startKmGauge': new FormControl(null),
-      'endKmGauge': new FormControl(null),
-      'projectID': new FormControl(null)
+      licenseplate: new FormControl(null),
+      startLocation: new FormControl(null),
+      endLocation: new FormControl(null),
+      drivenKm: new FormControl(null),
+      startKmGauge: new FormControl(null),
+      endKmGauge: new FormControl(null),
+      projectID: new FormControl(null)
     });
 
     this.mapService.drivenKilometers.subscribe((km) => {
@@ -77,10 +81,21 @@ export class TripAddComponent implements OnInit {
     const projectId = this.tripAddForm.value.projectID.split('#')[1];
 
     const postObj = this.httpClientService.onPost(
-      '/trips/trip/add/for-project/' + projectId + '/' + localStorage.getItem('userid') + '/' + licenseplate + '/' + this.destination.location[0] + '/' + this.destination.location[1] + '/' + startKmGauge + '/' + endKmGauge + '/' + drivenKm);
+      '/trips/trip/add/for-project/' +
+      projectId + '/1/' +
+      licenseplate + '/' +
+      this.destination.location[0] + '/' +
+      this.destination.location[1] + '/' +
+      startKmGauge + '/' +
+      endKmGauge + '/' +
+      drivenKm
+    );
 
 
     this.formSubmitted = true;
+    this.toaster.success('De rit is succesvol toegevoegd.', 'Rit toegevoegd!', {
+      positionClass: 'toast-bottom-left'
+    });
   }
 
   retrieveKmGauge(event) {
@@ -96,7 +111,8 @@ export class TripAddComponent implements OnInit {
     this.startKilometerGauge = value;
 
     if (this.endKilometerGauge && this.startKilometerGauge) {
-      this.drivenKilometers = (this.endKilometerGauge - this.startKilometerGauge) > 0 ? this.endKilometerGauge - this.startKilometerGauge : 0;
+      this.drivenKilometers =
+        (this.endKilometerGauge - this.startKilometerGauge) > 0 ? this.endKilometerGauge - this.startKilometerGauge : 0;
     }
 
   }
@@ -105,7 +121,8 @@ export class TripAddComponent implements OnInit {
     this.endKilometerGauge = value;
 
     if (this.endKilometerGauge && this.startKilometerGauge) {
-      this.drivenKilometers = (this.endKilometerGauge - this.startKilometerGauge) > 0 ? this.endKilometerGauge - this.startKilometerGauge : 0;
+      this.drivenKilometers =
+        (this.endKilometerGauge - this.startKilometerGauge) > 0 ? this.endKilometerGauge - this.startKilometerGauge : 0;
     }
   }
 

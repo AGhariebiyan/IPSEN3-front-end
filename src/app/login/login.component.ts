@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService
-  ) {}
+  ) { localStorage.setItem('loggedIn', 'false'); }
 
   ngOnInit() {
     this.form = this.fb.group({

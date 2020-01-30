@@ -137,5 +137,9 @@ export class VehicleOverviewComponent implements OnInit {
     this.value = event.target.value;
   }
 
+  onClick(licensePlate: string) {
+    this.router.navigate(['ritten/voertuig/' + licensePlate]);
+  }
+
 
 }

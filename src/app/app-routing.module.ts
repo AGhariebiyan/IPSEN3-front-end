@@ -13,6 +13,8 @@ import {TripModifyComponent} from './trips/trip-modify/trip-modify.component';
 import {TripsOverviewComponent} from './trips/trip-overview-delete/trips-overview.component';
 import {VehicleOverviewComponent} from './vehicles/vehicle-overview-delete/vehicle-overview.component';
 import { LoginComponent } from './login/login.component';
+import {VehicleTripsOverviewComponent} from './vehicles/vehicle-trips-overview/vehicle-trips-overview.component';
+
 import { AuthGuardService } from './shared/guards/auth-guard.service';
 
 const appRoutes: Routes = [
@@ -26,6 +28,7 @@ const appRoutes: Routes = [
   {path: 'voertuigen/wijzigen/:licenseplate', canActivate: [AuthGuardService], component: VehicleModifyComponent},
   {path: 'voertuigenOverzicht', canActivate: [AuthGuardService], component: VehicleOverviewComponent},
   {path: 'ritten/inzien', canActivate: [AuthGuardService], component: ViewTripsPageComponent},
+  {path: 'ritten/voertuig/:licenseplate', canActivate: [AuthGuardService], component: VehicleTripsOverviewComponent},
   {path: 'projecten', canActivate: [AuthGuardService], component: ProjectOverviewPageComponent},
   {path: 'projecten/:projectId', canActivate: [AuthGuardService], component: ProjectInzienPageComponent},
   {path: 'melding', canActivate: [AuthGuardService], component: NotificationComponent},

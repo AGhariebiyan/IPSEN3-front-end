@@ -73,9 +73,7 @@
   justify-content: flex-end;
   top: 50%;
 }
-.mat-elevation-z8 {
-  position: absolute;
-}
+
 /*.mat-table {*/
 /*  overflow: auto;*/
 /*  max-height: 500px;*/
@@ -109,6 +107,12 @@
   display: table-cell;
   width: 10%;
 }
+
+.mat-row:hover {
+  cursor: pointer;
+  background-color: #DDDDDD;
+}
+
 @media screen and (max-width: 767px) {
   .mat-table {
     width: 100%;

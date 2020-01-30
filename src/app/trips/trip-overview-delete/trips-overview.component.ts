@@ -61,7 +61,7 @@ export class TripsOverviewComponent implements OnInit {
       this.dataSource1.data.forEach(row => this.selection.select(row));
   }
 
-  select(event, tripId: number, index: number) {
+  select(event, tripId: number) {
     if (event.checked) {
       this.selectedIdsArray.push(tripId);
     } else {

@@ -30,8 +30,13 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import {GmapsService} from './gmaps/gmaps.service';
 import {TripsOverviewComponent} from './trips/trip-overview-delete/trips-overview.component';
 import {VehicleOverviewComponent} from './vehicles/vehicle-overview-delete/vehicle-overview.component';
+import { VehicleTripsOverviewComponent } from './vehicles/vehicle-trips-overview/vehicle-trips-overview.component';
 import { AuthGuardService } from './shared/guards/auth-guard.service';
 import { MenuComponent } from './menu/menu.component';
+
+// Toaster messages
+import { CommonModule } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -55,9 +60,15 @@ import { MenuComponent } from './menu/menu.component';
     VehicleOverviewComponent,
     LicensePlateValidatorDirective,
     LoginComponent,
+    VehicleTripsOverviewComponent,
     MenuComponent
   ],
   imports: [
+    CommonModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+      countDuplicates: true
+    }),
     BrowserModule,
     BrowserAnimationsModule,
     GooglePlaceModule,

@@ -1,0 +1,51 @@
+<div class="content">
+  <div class="overlay">
+    <div class="tablecontainer">
+      <div class="shadowcontainer">
+        <table mat-table [dataSource]="vehicleTripData" class="tablecontainer" matSort>
+
+          <!-- Project nummer kolom -->
+          <ng-container matColumnDef="startLocation">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Start locatie</th>
+            <td mat-cell *matCellDef="let trip"> {{trip.startLocation}} </td>
+          </ng-container>
+
+          <!-- Naam kolom -->
+          <ng-container matColumnDef="endLocation">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Eind locatie</th>
+            <td mat-cell *matCellDef="let trip"> {{trip.endLocation}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="drivenKm">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Gereden Km</th>
+            <td mat-cell *matCellDef="let trip"> {{trip.drivenKm}} </td>
+          </ng-container>
+
+          <!-- Totaal geboekte trips op een project -->
+          <ng-container matColumnDef="project">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Project</th>
+            <td mat-cell *matCellDef="let trip"> {{trip.projectId}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="wijzigen">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Wijzigen</th>
+            <td mat-cell *matCellDef="let trip">
+              <mat-icon (click)=editTrip(trip.tripId) id="mat-icon-edit">edit</mat-icon>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="verwijderen">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Verwijderen</th>
+            <td mat-cell *matCellDef="let vehicle">
+              <mat-icon>delete</mat-icon>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let trip; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,6 +4,7 @@ import {HttpClientService} from 'src/app/shared/http-client.service';
 import {GmapsService} from 'src/app/gmaps/gmaps.service';
 import {ActivatedRoute} from '@angular/router';
 import {Trip} from '../trip-overview-delete/trip.model';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-trip-modify',
@@ -26,7 +27,8 @@ export class TripModifyComponent implements OnInit {
   constructor(private httpClientService: HttpClientService,
               private cdr: ChangeDetectorRef,
               private mapService: GmapsService,
-              private activatedRoute: ActivatedRoute
+              private activatedRoute: ActivatedRoute,
+              private toaster: ToastrService
   ) {
     this.httpClientService.onGet('http://37.97.209.18:8080/vehicles/fetch/unique-licenseplates/1').pipe()
       .subscribe(
@@ -106,6 +108,9 @@ export class TripModifyComponent implements OnInit {
       drivenKm
     );
     this.formSubmitted = true;
+    this.toaster.success('De rit is succesvol gewijzigd.', 'Rit gewijzigd!', {
+      positionClass: 'toast-bottom-left'
+    });
   }
 
   retrieveKmGauge(event) {
