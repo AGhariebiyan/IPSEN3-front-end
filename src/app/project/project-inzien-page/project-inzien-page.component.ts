@@ -29,7 +29,7 @@ export class ProjectInzienPageComponent implements OnInit {
   ngOnInit() {
     this.mapService.estTravelTime.subscribe((time) => {this.estTravelTime = time; this.cdr.detectChanges(); } );
 
-    const fetchedObj = this.httpClientService.onGet('http://localhost:8080/project/getProjectById?projectId=' + this.activatedRoute.snapshot.params.projectId).pipe()
+    const fetchedObj = this.httpClientService.onGet('/project/getProjectById?projectId=' + this.activatedRoute.snapshot.params.projectId).pipe()
       .subscribe(
         data => {
           this.projectId = data.id;
@@ -69,7 +69,7 @@ export class ProjectInzienPageComponent implements OnInit {
   }
 
 
-  public navigateBack(event) {
+  public navigateBack() {
     this.route.navigate(['/projecten']);
   }
 

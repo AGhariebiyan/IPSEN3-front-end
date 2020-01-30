@@ -26,7 +26,7 @@ export class TripAddComponent implements OnInit {
               private cdr: ChangeDetectorRef,
               private mapService: GmapsService,
               private toaster: ToastrService) {
-    const fetchedObj = this.httpClientService.onGet('http://localhost:8080/vehicles/fetch/unique-licenseplates/1').pipe()
+    const fetchedObj = this.httpClientService.onGet('/vehicles/fetch/unique-licenseplates/1').pipe()
       .subscribe(
         data => {
           data.forEach(licenseplate => {
@@ -35,7 +35,7 @@ export class TripAddComponent implements OnInit {
         }
       );
 
-    const projects = this.httpClientService.onGet('http://localhost:8080/project/getAllProject').pipe()
+    const projects = this.httpClientService.onGet('/project/getAllProject').pipe()
       .subscribe(
         data => {
           data.forEach(project => {
@@ -81,7 +81,7 @@ export class TripAddComponent implements OnInit {
     const projectId = this.tripAddForm.value.projectID.split('#')[1];
 
     const postObj = this.httpClientService.onPost(
-      'http://localhost:8080/trips/trip/add/for-project/' +
+      '/trips/trip/add/for-project/' +
       projectId + '/1/' +
       licenseplate + '/' +
       this.destination.location[0] + '/' +
@@ -99,7 +99,7 @@ export class TripAddComponent implements OnInit {
   }
 
   retrieveKmGauge(event) {
-    const trip = this.httpClientService.onGet('http://localhost:8080/trips/getByLicensePlate?licensePlate=' + event.target.innerText).pipe()
+    const trip = this.httpClientService.onGet('/trips/getByLicensePlate?licensePlate=' + event.target.innerText).pipe()
       .subscribe(
         data => {
           this.startKilometerGauge = data.endKilometergauge;

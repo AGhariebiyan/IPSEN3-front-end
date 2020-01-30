@@ -17,8 +17,8 @@ export class VehicleAddComponent implements OnInit {
   public imageSource: string;
   public brand: string;
   public type: string;
-  private vehicleAddForm: FormGroup;
-  private body: string;
+  public vehicleAddForm: FormGroup;
+  public body: string;
   private year: string;
 
   constructor(private httpClientService: HttpClientService,
@@ -56,7 +56,7 @@ export class VehicleAddComponent implements OnInit {
   onSubmit() {
     const licensplate = this.vehicleAddForm.value.licenseplate;
     this.httpClientService.onPost(
-      'http://localhost:8080/vehicles/vehicle/add/for-user/1/' +
+      '/vehicles/vehicle/add/for-user/1/' +
       licensplate.toUpperCase() + '/'
       + this.brand + '/' +
       this.type + '/' +
@@ -101,7 +101,7 @@ export class VehicleAddComponent implements OnInit {
 
   private findImageByVehicle(searchUrl: string) {
     this.imageSource = null;
-    this.httpClientService.onGet('http://localhost:5000/image?term=' + searchUrl ).pipe()
+    this.httpClientService.onGet('http://37.97.209.18:5000/image?term=' + searchUrl ).pipe()
       .subscribe(
         data => {
           this.spinner.hide();
