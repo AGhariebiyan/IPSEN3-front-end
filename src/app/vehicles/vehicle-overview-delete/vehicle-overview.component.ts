@@ -10,11 +10,11 @@ import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-vehicle-delete',
-  templateUrl: './vehicle-delete.component.html',
-  styleUrls: ['./vehicle-delete.component.css'],
+  templateUrl: './vehicle-overview.component.html',
+  styleUrls: ['./vehicle-overview.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class VehicleDeleteComponent implements OnInit {
+export class VehicleOverviewComponent implements OnInit {
 
 
 
@@ -52,6 +52,7 @@ export class VehicleDeleteComponent implements OnInit {
     const numRows = this.dataSource1.data.length;
     return numSelected === numRows;
   }
+
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
@@ -91,7 +92,7 @@ export class VehicleDeleteComponent implements OnInit {
 
   deleteVehicle(id: number) {
     this.httpClientService.onDelete('http://localhost:8080/vehicles/delete/' + id).subscribe(() => {
-      this.result.emit('deleteVehicle');
+      this.result.emit('refreshVehiclesTable');
     });
   }
 

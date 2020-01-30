@@ -4,7 +4,8 @@ import {HttpClientService} from '../../shared/http-client.service';
 import {LicensePlateService} from '../license-plate-service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {map} from 'rxjs/operators';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-vehicle-modify',
@@ -19,10 +20,16 @@ export class VehicleModifyComponent implements OnInit {
   private vehicleAddForm: FormGroup;
   private body: string;
   private year: string;
-  //private color: string;
   private licenseplate: string = this.activatedRoute.snapshot.params.licenseplate;
 
-  constructor(private httpClientService: HttpClientService, private fb: FormBuilder, private licensePlateService: LicensePlateService, private spinner: NgxSpinnerService, private activatedRoute: ActivatedRoute,) { }
+  constructor(
+    private httpClientService: HttpClientService,
+    private fb: FormBuilder,
+    private licensePlateService: LicensePlateService,
+    private spinner: NgxSpinnerService,
+    private activatedRoute: ActivatedRoute,
+    private toaster: ToastrService) {
+  }
 
   ngOnInit() {
     this.patchForm();
@@ -47,7 +54,7 @@ export class VehicleModifyComponent implements OnInit {
   get getForm() { return this.vehicleAddForm.controls; }
 
   private statusChange() {
-    this.vehicleAddForm.statusChanges.subscribe(val => {
+    this.vehicleAddForm.statusChanges.subscribe(() => {
       if ( this.vehicleAddForm.controls.licenseplate.status === 'VALID') {
         this.findImageByVehicle(this.brand + ' ' + this.type + ' ' + this.year );
       } else if ( this.vehicleAddForm.controls.licenseplate.status === 'PENDING') {
@@ -60,8 +67,17 @@ export class VehicleModifyComponent implements OnInit {
 
   onSubmit() {
     const licensplate = this.vehicleAddForm.value.licenseplate;
-    this.httpClientService.onPut('http://localhost:8080/vehicles/vehicle/add/for-user/1/0/' + licensplate.toUpperCase() + '/' + this.brand + '/' + this.type + '/' + this.body);
+    this.httpClientService.onPut(
+      'http://localhost:8080/vehicles/vehicle/add/for-user/1/0/' +
+      licensplate.toUpperCase() + '/' +
+      this.brand + '/' +
+      this.type + '/' +
+      this.body
+    );
     this.formSubmitted = true;
+    this.toaster.success('Het voertuig is succesvol gewijzigd.', 'Voertuig gewijzigd!', {
+      positionClass: 'toast-bottom-left'
+    });
   }
 
   private getVehicleData(control: AbstractControl) {
@@ -75,7 +91,6 @@ export class VehicleModifyComponent implements OnInit {
             this.type = res[0].handelsbenaming;
             this.body = res[0].inrichting;
             this.year = res[0].datum_eerste_toelating.substr(0, 4);
-            //this.color = res[0].eerste_kleur;
             return null;
           }
         })
@@ -97,11 +112,11 @@ export class VehicleModifyComponent implements OnInit {
 
   private findImageByVehicle(searchUrl: string) {
     this.imageSource = null;
-    const fetchedObj = this.httpClientService.onGet('http://localhost:5000/image?term=' + searchUrl ).pipe()
+    this.httpClientService.onGet('http://localhost:5000/image?term=' + searchUrl ).pipe()
       .subscribe(
         data => {
           this.spinner.hide();
-          this.imageSource = data['result'];
+          this.imageSource = data.result;
         },
         error => {
           this.spinner.hide();
