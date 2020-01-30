@@ -61,7 +61,7 @@
 
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let vehicle; columns: displayedColumns;"></tr>
+      <tr mat-row (click)="onClick(vehicle.licensePlate)" *matRowDef="let vehicle; columns: displayedColumns;"></tr>
     </table>
       <div class="pagination-container">
         <mat-paginator id="pagination" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

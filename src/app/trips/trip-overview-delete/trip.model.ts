@@ -22,4 +22,5 @@ export class Trip {
     this.endKilometergauge = endKilometergauge;
     this.drivenKm = drivenKm;
   }
+
 }
