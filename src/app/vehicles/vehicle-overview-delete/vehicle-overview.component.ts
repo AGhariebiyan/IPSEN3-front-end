@@ -61,34 +61,19 @@ export class VehicleOverviewComponent implements OnInit {
       this.dataSource1.data.forEach(row => this.selection.select(row));
   }
 
-  deleteSelected(selectedID: number, event) {
 
-    if (event.checked) {
-      this.selectedVehiclesIdsArray.push(selectedID);
-    }
-    // console.log(selectedID);
-  }
-
-  select(event, vehicleId: number, index: number) {
-    // console.log(vehicleId);
-    console.log(this.selectedVehiclesIdsArray);
+  select(event, vehicleId: number) {
     if (event.checked) {
       this.selectedVehiclesIdsArray.push(vehicleId);
     } else {
-      // this.selectedVehiclesIdsArray.splice(index, 1);
       for (let i = 0; i <= this.selectedVehiclesIdsArray.length; i++) {
         if (this.selectedVehiclesIdsArray[i] === vehicleId) {
           this.selectedVehiclesIdsArray.splice(i, 1);
         }
       }
     }
-    // console.log(this.selectedVehiclesIdsArray);
   }
 
-  editVehicle(id: number) {
-
-    return id;
-  }
 
   deleteVehicle(id: number) {
     this.httpClientService.onDelete('/vehicles/delete/' + id).subscribe(() => {
@@ -106,7 +91,7 @@ export class VehicleOverviewComponent implements OnInit {
 
   getVehicles() {
 
-    this.httpClientService.onGet('/vehicles/user/1')
+    this.httpClientService.onGet('/vehicles/user/' + + localStorage.getItem('userid'))
       .subscribe(
         data => {
           console.log(this.vehiclesArray);
