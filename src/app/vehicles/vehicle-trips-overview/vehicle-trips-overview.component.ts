@@ -26,7 +26,7 @@ export class VehicleTripsOverviewComponent implements OnInit {
 
   getTrips() {
 
-    this.httpClientService.onGet('http://localhost:8080/trips/getallByLicensePlate?licensePlate=' + this.licensePlate)
+    this.httpClientService.onGet('/trips/getallByLicensePlate?licensePlate=' + this.licensePlate)
       .subscribe(
         data => {
           data.forEach(fetchedTrip => {

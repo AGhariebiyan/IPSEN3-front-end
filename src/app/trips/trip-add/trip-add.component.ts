@@ -26,7 +26,7 @@ export class TripAddComponent implements OnInit {
               private cdr: ChangeDetectorRef,
               private mapService: GmapsService,
               private toaster: ToastrService) {
-    const fetchedObj = this.httpClientService.onGet('/vehicles/fetch/unique-licenseplates/1').pipe()
+    this.httpClientService.onGet('/vehicles/fetch/unique-licenseplates/' + localStorage.getItem('userid')).pipe()
       .subscribe(
         data => {
           data.forEach(licenseplate => {
