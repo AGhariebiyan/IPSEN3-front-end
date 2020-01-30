@@ -6,6 +6,7 @@ import {HttpClientService} from '../../shared/http-client.service';
 import {Router} from '@angular/router';
 import {ProjectModel} from '../project.model';
 import {CookieService} from 'ngx-cookie-service';
+import { ViewEncapsulation } from '@angular/core';
 
 export interface ProjectElement {
   id: number;
@@ -18,7 +19,8 @@ export interface ProjectElement {
 @Component({
   selector: 'app-project-overview-page',
   templateUrl: './project-overview-page.component.html',
-  styleUrls: ['./project-overview-page.component.css']
+  styleUrls: ['./project-overview-page.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class ProjectOverviewPageComponent implements OnInit {

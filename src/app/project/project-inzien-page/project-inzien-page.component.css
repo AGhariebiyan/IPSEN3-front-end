@@ -13,6 +13,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  color:white;
 
 }
 .mat-card {
@@ -82,4 +83,10 @@ mat-card {
   margin: 50px;
   display: flex;
   flex-direction: row;
+}
+
+@media screen and (max-width: 600px) {
+  .card-right-content{
+    display:none;
+  }
 }

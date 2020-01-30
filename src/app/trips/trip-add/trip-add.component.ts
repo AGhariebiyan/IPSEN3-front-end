@@ -103,6 +103,9 @@ export class TripAddComponent implements OnInit {
       .subscribe(
         data => {
           this.startKilometerGauge = data.endKilometergauge;
+          if(this.drivenKilometers){
+            this.endKilometerGauge = this.startKilometerGauge + this.drivenKilometers;
+          }
         }
       );
   }
