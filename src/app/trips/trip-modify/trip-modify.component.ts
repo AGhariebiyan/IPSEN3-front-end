@@ -94,7 +94,7 @@ export class TripModifyComponent implements OnInit {
 
 
     this.httpClientService.onPut(
-      'http://37.97.209.18:8080/trips/trip/update/for-project/' +
+      '/trips/trip/update/for-project/' +
       this.tripId + '/' +
       projectId + '/' +
       localStorage.getItem('userid') + '/' +
@@ -109,7 +109,7 @@ export class TripModifyComponent implements OnInit {
   }
 
   retrieveKmGauge(event) {
-    this.httpClientService.onGet('http://37.97.209.18:8080/trips/getByLicensePlate?licensePlate=' + event.target.innerText).pipe()
+    this.httpClientService.onGet('/trips/getByLicensePlate?licensePlate=' + event.target.innerText).pipe()
       .subscribe(
         data => {
           this.tripUpdateForm.patchValue({

@@ -91,27 +91,22 @@ export class VehicleOverviewComponent implements OnInit {
   }
 
   deleteVehicle(id: number) {
-<<<<<<< Updated upstream:src/app/vehicles/vehicle-overview-delete/vehicle-overview.component.ts
-    this.httpClientService.onDelete('http://localhost:8080/vehicles/delete/' + id).subscribe(() => {
+    this.httpClientService.onDelete('/vehicles/delete/' + id).subscribe(() => {
       this.result.emit('refreshVehiclesTable');
-=======
-    this.httpClientService.onDelete('http://37.97.209.18:8080/vehicles/delete/' + id).subscribe(() => {
-      this.result.emit('deleteVehicle');
->>>>>>> Stashed changes:src/app/vehicles/vehicle-delete/vehicle-delete.component.ts
     });
   }
 
 
   removeSelectedRows() {
     console.log('Removed:', this.selectedVehiclesIdsArray);
-    this.httpClientService.onPostNew('http://37.97.209.18:8080/vehicles/delete', this.selectedVehiclesIdsArray).subscribe(() => {
+    this.httpClientService.onPostNew('/vehicles/delete', this.selectedVehiclesIdsArray).subscribe(() => {
       this.result.emit('refreshVehiclesTable');
     });
   }
 
   getVehicles() {
 
-    this.httpClientService.onGet('http://37.97.209.18:8080/vehicles/user/1')
+    this.httpClientService.onGet('/vehicles/user/1')
       .subscribe(
         data => {
           console.log(this.vehiclesArray);

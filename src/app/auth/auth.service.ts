@@ -14,7 +14,7 @@ export class AuthService {
 
   login(user: User) {
     if (user.userName !== '' && user.password !== '' ) {
-      this.httpClientService.onGet('http://37.97.209.18:8080/login/' + user.userName + '/' + user.password).pipe()
+      this.httpClientService.onGet('/login/' + user.userName + '/' + user.password).pipe()
       .subscribe(
       data => {
         localStorage.setItem('jwtoken', data.authToken);

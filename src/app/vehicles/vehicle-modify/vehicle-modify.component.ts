@@ -60,7 +60,7 @@ export class VehicleModifyComponent implements OnInit {
 
   onSubmit() {
     const licensplate = this.vehicleAddForm.value.licenseplate;
-    this.httpClientService.onPut('http://37.97.209.18:8080/vehicles/vehicle/add/for-user/1/0/' + licensplate.toUpperCase() + '/' + this.brand + '/' + this.type + '/' + this.body);
+    this.httpClientService.onPut('/vehicles/vehicle/add/for-user/1/0/' + licensplate.toUpperCase() + '/' + this.brand + '/' + this.type + '/' + this.body);
     this.formSubmitted = true;
   }
 

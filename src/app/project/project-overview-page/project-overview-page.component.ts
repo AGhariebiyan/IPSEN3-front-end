@@ -52,7 +52,7 @@ export class ProjectOverviewPageComponent implements OnInit {
   private fetchProjectsFromBackEnd() {
     const projectArr = [];
     localStorage.removeItem('projectArr');
-    const fetchedObj = this.httpClient.onGet('http://37.97.209.18:8080/project/getAllProject').pipe()
+    const fetchedObj = this.httpClient.onGet('/project/getAllProject').pipe()
       .subscribe(
         data => {
           this.ELEMENT_DATA = [];

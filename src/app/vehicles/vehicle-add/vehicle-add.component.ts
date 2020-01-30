@@ -51,7 +51,7 @@ export class VehicleAddComponent implements OnInit {
 
   onSubmit() {
     const licensplate = this.vehicleAddForm.value.licenseplate;
-    this.httpClientService.onPost('http://37.97.209.18:8080/vehicles/vehicle/add/for-user/' + localStorage.getItem('userid') + '/' + licensplate.toUpperCase() + '/' + this.brand + '/' + this.type + '/' + this.body);
+    this.httpClientService.onPost('/vehicles/vehicle/add/for-user/' + localStorage.getItem('userid') + '/' + licensplate.toUpperCase() + '/' + this.brand + '/' + this.type + '/' + this.body);
     this.formSubmitted = true;
     // this.vehicleAddForm.reset();
   }

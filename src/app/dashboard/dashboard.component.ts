@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   }
 
   fetchAmountOfTripsAndProjectsByUser() {
-    this.httpClientService.onGet('http://37.97.209.18:8080/trips/fetch/unique-projectids-and-trips-amount/' + localStorage.getItem('userid')).pipe()
+    this.httpClientService.onGet('/trips/fetch/unique-projectids-and-trips-amount/' + localStorage.getItem('userid')).pipe()
     .subscribe(
       data => {
         this.amountOfTripsByUser = data[0];
