@@ -75,7 +75,7 @@ export class TripsOverviewComponent implements OnInit {
 
   getTrips() {
 
-    this.httpClientService.onGet('/trips/user/1')
+    this.httpClientService.onGet('/trips/user/' +  localStorage.getItem('userid'))
       .subscribe(
         data => {
           this.tripsArray = [];
