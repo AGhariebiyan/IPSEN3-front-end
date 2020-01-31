@@ -30,7 +30,7 @@ export class TripModifyComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private toaster: ToastrService
   ) {
-    this.httpClientService.onGet('http://37.97.209.18:8080/vehicles/fetch/unique-licenseplates/1').pipe()
+    this.httpClientService.onGet('/vehicles/fetch/unique-licenseplates/1').pipe()
       .subscribe(
         data => {
           data.forEach(licenseplate => {
@@ -39,7 +39,7 @@ export class TripModifyComponent implements OnInit {
         }
       );
 
-    this.httpClientService.onGet('http://37.97.209.18:8080/project/getAllProject').pipe()
+    this.httpClientService.onGet('/project/getAllProject').pipe()
       .subscribe(
         data => {
           data.forEach(project => {
@@ -66,7 +66,7 @@ export class TripModifyComponent implements OnInit {
   }
 
   getTrip() {
-    this.httpClientService.onGet('http://37.97.209.18:8080/trips/trip/' + this.tripId)
+    this.httpClientService.onGet('/trips/trip/' + this.tripId)
       .subscribe(
         (trip) => {
           this.trip = trip;
