@@ -30,7 +30,7 @@ export class TripModifyComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private toaster: ToastrService
   ) {
-    this.httpClientService.onGet('/vehicles/fetch/unique-licenseplates/1').pipe()
+    this.httpClientService.onGet('/vehicles/fetch/unique-licenseplates/' + localStorage.getItem('userid')).pipe()
       .subscribe(
         data => {
           data.forEach(licenseplate => {
