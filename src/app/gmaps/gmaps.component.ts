@@ -1,4 +1,4 @@
-import {Component, AfterViewInit, ViewChild, ElementRef, OnInit, Input} from '@angular/core';
+import {Component, AfterViewInit, ViewChild, ElementRef, OnInit} from '@angular/core';
 import {GmapsService} from './gmaps.service';
 
 @Component({
@@ -9,8 +9,6 @@ import {GmapsService} from './gmaps.service';
 export class GmapsComponent implements OnInit, AfterViewInit  {
   @ViewChild('mapContainer', {static: false}) gmap: ElementRef;
 
-
-  private loc = {};
   private map: google.maps.Map;
   private markerArray = {lat: [], lng: []};
   private directionsDisplay = new google.maps.DirectionsRenderer();
@@ -38,9 +36,8 @@ export class GmapsComponent implements OnInit, AfterViewInit  {
 
     const geocoder = new google.maps.Geocoder();
     locationsArr.forEach((value, key ) => {
-      geocoder.geocode( { 'address' : value }, ( results, status ) => {
+      geocoder.geocode( { address : value }, ( results, status ) => {
         if ( status === google.maps.GeocoderStatus.OK ) {
-          // console.log(key);
           this.markerArray.lat[ key ] = results[0].geometry.location.lat();
           this.markerArray.lng[ key ] = results[0].geometry.location.lng();
 
@@ -71,24 +68,23 @@ export class GmapsComponent implements OnInit, AfterViewInit  {
   }
 
   private setRoute() {
-    // this.alertGmapService(60,"test");
-    // return;
-    let tempArrayLat = this.markerArray.lat.filter(function (el) {
+    const tempArrayLat = this.markerArray.lat.filter((el) => {
       return el != null;
     });
 
-    let tempArrayLong = this.markerArray.lng.filter(function (el) {
+    const tempArrayLong = this.markerArray.lng.filter((el) => {
       return el != null;
     });
 
-    // console.log(tempArrayLong);
     if (tempArrayLong.length > 1 && tempArrayLat.length > 1) {
       const directionsService = new google.maps.DirectionsService();
       const waypointsLatLng = [];
       const start = new google.maps.LatLng(this.markerArray.lat[0], this.markerArray.lng[0]);
-      const end = new google.maps.LatLng(this.markerArray.lat[this.markerArray.lat.length - 1], this.markerArray.lng[this.markerArray.lat.length - 1]);
-      let request = {};
-      // console.log(this.markerArray);
+      const end = new google.maps.LatLng(
+        this.markerArray.lat[this.markerArray.lat.length - 1],
+        this.markerArray.lng[this.markerArray.lat.length - 1]
+      );
+      let request;
       if (this.markerArray.lat.length > 2 && this.markerArray.lng.length > 2) {
         for (let i = 0; i < this.markerArray.lat.length; i++) {
 
@@ -96,7 +92,7 @@ export class GmapsComponent implements OnInit, AfterViewInit  {
             continue;
           }
 
-          if (this.markerArray.lat[i] == null || this.markerArray.lng[i] == true) {
+          if (this.markerArray.lat[i] == null || this.markerArray.lng[i] === true) {
             continue;
           }
 
@@ -107,7 +103,6 @@ export class GmapsComponent implements OnInit, AfterViewInit  {
 
       bounds.extend(start);
       bounds.extend(end);
-      // console.log(waypointsLatLng);
       if (waypointsLatLng.length > 0) {
         request = {
           origin: start,
@@ -147,9 +142,8 @@ export class GmapsComponent implements OnInit, AfterViewInit  {
     }
   }
 
-  private alertGmapService(km: number, time: string){
+  private alertGmapService(km: number, time: string) {
     this.mapService.drivenKilometers.emit(km);
     this.mapService.estTravelTime.emit(time);
-
   }
 }
