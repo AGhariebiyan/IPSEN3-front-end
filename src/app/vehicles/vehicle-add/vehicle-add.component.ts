@@ -42,7 +42,7 @@ export class VehicleAddComponent implements OnInit {
   get getForm() { return this.vehicleAddForm.controls; }
 
   private statusChange() {
-    this.vehicleAddForm.statusChanges.subscribe(val => {
+    this.vehicleAddForm.statusChanges.subscribe(() => {
       if ( this.vehicleAddForm.controls.licenseplate.status === 'VALID') {
         this.findImageByVehicle(this.brand + ' ' + this.type + ' ' + this.year );
       } else if ( this.vehicleAddForm.controls.licenseplate.status === 'PENDING') {
@@ -56,7 +56,8 @@ export class VehicleAddComponent implements OnInit {
   onSubmit() {
     const licensplate = this.vehicleAddForm.value.licenseplate;
     this.httpClientService.onPost(
-      '/vehicles/vehicle/add/for-user/1/' +
+      '/vehicles/vehicle/add/for-user/' +
+      localStorage.getItem('userid') + '/' +
       licensplate.toUpperCase() + '/'
       + this.brand + '/' +
       this.type + '/' +
@@ -101,13 +102,13 @@ export class VehicleAddComponent implements OnInit {
 
   private findImageByVehicle(searchUrl: string) {
     this.imageSource = null;
-    this.httpClientService.onGet('http://37.97.209.18:5000/image?term=' + searchUrl ).pipe()
+    this.httpClientService.onGet('/image?term=' + searchUrl, 'http://localhost:5000').pipe()
       .subscribe(
         data => {
           this.spinner.hide();
           this.imageSource = data.result;
         },
-        error => {
+        () => {
           this.spinner.hide();
         });
   }

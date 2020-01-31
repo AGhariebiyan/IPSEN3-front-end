@@ -40,7 +40,8 @@ export class ProjectOverviewPageComponent implements OnInit {
 
   constructor(private httpClient: HttpClientService, private router: Router, private cookieService: CookieService) {
     this.displayedColumns = ['id', 'name', 'trips', 'km'];
-    if (cookieService.get('projectTableUpdate') === '' || this.getMinutesBetweenDates(cookieService.get('projectTableUpdate'), new Date()) >= 60) {
+    if (cookieService.get('projectTableUpdate') === '' || this.getMinutesBetweenDates(cookieService.get('projectTableUpdate'),
+      new Date()) >= 60) {
       this.fetchProjectsFromBackEnd();
     } else {
       this.fetchProjectsFromCookie();
@@ -54,7 +55,7 @@ export class ProjectOverviewPageComponent implements OnInit {
   private fetchProjectsFromBackEnd() {
     const projectArr = [];
     localStorage.removeItem('projectArr');
-    const fetchedObj = this.httpClient.onGet('/project/getAllProject').pipe()
+    this.httpClient.onGet('/project/getAllProject').pipe()
       .subscribe(
         data => {
           this.ELEMENT_DATA = [];
@@ -86,11 +87,9 @@ export class ProjectOverviewPageComponent implements OnInit {
         });
   }
 
-  private setCookie(cookieName: string, cookieValue: any, maxTimeInHours: number){
+  private setCookie(cookieName: string, cookieValue: any, maxTimeInHours: number) {
     const cookieExpiration = new Date();
     cookieExpiration.setHours( cookieExpiration.getHours() + maxTimeInHours );
-
-    console.log(cookieValue);
     this.cookieService.set(cookieName, cookieValue, cookieExpiration, '/projecten');
   }
 
@@ -106,7 +105,7 @@ export class ProjectOverviewPageComponent implements OnInit {
 
   private parseUpdateTime(date: string) {
     let dateObj;
-    if (date === ''){
+    if (date === '') {
       dateObj = new Date();
     } else {
       dateObj = new Date(date);
@@ -139,12 +138,12 @@ export class ProjectOverviewPageComponent implements OnInit {
     return (diff / 60000);
   }
 
-  public updateTable(event) {
+  public updateTable() {
     this.loading = true;
     this.fetchProjectsFromBackEnd();
   }
 
-  public clearSearch(){
+  public clearSearch() {
     this.dataSource.filter = '';
     this.value = '';
   }

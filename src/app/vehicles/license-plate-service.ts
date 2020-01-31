@@ -12,13 +12,11 @@ export class LicensePlateService {
 
   checkRdwLicensePlate(licensePlate: string) {
     licensePlate = licensePlate.replace(/-/g, '');
-    const fetchedObj = this.httpClientService.onGetWithoutHeaders('https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=' + licensePlate);
-    return fetchedObj;
+    return this.httpClientService.onGetWithoutHeaders('/resource/m9d7-ebf2.json?kenteken=' + licensePlate, 'https://opendata.rdw.nl');
   }
 
   checkLicensePlateDF(licensePlate: string) {
-    const fetchedObj = this.httpClientService.onGet('http://37.97.209.18:8080/vehicles/vehicle/' + licensePlate);
-    return fetchedObj;
+    return this.httpClientService.onGet('/vehicles/vehicle/' + licensePlate);
   }
 
 }
