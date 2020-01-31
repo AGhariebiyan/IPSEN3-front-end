@@ -12,31 +12,30 @@ export class HttpClientService {
 
   constructor(private http: HttpClient) {}
 
-  onGet(getUrl: string): Observable<any> {
+  onGet(urlEnd: string, urlStart = 'http://localhost:8080'): Observable<any> {
     if (localStorage.getItem('jwtoken') !== null && this.httpHeaders.get('Token') === null) {
       this.httpHeaders = this.httpHeaders.append('Token', localStorage.getItem('jwtoken'));
     }
-
-    return this.http.get('http://37.97.209.18:8080' + getUrl, {headers: this.httpHeaders});
+    return this.http.get(urlStart + urlEnd, {headers: this.httpHeaders});
   }
 
-  onGetWithoutHeaders(getUrl: string): Observable<any> {
-    return this.http.get('http://37.97.209.18:8080' + getUrl);
+  onGetWithoutHeaders(urlEnd: string, urlStart = 'http://localhost:8080'): Observable<any> {
+    return this.http.get(urlStart + urlEnd);
   }
 
-  onPost(postUrl: string) {
-   return this.http.post('http://37.97.209.18:8080' + postUrl, null, {headers: this.httpHeaders}).subscribe();
+  onPost(urlEnd: string, urlStart = 'http://localhost:8080') {
+   return this.http.post(urlStart + urlEnd, null, {headers: this.httpHeaders}).subscribe();
   }
 
-  onPostNew(postUrl: string, Object): Observable<any> {
-   return this.http.post<any>('http://37.97.209.18:8080' + postUrl, JSON.stringify(Object), {headers: this.httpHeaders});
+  onPostNew(urlEnd: string, Object, urlStart = 'http://localhost:8080'): Observable<any> {
+   return this.http.post<any>(urlStart + urlEnd, JSON.stringify(Object), {headers: this.httpHeaders});
   }
 
-  onPut(putUrl: string) {
-    this.http.put<any>('http://37.97.209.18:8080' + putUrl, JSON.stringify(Object), {headers: this.httpHeaders}).subscribe();
+  onPut(urlEnd: string, urlStart = 'http://localhost:8080') {
+    this.http.put<any>(urlStart + urlEnd, JSON.stringify(Object), {headers: this.httpHeaders}).subscribe();
   }
 
-  onDelete(delUrl: string): Observable<any> {
-    return this.http.delete('http://37.97.209.18:8080' + delUrl,  {headers: this.httpHeaders});
+  onDelete(urlEnd: string, urlStart = 'http://localhost:8080'): Observable<any> {
+    return this.http.delete(urlStart + urlEnd,  {headers: this.httpHeaders});
   }
 }
