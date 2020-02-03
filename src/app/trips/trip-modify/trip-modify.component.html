@@ -35,30 +35,32 @@
         </mat-form-field>
 
         <app-gmaps-loc-search
-          [gmap-search-index]="0"
-          [gmap-input-placeholder]="'Voer uw startlocatie in'"
-          [custom-value]="getForm.startLocation.value">
+          [index]="0"
+          [placeholder]="'Voer uw startlocatie in'"
+          [value]="getForm.startLocation.value">
         </app-gmaps-loc-search>
 
         <app-gmaps-loc-search
-          [gmap-search-index]="1"
-          [gmap-input-placeholder]="'Voer uw eindbestemming in'"
-          [custom-value]="getForm.endLocation.value">
+          [index]="1"
+          [placeholder]="'Voer uw eindbestemming in'"
+          [value]="getForm.endLocation.value">
         </app-gmaps-loc-search>
 
         <mat-form-field>
+          <label for="startKmGauge"></label>
           <input
             matInput
             type="number"
             id="startKmGauge"
             formControlName="startKmGauge"
             placeholder="Start kilometerstand"
-            (input)="customStartKilometers($event.target.value)"
+            (input)="customStartKilometers($event.target['value'])"
             [value]="getForm.startKmGauge.value"
-            >
+            />
         </mat-form-field>
 
         <mat-form-field>
+          <label for="endKmGauge"></label>
           <input
             matInput
             type="number"
@@ -66,12 +68,13 @@
             formControlName="endKmGauge"
             placeholder="Eind kilometerstand"
             [value]="getForm.endKmGauge.value"
-            (input)="customEndKilometers($event.target.value)"
-            >
+            (input)="customEndKilometers($event.target['value'])"
+            />
 
         </mat-form-field>
 
         <mat-form-field >
+          <label for="drivenKm"></label>
           <input
             matInput
             type="number"
@@ -79,7 +82,7 @@
             formControlName="drivenKm"
             placeholder="Gereden Kilometers"
             value="{{drivenKilometers}}"
-          >
+          />
         </mat-form-field>
 
         <div class="button-row">
