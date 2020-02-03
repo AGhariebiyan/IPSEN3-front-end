@@ -31,7 +31,7 @@
                         (change)="$event ? selection.toggle(row) : null"
                         [checked]="selection.isSelected(row)"
                         [checked] = "row.selectedState"
-                        (change)="select($event, row.vehicleId, rowNumber)">
+                        (change)="select($event, row.vehicleId)">
           </mat-checkbox>
         </mat-cell>
       </ng-container>
