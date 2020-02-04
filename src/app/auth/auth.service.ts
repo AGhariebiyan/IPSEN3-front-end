@@ -1,36 +1,46 @@
 import {Injectable} from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from './user';
-import { HttpClientService } from '../shared/http-client.service';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthService {
+  private httpHeaders = new HttpHeaders({
+    'Content-Type' : 'application/json'
+  });
+
+  private urlStart = 'http://localhost:8080';
+  
   constructor(
     private router: Router,
-    private httpClientService: HttpClientService,
-  ) {}
+    private http: HttpClient
+  ) {
+    if (localStorage.getItem('jwtoken') !== null && this.httpHeaders.get('Token') === null) {
+      this.httpHeaders = this.httpHeaders.append('Token', localStorage.getItem('jwtoken'));
+    }
+  }
 
   login(user: User) {
     if (user.userName !== '' && user.password !== '') {
       const userToBeLoggedIn = { 
-        userName: user.userName, 
+        username: user.userName, 
         password: user.password 
-     };
+      };
 
-      this.httpClientService.post('/login', userToBeLoggedIn).pipe()
-      .subscribe(
-      data => {
-        localStorage.setItem('jwtoken', data.authToken);
-        localStorage.setItem('username', data.username);
-        localStorage.setItem('userid', data.userId);
-        localStorage.setItem('loggedIn', 'true');
-
-        dispatchEvent(new Event('loginEvent'));
-        this.router.navigate(['/dashboard']);
-      },
-      error => {
-        console.log(error);
-      });
+      this.http.post<any>(this.urlStart + '/login', userToBeLoggedIn, {headers: this.httpHeaders}).subscribe(
+        data => {
+          localStorage.setItem('jwtoken', data.authToken);
+          localStorage.setItem('username', data.username);
+          localStorage.setItem('userid', data.userId);
+          localStorage.setItem('loggedIn', 'true');
+  
+          dispatchEvent(new Event('loginEvent'));
+          this.router.navigate(['/dashboard']);
+        },
+        error => {
+          console.log(error);
+        });
     }
   }
 

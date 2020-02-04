@@ -74,7 +74,7 @@ export class VehicleAddComponent implements OnInit {
     return this.licensePlateService.checkRdwLicensePlate(control.value.toUpperCase())
       .pipe(
         map(res => {
-        if ( res.length === 0 ) {
+        if (!res) {
           return {invalidRDW: true};
         } else {
           this.brand = res[0].merk;
@@ -102,7 +102,7 @@ export class VehicleAddComponent implements OnInit {
 
   private findImageByVehicle(searchUrl: string) {
     this.imageSource = null;
-    this.httpClientService.onGet('/image?term=' + searchUrl, 'http://localhost:5000').pipe()
+    this.httpClientService.onGet('http://localhost:5000' + '/image?term=' + searchUrl).pipe()
       .subscribe(
         data => {
           this.spinner.hide();

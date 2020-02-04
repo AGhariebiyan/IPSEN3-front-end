@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClientService} from '../shared/http-client.service';
 import {map} from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -8,11 +9,11 @@ import {map} from 'rxjs/operators';
 })
 export class LicensePlateService {
 
-  constructor(private httpClientService: HttpClientService) { }
+  constructor(private http: HttpClient, private httpClientService: HttpClientService) { }
 
   checkRdwLicensePlate(licensePlate: string) {
     licensePlate = licensePlate.replace(/-/g, '');
-    return this.httpClientService.onGetWithoutHeaders('/resource/m9d7-ebf2.json?kenteken=' + licensePlate, 'https://opendata.rdw.nl');
+    return this.http.get('https://opendata.rdw.nl' + '/resource/m9d7-ebf2.json?kenteken=' + licensePlate);
   }
 
   checkLicensePlateDF(licensePlate: string) {
