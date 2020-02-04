@@ -34,6 +34,7 @@ import { MenuComponent } from './menu/menu.component';
 // Toaster messages
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
+import { LoaderComponent } from './loader/loader.component';
 
 
 
@@ -55,7 +56,8 @@ import { ToastrModule } from 'ngx-toastr';
     LicensePlateValidatorDirective,
     LoginComponent,
     VehicleTripsOverviewComponent,
-    MenuComponent
+    MenuComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,

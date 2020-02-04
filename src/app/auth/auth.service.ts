@@ -38,7 +38,7 @@ export class AuthService {
 
   isLoggedIn() {
     return new Promise(
-      (resolve, reject) =>{
+      (resolve, reject) => {
         if (localStorage.getItem('loggedIn') === 'true') {
           resolve(true);
         } else {
