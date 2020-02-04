@@ -93,20 +93,20 @@ export class TripModifyComponent implements OnInit {
     const startKmGauge = this.tripUpdateForm.value.startKmGauge;
     const endKmGauge = this.tripUpdateForm.value.endKmGauge;
     const projectId = this.tripUpdateForm.value.projectID;
+    const tripToModify = {
+      'id': this.tripId,
+      'projectId': projectId,
+      'userId': localStorage.getItem('userid'),
+      'licensePlate': licenseplate,
+      'startLocation': this.destination.location[0],
+      'endLocation': this.destination.location[1],
+      'startKilometergauge': startKmGauge,
+      'endKilometergauge': endKmGauge,
+      'drivenKm': drivenKm
+    };
 
+    this.httpClientService.put('/trips/trip/update/for-project', tripToModify).subscribe();
 
-    this.httpClientService.onPut(
-      '/trips/trip/update/for-project/' +
-      this.tripId + '/' +
-      projectId + '/' +
-      localStorage.getItem('userid') + '/' +
-      licenseplate + '/' +
-      this.destination.location[0] + '/' +
-      this.destination.location[1] + '/' +
-      startKmGauge + '/' +
-      endKmGauge + '/' +
-      drivenKm
-    );
     this.formSubmitted = true;
     this.toaster.success('De rit is succesvol gewijzigd.', 'Rit gewijzigd!', {
       positionClass: 'toast-bottom-left'
