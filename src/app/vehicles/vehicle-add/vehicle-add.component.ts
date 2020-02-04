@@ -55,14 +55,18 @@ export class VehicleAddComponent implements OnInit {
 
   onSubmit() {
     const licensplate = this.vehicleAddForm.value.licenseplate;
-    this.httpClientService.onPost(
-      '/vehicles/vehicle/add/for-user/' +
-      localStorage.getItem('userid') + '/' +
-      licensplate.toUpperCase() + '/'
-      + this.brand + '/' +
-      this.type + '/' +
-      this.body
-    );
+
+    const vehicleToAdd = {
+      'vehicle_id': null,
+      'userId': localStorage.getItem('userid'),
+      'licensePlate': licensplate.toUpperCase(),
+      'vehicleName': this.brand,
+      'vehicleType': this.type,
+      'vehicleBody': this.body
+    };
+
+    this.httpClientService.post('/vehicles/vehicle/add/for-user/', vehicleToAdd).subscribe();
+
     this.formSubmitted = true;
     this.toaster.success('Het voertuig is succesvol toegevoegd.', 'Voertuig toegevoegd!', {
       positionClass: 'toast-bottom-left'

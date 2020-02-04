@@ -34,10 +34,6 @@ export class HttpClientService {
    return this.http.post(this.urlStart + urlEnd, null, {headers: this.httpHeaders}).subscribe();
   }
 
-  onPostNew(urlEnd: string, Object): Observable<any> {
-   return this.http.post<any>(this.urlStart + urlEnd, JSON.stringify(Object), {headers: this.httpHeaders});
-  }
-
   onPut(urlEnd: string) {
     this.http.put<any>(this.urlStart + urlEnd, JSON.stringify(Object), {headers: this.httpHeaders}).subscribe();
   }

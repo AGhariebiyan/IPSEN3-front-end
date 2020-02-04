@@ -83,7 +83,7 @@ export class VehicleOverviewComponent implements OnInit {
 
 
   removeSelectedRows() {
-    this.httpClientService.onPostNew('/vehicles/delete', this.selectedVehiclesIdsArray).subscribe(() => {
+    this.httpClientService.post('/vehicles/delete', this.selectedVehiclesIdsArray).subscribe(() => {
       this.result.emit('refreshVehiclesTable');
     });
   }
