@@ -6,36 +6,54 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class HttpClientService {
-  httpHeaders = new HttpHeaders({
+  private httpHeaders = new HttpHeaders({
     'Content-Type' : 'application/json'
   });
 
+  private urlStart = 'http://localhost:8080';
+
   constructor(private http: HttpClient) {}
 
-  onGet(urlEnd: string, urlStart = 'http://localhost:8080'): Observable<any> {
+  get(urlEnd: string): Observable<any> {
+    return this.http.get(this.urlStart + urlEnd, {headers: this.httpHeaders});
+  }
+
+  post(urlEnd: string, object: any): Observable<any> {
+    this.checkForJWToken();
+    
+    return this.http.post<any>(this.urlStart + urlEnd, JSON.stringify(Object), {headers: this.httpHeaders});
+   }
+
+  private checkForJWToken() {
     if (localStorage.getItem('jwtoken') !== null && this.httpHeaders.get('Token') === null) {
       this.httpHeaders = this.httpHeaders.append('Token', localStorage.getItem('jwtoken'));
     }
-    return this.http.get(urlStart + urlEnd, {headers: this.httpHeaders});
   }
 
-  onGetWithoutHeaders(urlEnd: string, urlStart = 'http://localhost:8080'): Observable<any> {
-    return this.http.get(urlStart + urlEnd);
+  onGet(urlEnd: string): Observable<any> {
+    if (localStorage.getItem('jwtoken') !== null && this.httpHeaders.get('Token') === null) {
+      this.httpHeaders = this.httpHeaders.append('Token', localStorage.getItem('jwtoken'));
+    }
+    return this.http.get(this.urlStart + urlEnd, {headers: this.httpHeaders});
   }
 
-  onPost(urlEnd: string, urlStart = 'http://localhost:8080') {
-   return this.http.post(urlStart + urlEnd, null, {headers: this.httpHeaders}).subscribe();
+  onGetWithoutHeaders(urlEnd: string): Observable<any> {
+    return this.http.get(this.urlStart + urlEnd);
   }
 
-  onPostNew(urlEnd: string, Object, urlStart = 'http://localhost:8080'): Observable<any> {
-   return this.http.post<any>(urlStart + urlEnd, JSON.stringify(Object), {headers: this.httpHeaders});
+  onPost(urlEnd: string) {
+   return this.http.post(this.urlStart + urlEnd, null, {headers: this.httpHeaders}).subscribe();
   }
 
-  onPut(urlEnd: string, urlStart = 'http://localhost:8080') {
-    this.http.put<any>(urlStart + urlEnd, JSON.stringify(Object), {headers: this.httpHeaders}).subscribe();
+  onPostNew(urlEnd: string, Object): Observable<any> {
+   return this.http.post<any>(this.urlStart + urlEnd, JSON.stringify(Object), {headers: this.httpHeaders});
   }
 
-  onDelete(urlEnd: string, urlStart = 'http://localhost:8080'): Observable<any> {
-    return this.http.delete(urlStart + urlEnd,  {headers: this.httpHeaders});
+  onPut(urlEnd: string) {
+    this.http.put<any>(this.urlStart + urlEnd, JSON.stringify(Object), {headers: this.httpHeaders}).subscribe();
+  }
+
+  onDelete(urlEnd: string): Observable<any> {
+    return this.http.delete(this.urlStart + urlEnd,  {headers: this.httpHeaders});
   }
 }

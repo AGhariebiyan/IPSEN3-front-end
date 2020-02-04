@@ -11,8 +11,13 @@ export class AuthService {
   ) {}
 
   login(user: User) {
-    if (user.userName !== '' && user.password !== '' ) {
-      this.httpClientService.onGet('/login/' + user.userName + '/' + user.password).pipe()
+    if (user.userName !== '' && user.password !== '') {
+      const userToBeLoggedIn = { 
+        userName: user.userName, 
+        password: user.password 
+     };
+
+      this.httpClientService.post('/login', userToBeLoggedIn).pipe()
       .subscribe(
       data => {
         localStorage.setItem('jwtoken', data.authToken);
