@@ -105,7 +105,7 @@ export class TripModifyComponent implements OnInit {
       'drivenKm': drivenKm
     };
 
-    this.httpClientService.put('/trips/trip/update/for-project', tripToModify).subscribe();
+    this.httpClientService.onPut('/trips/trip/update/for-project', tripToModify).subscribe();
 
     this.formSubmitted = true;
     this.toaster.success('De rit is succesvol gewijzigd.', 'Rit gewijzigd!', {

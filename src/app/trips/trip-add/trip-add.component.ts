@@ -92,7 +92,7 @@ export class TripAddComponent implements OnInit {
       'drivenKm': drivenKm
     };
 
-    this.httpClientService.post('/trips/trip/add/for-project', tripToAdd).subscribe();
+    this.httpClientService.onPost('/trips/trip/add/for-project', tripToAdd).subscribe();
 
 
     this.formSubmitted = true;

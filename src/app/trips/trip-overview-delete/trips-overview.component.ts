@@ -109,7 +109,7 @@ export class TripsOverviewComponent implements OnInit {
   }
 
   removeSelectedRows() {
-    this.httpClientService.post('/trips/delete', this.selectedIdsArray).subscribe(() => {
+    this.httpClientService.onPost('/trips/delete', this.selectedIdsArray).subscribe(() => {
 
       this.result.emit('refreshTripsTable');
     });

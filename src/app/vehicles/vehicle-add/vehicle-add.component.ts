@@ -65,7 +65,7 @@ export class VehicleAddComponent implements OnInit {
       'vehicleBody': this.body
     };
 
-    this.httpClientService.post('/vehicles/vehicle/add/for-user/', vehicleToAdd).subscribe();
+    this.httpClientService.onPost('/vehicles/vehicle/add/for-user/', vehicleToAdd).subscribe();
 
     this.formSubmitted = true;
     this.toaster.success('Het voertuig is succesvol toegevoegd.', 'Voertuig toegevoegd!', {
