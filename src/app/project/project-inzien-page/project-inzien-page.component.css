@@ -9,7 +9,6 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 .view-project-page .title{
   display: flex;
   justify-content: flex-start;
@@ -17,12 +16,8 @@
   color:white;
 
 }
-
 .view-project-page .mat-card {
   font-family: 'Lato', 'sans-serif', Roboto, "Helvetica Neue", sans-serif;
-  margin: 50px;
-  display: flex;
-  flex-direction: row;
 }
 
 .view-project-page .top-left {
@@ -31,7 +26,7 @@
   font-size: 14pt;
 }
 
-.view-project-page .top-left mat-icon, .view-project-page .top-left i{
+.view-project-page .top-left mat-icon, .top-left i{
   cursor:pointer;
 }
 
@@ -45,7 +40,7 @@
   flex-direction: row;
 }
 
-.view-project-page .containerHeader button, .view-project-page .containerHeader mat-menu{
+.view-project-page .containerHeader button, .containerHeader mat-menu{
   margin-left:-10px;
   margin-top:15px;
 }
@@ -82,6 +77,12 @@
   height: 350px;
   width: 275px;
   margin: 25px;
+}
+
+.view-project-page mat-card {
+  margin: 50px;
+  display: flex;
+  flex-direction: row;
 }
 
 @media screen and (max-width: 600px) {

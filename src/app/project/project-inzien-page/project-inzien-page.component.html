@@ -1,59 +1,61 @@
 <div class="view-project-page">
   <div class="title">
-    <h2>{{projectName}} #{{projectId}}</h2>
+    <h2 >{{projectName}} #{{projectId}}</h2>
   </div>
-  <mat-card class="mat-card">
-    <div class="top-left">
-      <mat-icon (click)="navigateBack()">arrow_back_ios</mat-icon>
-      <i (click)="navigateBack()">Projecten overzicht</i>
-    </div>
+  <mat-card>
+    <div class="card-left-content">
+      <div class="top-left">
+        <mat-icon (click)="navigateBack()" >arrow_back_ios</mat-icon>
+        <i (click)="navigateBack()" >Projecten overzicht</i>
+      </div>
 
-    <div class="card-header">
-      <div class="containerHeader">
-        <h3>Rit #{{tripId}}: {{startLocation}} - {{endLocation}}</h3>
-        <div *ngIf="publicTripMap.size > 1">
-          <mat-menu #menu="matMenu">
-            <button *ngFor="let trips of publicTripMap | keyvalue" (click)="fetchNewTrip(trips.key)"
-                    mat-menu-item>{{trips.value}}</button>
-          </mat-menu>
-          <button mat-button [matMenuTriggerFor]="menu">
-            <mat-icon>keyboard_arrow_down</mat-icon>
-          </button>
+      <div class="card-header">
+        <div class="containerHeader">
+          <h3>Rit #{{tripId}}: {{startLocation}} - {{endLocation}}</h3>
+          <div *ngIf="publicTripMap.size > 1">
+            <mat-menu #menu="matMenu" >
+              <button *ngFor="let trips of publicTripMap | keyvalue" (click)="fetchNewTrip(trips.key)" mat-menu-item>{{trips.value}}</button>
+            </mat-menu>
+            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>keyboard_arrow_down</mat-icon></button>
 
+          </div>
+        </div>
+        <hr/>
+      </div>
+
+      <div class="trip-data-container">
+
+        <div class="trip-data">
+          <p>Kenteken:</p>
+          <p>{{licensePlate}}</p>
+        </div>
+
+        <div class="trip-data">
+          <p>Voertuig:</p>
+          <p>Renault Twingo</p>
+        </div>
+
+        <div class="trip-data">
+          <p>Gereden Kilometers:</p>
+          <p>{{drivenKilometers}} KM</p>
+        </div>
+
+        <div class="trip-data">
+          <p>Reistijd:</p>
+          <p>{{estTravelTime}}</p>
+        </div>
+
+        <div class="trip-data">
+          <p>Beginlocatie:</p>
+          <p>{{startLocation}}</p>
+        </div>
+
+        <div class="trip-data">
+          <p>Eindlocatie:</p>
+          <p>{{endLocation}}</p>
         </div>
       </div>
-      <hr/>
-    </div>
 
-
-    <div class="trip-data">
-      <p>Kenteken:</p>
-      <p>{{licensePlate}}</p>
-    </div>
-
-    <div class="trip-data">
-      <p>Voertuig:</p>
-      <p>Renault Twingo</p>
-    </div>
-
-    <div class="trip-data">
-      <p>Gereden Kilometers:</p>
-      <p>{{drivenKilometers}} KM</p>
-    </div>
-
-    <div class="trip-data">
-      <p>Reistijd:</p>
-      <p>{{estTravelTime}}</p>
-    </div>
-
-    <div class="trip-data">
-      <p>Beginlocatie:</p>
-      <p>{{startLocation}}</p>
-    </div>
-
-    <div class="trip-data">
-      <p>Eindlocatie:</p>
-      <p>{{endLocation}}</p>
     </div>
     <div class="card-right-content">
       <div class="map">
