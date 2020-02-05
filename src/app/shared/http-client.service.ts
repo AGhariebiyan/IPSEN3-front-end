@@ -18,12 +18,12 @@ export class HttpClientService {
     return this.http.get(this.urlStart + urlEnd, {headers: this.httpHeaders});
   }
 
-  onPost(urlEnd: string, object: any): Observable<any> {
-    return this.http.post<any>(this.urlStart + urlEnd, JSON.stringify(object), {headers: this.httpHeaders});
+  onPost(urlEnd: string, body: any): Observable<any> {
+    return this.http.post<any>(this.urlStart + urlEnd, JSON.stringify(body), {headers: this.httpHeaders});
   }
 
-  onPut(urlEnd: string, object: any): Observable<any> {
-    return this.http.put<any>(this.urlStart + urlEnd, JSON.stringify(object), {headers: this.httpHeaders});
+  onPut(urlEnd: string, body: any): Observable<any> {
+    return this.http.put<any>(this.urlStart + urlEnd, JSON.stringify(body), {headers: this.httpHeaders});
   }
 
   onDelete(urlEnd: string): Observable<any> {
