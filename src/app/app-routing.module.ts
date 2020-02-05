@@ -26,7 +26,7 @@ const appRoutes: Routes = [
   {path: 'ritten/voertuig/:licenseplate', canActivate: [AuthGuardService], component: VehicleTripsOverviewComponent},
   {path: 'projecten', canActivate: [AuthGuardService], component: ProjectOverviewPageComponent},
   {path: 'projecten/:projectId', canActivate: [AuthGuardService], component: ProjectInzienPageComponent},
-  {path: 'pagina-niet-gevonden', canActivate: [AuthGuardService], component: PageNotFoundComponent},
+  {path: 'pagina-niet-gevonden', component: PageNotFoundComponent},
   {path: '**', redirectTo: '/pagina-niet-gevonden'}
 ];
 

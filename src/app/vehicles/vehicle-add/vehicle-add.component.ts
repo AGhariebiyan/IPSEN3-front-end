@@ -5,6 +5,7 @@ import { LicensePlateService } from '../license-plate-service';
 import {map} from 'rxjs/operators';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-vehicle-add',
@@ -22,6 +23,7 @@ export class VehicleAddComponent implements OnInit {
   private year: string;
 
   constructor(private httpClientService: HttpClientService,
+              private http: HttpClient,
               private fb: FormBuilder,
               private licensePlateService: LicensePlateService,
               private spinner: NgxSpinnerService,
@@ -106,7 +108,7 @@ export class VehicleAddComponent implements OnInit {
 
   private findImageByVehicle(searchUrl: string) {
     this.imageSource = null;
-    this.httpClientService.onGet('http://localhost:5000' + '/image?term=' + searchUrl).pipe()
+    this.http.get<any>('http://localhost:5000/image?term=' + searchUrl).pipe()
       .subscribe(
         data => {
           this.spinner.hide();
