@@ -28,7 +28,7 @@ export class AuthService {
         password: user.password 
       };
 
-      this.http.post<any>(this.urlStart + '/login', userToBeLoggedIn, {headers: this.httpHeaders}).subscribe(
+      this.http.post<any>(this.urlStart + '/auth/login', userToBeLoggedIn, {headers: this.httpHeaders}).subscribe(
         data => {
           localStorage.setItem('jwtoken', data.authToken);
           localStorage.setItem('username', data.username);
