@@ -10,7 +10,7 @@
   background-size: cover;
 }
 
-.overlay {
+.project-overview-page .overlay {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   height: 100%;
   display: flex;
@@ -21,44 +21,44 @@
   background-color: #EBEDEE;
 }
 
-.projectOverviewTable{
+.project-overview-page .projectOverviewTable{
   width:50vw;
 }
-.projectOverviewTable tr{
+.project-overview-page .projectOverviewTable tr{
   cursor:pointer;
 }
 
-.projectOverviewTable tr:hover {
+.project-overview-page .projectOverviewTable tr:hover {
   background-color: #DDDDDD;
 }
 
-.projectOverviewTable tr:first-of-type:hover {
+.project-overview-page .projectOverviewTable tr:first-of-type:hover {
   background-color: #FFFFFF;
 }
 
 /* Probably the most controversial way to fix this but it works */
-.projectOverviewTable tr:nth-last-child(4):hover {
+.project-overview-page .projectOverviewTable tr:nth-last-child(4):hover {
   background-color: #DDDDDD;
 }
 
-.searchContainer {
+.project-overview-page .searchContainer {
     width: 50vw;
     display: flex;
     justify-content: flex-end;
 }
 
-.footerContainer{
+.project-overview-page .footerContainer{
   width: 50vw;
   display: flex;
   justify-content: flex-end;
   padding-top: 10px;
 }
-.footerContainer small{
+.project-overview-page .footerContainer small{
   margin-top:10px;
   margin-right: 10px;
 }
 
-.btn {
+.project-overview-page .btn {
   background: #1ABC9C;
   border: none;
   border-radius: .3rem;
@@ -80,13 +80,13 @@
   white-space: nowrap;
 }
 
-.loading {
+.project-overview-page .loading {
   color: transparent !important;
   min-height: 1.6rem;
   pointer-events: none;
   position: relative;
 }
-.loading::after {
+.project-overview-page .loading::after {
   -webkit-animation: loading 500ms infinite linear;
   animation: loading 500ms infinite linear;
   border: .2rem solid white;
@@ -126,23 +126,23 @@
   }
 }
 
-.deleteIcon {
+.project-overview-page .deleteIcon {
   cursor: pointer;
 }
-.buttonContainer {
+.project-overview-page .buttonContainer {
   /*border: 1px red solid;*/
   width: 750px;
   display: flex;
   justify-content: flex-end;
 }
-.plusButtonImage {
+.project-overview-page .plusButtonImage {
   position: relative;
   top: 25px;
   z-index: 2;
   left: 97%;
   cursor: pointer;
 }
-#mat-icon-add_circle {
+.project-overview-page #mat-icon-add_circle {
   position: relative;
   top: 29px;
   left: 96.5%;
@@ -150,112 +150,112 @@
   cursor: pointer;
   color: #52AE4F;
 }
-.fa-trash {
+.project-overview-page .fa-trash {
   cursor: pointer;
 }
-.shadowcontainer {
+.project-overview-page .shadowcontainer {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.optionLabel {
+.project-overview-page .optionLabel {
   position: relative;
   top: 4px;
   left: 82%;
 }
-.mat-button {
+.project-overview-page .mat-button {
   position: relative;
   margin-top: -3%;
   left: 1%;
   top: 5px;
 }
-#more_horz {
+.project-overview-page #more_horz {
   position: relative;
   margin-top: -3%;
   left: 3.5%;
   top: -1px;
 }
-.searchContainer {
+.project-overview-page .searchContainer {
   width: 50vw;
   display: flex;
   justify-content: flex-end;
   top: 50%;
 }
-.mat-table {
+.project-overview-page .mat-table {
   width: 100%;
   max-width: 900px;
   padding: 0 20px;
   table-layout: fixed;
 }
-.mat-table tr.mat-row {
+.project-overview-page .mat-table tr.mat-row {
   height: auto;
 }
-.mat-table .mat-header-row {
+.project-overview-page .mat-table .mat-header-row {
   height: auto;
 }
-.mat-table .mat-column-select .mat-checkbox,
-.mat-table .mat-cell .mat-checkbox {
+.project-overview-page .mat-table .mat-column-select .mat-checkbox,
+.project-overview-page .mat-table .mat-cell .mat-checkbox {
   width: 16px;
   height: 16px;
   display: block;
   margin: auto;
 }
-.mat-table .mat-header-cell,
-.mat-table .mat-cell {
+.project-overview-page .mat-table .mat-header-cell,
+.project-overview-page .mat-table .mat-cell {
   padding: 20px 0 20px 10px;
   width: 18%;
 }
-.mat-table mat-header-cell.mat-header-cell,
-.mat-table mat-cell.mat-cell {
+.project-overview-page .mat-table mat-header-cell.mat-header-cell,
+.project-overview-page .mat-table mat-cell.mat-cell {
   display: table-cell;
   width: 10%;
 }
 @media screen and (max-width: 767px) {
-  .mat-table {
+  .project-overview-page .mat-table {
     width: 100%;
   }
 }
 @media screen and (max-width: 567px) {
-  .mat-table td,
-  .mat-table th {
+  .project-overview-page .mat-table td,
+  .project-overview-page .mat-table th {
     font-size: 12px;
   }
-  .mat-table th,
-  .mat-table td {
+  .project-overview-page .mat-table th,
+  .project-overview-page .mat-table td {
     width: 25%;
     padding: 20px 10px;
     overflow: hidden;
     white-space: nowrap;
   }
-  .mat-table th:last-of-type,
-  .mat-table td:last-of-type {
+  .project-overview-page .mat-table th:last-of-type,
+  .project-overview-page .mat-table td:last-of-type {
     display: none;
   }
-  .mat-table th:nth-of-type(5),
-  .mat-table td:nth-of-type(5) {
+  .project-overview-page .mat-table th:nth-of-type(5),
+  .project-overview-page .mat-table td:nth-of-type(5) {
     display: none;
   }
-  .mat-table th:nth-of-type(6),
-  .mat-table td:nth-of-type(6) {
+  .project-overview-page .mat-table th:nth-of-type(6),
+  .project-overview-page .mat-table td:nth-of-type(6) {
     display: none;
   }
-  .mat-table th:nth-of-type(7),
-  .mat-table td:nth-of-type(7) {
+  .project-overview-page .mat-table th:nth-of-type(7),
+  .project-overview-page .mat-table td:nth-of-type(7) {
     display: none;
   }
-  .mat-table .mat-header-cell,
-  .mat-table .mat-cell {
+  .project-overview-page .mat-table .mat-header-cell,
+  .project-overview-page .mat-table .mat-cell {
     width: 25%;
     padding: 20px 10px;
     overflow: hidden;
     white-space: nowrap;
   }
-  .pagination-container .mat-paginator-range-actions {
+  .project-overview-page .pagination-container .mat-paginator-range-actions {
     display: block;
     text-align: center;
     width: 100%;
     margin-bottom: 10px;
   }
-  .pagination-container .mat-paginator-range-actions .mat-paginator-range-label {
+  .project-overview-page .pagination-container .mat-paginator-range-actions .mat-paginator-range-label {
     margin: 0 10px 0 10px;
     display: block;
     text-align: center;
@@ -263,7 +263,7 @@
     margin-top: 10px;
     margin-bottom: 10px;
   }
-  .pagination-container .mat-paginator-page-size {
+  .project-overview-page .pagination-container .mat-paginator-page-size {
     margin-right: 8px;
     align-items: center;
     display: block;
