@@ -80,18 +80,19 @@ export class TripAddComponent implements OnInit {
     const startKmGauge = this.startKilometerGauge;
     const endKmGauge = this.endKilometerGauge;
     const projectId = this.tripAddForm.value.projectID.split('#')[1];
+    const tripToAdd = {
+      'id': null,
+      'projectId': projectId,
+      'userId': localStorage.getItem('userid'),
+      'licensePlate': licenseplate,
+      'startLocation': this.destination.location[0],
+      'endLocation': this.destination.location[1],
+      'startKilometergauge': startKmGauge,
+      'endKilometergauge': endKmGauge,
+      'drivenKm': drivenKm
+    };
 
-    this.httpClientService.onPost(
-      '/trips/trip/add/for-project/' +
-      projectId + '/' +
-      localStorage.getItem('userid') + '/' +
-      licenseplate + '/' +
-      this.destination.location[0] + '/' +
-      this.destination.location[1] + '/' +
-      startKmGauge + '/' +
-      endKmGauge + '/' +
-      drivenKm
-    );
+    this.httpClientService.onPost('/trips/trip/add/for-project', tripToAdd).subscribe();
 
 
     this.formSubmitted = true;
