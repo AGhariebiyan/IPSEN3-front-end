@@ -1,96 +1,93 @@
-<div class="content">
+<div class="trip-overview-component">
   <div class="overlay">
     <div class="searchContainer">
-    <mat-form-field class="example-form-field">
-      <label>
-        <input matInput type="text" (input)="filterTripsTable($event)" placeholder="Zoeken..." [value]='value'>
-      </label>
-      <!--            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">-->
-<!--              <mat-icon>close</mat-icon>-->
-      <!--            </button>-->
-    </mat-form-field>
-  </div>
-    <div class="table-size">
-    <button mat-button [matMenuTriggerFor]="menu">
-      Opties <mat-icon id="more_horz" >more_horiz</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="removeSelectedRows()">Verwijderen</button>
-      <button mat-menu-item routerLink="/ritten/toevoegen">Toevoegen</button>
-    </mat-menu>
-    <div class="shadowcontainer">
-      <table mat-table [dataSource]="dataSource1" matSort class="table-size">
+      <mat-form-field>
+        <label>
+          <input matInput type="text" (input)="filterTripsTable($event)" placeholder="Zoeken..." [value]='value'>
+        </label>
+      </mat-form-field>
+    </div>
+    <div>
+      <button mat-button [matMenuTriggerFor]="menu">
+        Opties
+        <mat-icon id="more_horz">more_horiz</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="removeSelectedRows()">Verwijderen</button>
+        <button mat-menu-item routerLink="/ritten/toevoegen">Toevoegen</button>
+      </mat-menu>
+      <div class="shadowcontainer">
+        <table mat-table [dataSource]="dataSource1" matSort>
 
-      <ng-container matColumnDef="select">
-        <mat-header-cell *matHeaderCellDef>
-          <mat-checkbox (change)="$event ? masterToggle() : null"
-                        [checked]="selection.hasValue() && isAllSelected()"
-                        [indeterminate]="selection.hasValue() && !isAllSelected()">
-          </mat-checkbox>
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row; let rowNumber = index">
-          <!-- TODO -->
-          <mat-checkbox (click)="$event.stopPropagation()"
-                        (change)="$event ? selection.toggle(row) : null"
-                        [checked]="selection.isSelected(row)"
-                        [checked] = "row.selectedState"
-                        (change)="select($event, row.tripId)">
-          </mat-checkbox>
-        </mat-cell>
-      </ng-container>
+          <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()">
+              </mat-checkbox>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row; let rowNumber = index">
+              <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="$event ? selection.toggle(row) : null"
+                            [checked]="selection.isSelected(row)"
+                            [checked]="row.selectedState"
+                            (change)="select($event, row.tripId)">
+              </mat-checkbox>
+            </mat-cell>
+          </ng-container>
 
-      <ng-container matColumnDef="startLocation">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Start locatie</th>
-        <td mat-cell *matCellDef="let trip"> {{trip.startLocation}} </td>
-      </ng-container>
+          <ng-container matColumnDef="startLocation">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Start locatie</th>
+            <td mat-cell *matCellDef="let trip"> {{trip.startLocation}} </td>
+          </ng-container>
 
 
-      <ng-container matColumnDef="endLocation">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Eind locatie</th>
-        <td mat-cell *matCellDef="let trip"> {{trip.endLocation}}</td>
-      </ng-container>
+          <ng-container matColumnDef="endLocation">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Eind locatie</th>
+            <td mat-cell *matCellDef="let trip"> {{trip.endLocation}}</td>
+          </ng-container>
 
 
-      <ng-container matColumnDef="project">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Project</th>
-        <td mat-cell *matCellDef="let trip"> {{trip.projectId}} </td>
-      </ng-container>
+          <ng-container matColumnDef="project">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Project</th>
+            <td mat-cell *matCellDef="let trip"> {{trip.projectId}} </td>
+          </ng-container>
 
-      Totaal aantal km's op een project
-      <ng-container matColumnDef="licensePlate">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Kenteken</th>
-        <td mat-cell *matCellDef="let trip"> {{trip.licensePlate}} </td>
-      </ng-container>
-
-
-      <ng-container matColumnDef="wijzigen">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Wijzigen</th>
-        <td mat-cell *matCellDef="let trip">
-          <mat-icon (click)=editTrip(trip.tripId) id="mat-icon-edit">edit</mat-icon>
-        </td>
-      </ng-container>
-
-        <ng-container matColumnDef="verwijderen">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Verwijderen</th>
-          <td mat-cell *matCellDef="let trip">
-            <mat-icon class="deleteIcon" (click)=deleteTrip(trip.tripId)>delete</mat-icon>
-        </ng-container>
-
-        <ng-container matColumnDef="KM">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> KM</th>
-          <td mat-cell *matCellDef="let trip"> {{trip.drivenKm}}</td>
-
-        </ng-container>
+          Totaal aantal km's op een project
+          <ng-container matColumnDef="licensePlate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Kenteken</th>
+            <td mat-cell *matCellDef="let trip"> {{trip.licensePlate}} </td>
+          </ng-container>
 
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let trip; columns: displayedColumns;"></tr>
-    </table>
-      <div class="pagination-container">
-        <mat-paginator id="pagination" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+          <ng-container matColumnDef="wijzigen">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Wijzigen</th>
+            <td mat-cell *matCellDef="let trip">
+              <mat-icon (click)=editTrip(trip.tripId) id="mat-icon-edit">edit</mat-icon>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="verwijderen">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Verwijderen</th>
+            <td mat-cell *matCellDef="let trip">
+              <mat-icon class="deleteIcon" (click)=deleteTrip(trip.tripId)>delete</mat-icon>
+          </ng-container>
+
+          <ng-container matColumnDef="KM">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> KM</th>
+            <td mat-cell *matCellDef="let trip"> {{trip.drivenKm}}</td>
+
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let trip; columns: displayedColumns;"></tr>
+        </table>
+        <div>
+          <mat-paginator id="pagination" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </div>
 
