@@ -7,8 +7,8 @@ import { HttpClientService } from '../shared/http-client.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  amountOfTripsByUser = 'loading..';
-  amountOfProjectsByUser = 'loading..';
+  amountOfTripsByUser = '';
+  amountOfProjectsByUser = '';
 
   constructor(private httpClientService: HttpClientService) {}
 
