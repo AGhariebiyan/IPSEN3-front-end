@@ -11,8 +11,4 @@ export class PageNotFoundComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  onGoHome() {
-    window.location.href = '/login';
-  }
 }
