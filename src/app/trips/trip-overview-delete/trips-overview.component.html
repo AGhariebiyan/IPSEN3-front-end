@@ -19,22 +19,25 @@
       <div class="shadowcontainer">
         <table mat-table [dataSource]="dataSource1" matSort>
 
-          <ng-container matColumnDef="select">
-            <mat-header-cell *matHeaderCellDef>
-              <mat-checkbox (change)="$event ? masterToggle() : null"
-                            [checked]="selection.hasValue() && isAllSelected()"
-                            [indeterminate]="selection.hasValue() && !isAllSelected()">
-              </mat-checkbox>
-            </mat-header-cell>
-            <mat-cell *matCellDef="let row; let rowNumber = index">
-              <mat-checkbox (click)="$event.stopPropagation()"
-                            (change)="$event ? selection.toggle(row) : null"
-                            [checked]="selection.isSelected(row)"
-                            [checked]="row.selectedState"
-                            (change)="select($event, row.tripId)">
-              </mat-checkbox>
-            </mat-cell>
-          </ng-container>
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()"
+          >
+          </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row;">
+          <!-- TODO -->
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null"
+                       (change)= "select($event, row.tripId)"
+                        [checked]="selection.isSelected(row)"
+                        [checked]="row.selectedState"
+                        >
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
 
           <ng-container matColumnDef="startLocation">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Start locatie</th>

@@ -2,7 +2,10 @@
   <div class="overlay">
     <div class="searchContainer">
       <mat-form-field class="example-form-field">
-        <input matInput type="text" (input)="filterTripsTable($event)" placeholder="Zoeken..." [value]='value'>
+        <label >
+          <input matInput type="text" (input)="filterTripsTable($event)" placeholder="Zoeken..." [value]='value'>
+        </label>
+
         <!--      <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">-->
         <!--        <mat-icon>close</mat-icon>-->
         <!--      </button>-->

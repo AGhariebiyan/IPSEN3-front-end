@@ -17,7 +17,6 @@ import {Router} from '@angular/router';
 export class VehicleOverviewComponent implements OnInit {
 
 
-
   selectedVehiclesIdsArray: Array<number> = [];
 
   result: EventEmitter = new EventEmitter();
@@ -42,7 +41,6 @@ export class VehicleOverviewComponent implements OnInit {
 
     this.result.on('refreshVehiclesTable', () => {
       this.getVehicles();
-      // window.location.reload();
     });
   }
 
@@ -56,9 +54,20 @@ export class VehicleOverviewComponent implements OnInit {
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
+    if (this.isAllSelected()) {
+      for (let i = 0; i <= this.selectedVehiclesIdsArray.length; i++) {
+        this.dataSource1.data.forEach(row => {
+          if (this.selectedVehiclesIdsArray[i] === row.vehicleId) {
+            this.selectedVehiclesIdsArray.splice(i, 1);
+          }
+        });
+      }
+      this.selection.clear();
+    } else {
       this.dataSource1.data.forEach(row => this.selection.select(row));
+      this.dataSource1.data.forEach(row => this.selectedVehiclesIdsArray.push(row.vehicleId));
+    }
+
   }
 
 
@@ -74,7 +83,6 @@ export class VehicleOverviewComponent implements OnInit {
     }
   }
 
-
   deleteVehicle(id: number) {
     this.httpClientService.onDelete('/vehicles/delete/' + id).subscribe(() => {
       this.result.emit('refreshVehiclesTable');
@@ -83,6 +91,7 @@ export class VehicleOverviewComponent implements OnInit {
 
 
   removeSelectedRows() {
+    console.log('Removed:', this.selectedVehiclesIdsArray);
     this.httpClientService.onPost('/vehicles/delete', this.selectedVehiclesIdsArray).subscribe(() => {
       this.result.emit('refreshVehiclesTable');
     });
@@ -90,9 +99,10 @@ export class VehicleOverviewComponent implements OnInit {
 
   getVehicles() {
 
-    this.httpClientService.onGet('/vehicles/user/' + + localStorage.getItem('userid'))
+    this.httpClientService.onGet('/vehicles/user/' +   localStorage.getItem('userid'))
       .subscribe(
         data => {
+          console.log(this.vehiclesArray);
           this.vehiclesArray = [];
           data.forEach(dataE => {
               this.vehiclesArray.push({
