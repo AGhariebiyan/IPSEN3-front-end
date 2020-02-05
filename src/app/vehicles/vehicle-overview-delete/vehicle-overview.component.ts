@@ -41,7 +41,6 @@ export class VehicleOverviewComponent implements OnInit {
 
     this.result.on('refreshVehiclesTable', () => {
       this.getVehicles();
-      // window.location.reload();
     });
   }
 
