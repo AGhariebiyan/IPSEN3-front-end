@@ -80,3 +80,9 @@
 .login-page .register_button {
   right: 10%;
 }
+
+@media (max-width: 600px) {
+  mat-card {
+    width: 80%;
+  }
+}

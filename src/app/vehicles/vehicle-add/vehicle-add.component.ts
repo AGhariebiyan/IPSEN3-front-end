@@ -5,6 +5,7 @@ import { LicensePlateService } from '../license-plate-service';
 import {map} from 'rxjs/operators';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-vehicle-add',
@@ -22,6 +23,7 @@ export class VehicleAddComponent implements OnInit {
   private year: string;
 
   constructor(private httpClientService: HttpClientService,
+              private http: HttpClient,
               private fb: FormBuilder,
               private licensePlateService: LicensePlateService,
               private spinner: NgxSpinnerService,
@@ -55,14 +57,18 @@ export class VehicleAddComponent implements OnInit {
 
   onSubmit() {
     const licensplate = this.vehicleAddForm.value.licenseplate;
-    this.httpClientService.onPost(
-      '/vehicles/vehicle/add/for-user/' +
-      localStorage.getItem('userid') + '/' +
-      licensplate.toUpperCase() + '/'
-      + this.brand + '/' +
-      this.type + '/' +
-      this.body
-    );
+
+    const vehicleToAdd = {
+      'vehicle_id': null,
+      'userId': localStorage.getItem('userid'),
+      'licensePlate': licensplate.toUpperCase(),
+      'vehicleName': this.brand,
+      'vehicleType': this.type,
+      'vehicleBody': this.body
+    };
+
+    this.httpClientService.onPost('/vehicles/vehicle/add/for-user/', vehicleToAdd).subscribe();
+
     this.formSubmitted = true;
     this.toaster.success('Het voertuig is succesvol toegevoegd.', 'Voertuig toegevoegd!', {
       positionClass: 'toast-bottom-left'
@@ -74,7 +80,7 @@ export class VehicleAddComponent implements OnInit {
     return this.licensePlateService.checkRdwLicensePlate(control.value.toUpperCase())
       .pipe(
         map(res => {
-        if ( res.length === 0 ) {
+        if (!res) {
           return {invalidRDW: true};
         } else {
           this.brand = res[0].merk;
@@ -102,7 +108,7 @@ export class VehicleAddComponent implements OnInit {
 
   private findImageByVehicle(searchUrl: string) {
     this.imageSource = null;
-    this.httpClientService.onGet('/image?term=' + searchUrl, 'http://localhost:5000').pipe()
+    this.http.get<any>('http://localhost:5000/image?term=' + searchUrl).pipe()
       .subscribe(
         data => {
           this.spinner.hide();
