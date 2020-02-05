@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClientService} from '../../shared/http-client.service';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
+import {EventEmitter} from 'events';
 
 @Component({
   selector: 'app-vehicle-trips-overview',
@@ -16,6 +17,7 @@ export class VehicleTripsOverviewComponent implements OnInit {
   licensePlate = this.activatedRoute.snapshot.params.licenseplate;
   displayedColumns: string[];
   vehicleTripData: MatTableDataSource<Trip> = new MatTableDataSource<Trip>();
+  result: EventEmitter = new EventEmitter();
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -25,6 +27,7 @@ export class VehicleTripsOverviewComponent implements OnInit {
   }
 
   getTrips() {
+    this.vehicleTripData.data = [];
 
     this.httpClientService.onGet('/trips/getallByLicensePlate?licensePlate=' + this.licensePlate)
       .subscribe(
@@ -51,10 +54,19 @@ export class VehicleTripsOverviewComponent implements OnInit {
 
   ngOnInit() {
     this.getTrips();
+    this.result.on('refreshTripsTable', () => {
+      this.getTrips();
+    });
   }
 
   editTrip(tripId: number) {
     this.router.navigate(['ritten/wijzigen/' + tripId]);
     return tripId;
+  }
+
+  deleteTrip(tripId: number) {
+    this.httpClientService.onDelete('/trips/delete/' + tripId).subscribe(() => {
+      this.result.emit('refreshTripsTable');
+    });
   }
 }

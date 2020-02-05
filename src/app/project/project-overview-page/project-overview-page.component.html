@@ -1,16 +1,18 @@
-<div class="content">
+<div class="project-overview-page">
   <div class="overlay">
     <div class="searchContainer">
       <mat-form-field class="example-form-field">
+        <label>
           <input matInput type="text" (input)="filterProjectTable($event)" placeholder="Zoeken..." [value]='value'>
-          <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">
+        </label>
+        <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">
             <mat-icon>close</mat-icon>
           </button>
       </mat-form-field>
     </div>
 
     <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="dataSource" matSort class="table-size projectOverviewTable">
+      <table mat-table [dataSource]="dataSource" matSort class="projectOverviewTable">
         <!-- Project nummer kolom -->
         <ng-container  matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Project nummer: </th>

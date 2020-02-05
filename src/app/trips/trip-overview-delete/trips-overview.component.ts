@@ -39,7 +39,6 @@ export class TripsOverviewComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.result.on('refreshTripsTable', () => {
       this.getTrips();
     });

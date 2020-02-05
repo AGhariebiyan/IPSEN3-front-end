@@ -1,89 +1,84 @@
-.content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
+.trip-add-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
   background-image: url("/assets/imgs/homepageBackground.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-  hr{
-    border-color: black;
-  }
+.trip-add-page mat-form-field, .trip-add-page app-gmaps-loc-search {
+  padding: 0 10px;
+}
 
-  .title{
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
+.trip-add-page .top-left {
+  font-size: 14pt;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  width: fit-content;
+}
 
-  .top-left {
-    font-size: 14pt;
-    display: flex;
-    flex-direction: row;
-    cursor: pointer;
-    width: fit-content;
-  }
+.trip-add-page form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
 
-  form {
-      min-width: 150px;
-      max-width: 500px;
-      width: 100%;
-    }
+.trip-add-page .button-row button {
+  margin-right: 8px;
+}
 
-    .form-full-width {
-      width: 100%;
-    }
+.trip-add-page .map {
+  border: 1px #1ABC9C solid;
+  height: 350px;
+  width: 275px;
+  margin: 25px;
+}
 
-  .button-row button,
-  .button-row a {
-    margin-right: 8px;
-  }
-
-  .map {
-    border: 1px #1ABC9C solid;
-    height: 350px;
-    width: 275px;
-    margin: 25px;
-  }
-
-  mat-card {
-    margin: 50px;
-    display: flex;
-    flex-direction: row;
-  }
+.trip-add-page mat-card {
+  margin: 50px;
+  display: flex;
+  flex-direction: row;
+}
 
 
 @media screen and (max-width: 480px) {
- mat-card{
-   width: 80vw;
- }
-  .map{
+  .trip-add-page mat-card {
+    width: 80vw;
+  }
+
+  .trip-add-page .map {
     visibility: hidden;
   }
-  h2 {
+
+  .trip-add-page h2 {
     font-size: 20px;
   }
-  i {
+
+  .trip-add-page i {
     font-size: 14px;
   }
 
 }
 
 @media screen and (max-width: 768px) {
-  mat-card{
+  .trip-add-page mat-card {
     width: 80vw;
   }
-  .dataContainer{
+
+  .trip-add-page .dataContainer {
     width: 40vw;
   }
-  h2 {
+
+  .trip-add-page h2 {
     font-size: 20px;
   }
-  i {
+
+  .trip-add-page i {
     font-size: 14px;
   }
 }
