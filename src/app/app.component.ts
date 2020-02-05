@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
   handleLoginChange = () => {
     this.auth.isLoggedIn().then((result: boolean) => {
       this.isLoggedIn = result;
-      console.log(result);
     });
     this.username = localStorage.getItem('username');
   }

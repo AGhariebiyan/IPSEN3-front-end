@@ -87,7 +87,7 @@ export class TripsOverviewComponent implements OnInit {
 
   getTrips() {
 
-    this.httpClientService.onGet('/trips/user/1')
+    this.httpClientService.onGet('/trips/user/' +  localStorage.getItem('userid'))
       .subscribe(
         data => {
           this.tripsArray = [];
@@ -122,7 +122,7 @@ export class TripsOverviewComponent implements OnInit {
   }
 
   removeSelectedRows() {
-    this.httpClientService.onPostNew('/trips/delete', this.selectedIdsArray).subscribe(() => {
+    this.httpClientService.onPost('/trips/delete', this.selectedIdsArray).subscribe(() => {
 
       this.result.emit('refreshTripsTable');
     });

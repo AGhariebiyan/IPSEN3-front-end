@@ -73,7 +73,6 @@ export class VehicleOverviewComponent implements OnInit {
 
 
   select(event, vehicleId: number) {
-    console.log(this.selectedVehiclesIdsArray);
     if (event.checked) {
       this.selectedVehiclesIdsArray.push(vehicleId);
     } else {

@@ -116,6 +116,11 @@ form {
   animation-fill-mode: both;
 }
 
+.terugKnop {
+  color: black;
+  font-size: 20px;
+}
+
 @keyframes slide-left {
   0% {
     opacity: 0;
@@ -135,5 +140,36 @@ form {
   }
   100% {
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h2{
+    font-size: 20px;
+  }
+  .cardwrapper {
+    width: 80vw;
+  }
+  .title {
+    width: 80vw;
+  }
+  .image-container{
+    width: 80vw;
+  }
+  .terugKnop {
+    color: black;
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cardwrapper {
+    width: 65vw;
+  }
+  .title {
+    width: 65vw;
+  }
+  .image-container{
+    width: 65vw;
   }
 }

@@ -6,37 +6,27 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class HttpClientService {
-  httpHeaders = new HttpHeaders({
-    'Content-Type' : 'application/json'
+  private httpHeaders = new HttpHeaders({
+    'Content-Type' : 'application/json',
+    'Token': localStorage.getItem('jwtoken')
   });
+  private urlStart = 'http://localhost:8080';
 
   constructor(private http: HttpClient) {}
 
-  onGet(getUrl: string): Observable<any> {
-    if (localStorage.getItem('jwtoken') !== null && this.httpHeaders.get('Token') === null) {
-      this.httpHeaders = this.httpHeaders.append('Token', localStorage.getItem('jwtoken'));
-    }
-
-    return this.http.get('http://37.97.209.18:8080' + getUrl, {headers: this.httpHeaders});
+  onGet(urlEnd: string): Observable<any> {
+    return this.http.get(this.urlStart + urlEnd, {headers: this.httpHeaders});
   }
 
-  onGetWithoutHeaders(getUrl: string): Observable<any> {
-    return this.http.get('http://37.97.209.18:8080' + getUrl);
+  onPost(urlEnd: string, body: any): Observable<any> {
+    return this.http.post<any>(this.urlStart + urlEnd, JSON.stringify(body), {headers: this.httpHeaders});
   }
 
-  onPost(postUrl: string) {
-   return this.http.post('http://37.97.209.18:8080' + postUrl, null, {headers: this.httpHeaders}).subscribe();
+  onPut(urlEnd: string, body: any): Observable<any> {
+    return this.http.put<any>(this.urlStart + urlEnd, JSON.stringify(body), {headers: this.httpHeaders});
   }
 
-  onPostNew(postUrl: string, Object): Observable<any> {
-   return this.http.post<any>('http://37.97.209.18:8080' + postUrl, JSON.stringify(Object), {headers: this.httpHeaders});
-  }
-
-  onPut(putUrl: string) {
-    this.http.put<any>('http://37.97.209.18:8080' + putUrl, JSON.stringify(Object), {headers: this.httpHeaders}).subscribe();
-  }
-
-  onDelete(delUrl: string): Observable<any> {
-    return this.http.delete('http://37.97.209.18:8080' + delUrl,  {headers: this.httpHeaders});
+  onDelete(urlEnd: string): Observable<any> {
+    return this.http.delete(this.urlStart + urlEnd, {headers: this.httpHeaders});
   }
 }

@@ -22,7 +22,7 @@ export class GmapsLocSearchComponent implements OnInit {
   }
   public handleAddressChange(address: Address) {
     // this.locationEvent.emit({lat: address.geometry.location.lat(), lng: address.geometry.location.lng()});
-    this.mapService.currentLocations.emit({mIndex: this.index, lat: address.geometry.location.lat(), lng: address.geometry.location.lng()});
+    this.mapService.currentLocations.emit({mIndex:  this.index, lat: address.geometry.location.lat(), lng: address.geometry.location.lng()});
     this.mapService.destination.emit({mIndex: this.index, loc: address.formatted_address});
 
   }

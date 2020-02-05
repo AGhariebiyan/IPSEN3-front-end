@@ -30,7 +30,7 @@ export class TripModifyComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private toaster: ToastrService
   ) {
-    this.httpClientService.onGet('http://37.97.209.18:8080/vehicles/fetch/unique-licenseplates/1').pipe()
+    this.httpClientService.onGet('/vehicles/fetch/unique-licenseplates/' + localStorage.getItem('userid')).pipe()
       .subscribe(
         data => {
           data.forEach(licenseplate => {
@@ -39,7 +39,7 @@ export class TripModifyComponent implements OnInit {
         }
       );
 
-    this.httpClientService.onGet('http://37.97.209.18:8080/project/getAllProject').pipe()
+    this.httpClientService.onGet('/project/getAllProject').pipe()
       .subscribe(
         data => {
           data.forEach(project => {
@@ -66,7 +66,7 @@ export class TripModifyComponent implements OnInit {
   }
 
   getTrip() {
-    this.httpClientService.onGet('http://37.97.209.18:8080/trips/trip/' + this.tripId)
+    this.httpClientService.onGet('/trips/trip/' + this.tripId)
       .subscribe(
         (trip) => {
           this.trip = trip;
@@ -93,20 +93,20 @@ export class TripModifyComponent implements OnInit {
     const startKmGauge = this.tripUpdateForm.value.startKmGauge;
     const endKmGauge = this.tripUpdateForm.value.endKmGauge;
     const projectId = this.tripUpdateForm.value.projectID;
+    const tripToModify = {
+      'id': this.tripId,
+      'projectId': projectId,
+      'userId': localStorage.getItem('userid'),
+      'licensePlate': licenseplate,
+      'startLocation': this.destination.location[0],
+      'endLocation': this.destination.location[1],
+      'startKilometergauge': startKmGauge,
+      'endKilometergauge': endKmGauge,
+      'drivenKm': drivenKm
+    };
 
+    this.httpClientService.onPut('/trips/trip/update/for-project', tripToModify).subscribe();
 
-    this.httpClientService.onPut(
-      '/trips/trip/update/for-project/' +
-      this.tripId + '/' +
-      projectId + '/' +
-      localStorage.getItem('userid') + '/' +
-      licenseplate + '/' +
-      this.destination.location[0] + '/' +
-      this.destination.location[1] + '/' +
-      startKmGauge + '/' +
-      endKmGauge + '/' +
-      drivenKm
-    );
     this.formSubmitted = true;
     this.toaster.success('De rit is succesvol gewijzigd.', 'Rit gewijzigd!', {
       positionClass: 'toast-bottom-left'
