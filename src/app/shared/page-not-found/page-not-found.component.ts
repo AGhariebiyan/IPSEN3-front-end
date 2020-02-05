@@ -13,6 +13,6 @@ export class PageNotFoundComponent implements OnInit {
   }
 
   onGoHome() {
-    window.location.href = '/dashboard';
+    window.location.href = '/login';
   }
 }
