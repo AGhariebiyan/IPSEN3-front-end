@@ -11,7 +11,6 @@ import { GmapsComponent } from './gmaps/gmaps.component';
 import { GmapsLocSearchComponent } from './gmaps/gmaps-loc-search/gmaps-loc-search.component';
 import { MaterialModule } from './material/material.module';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
-import { VehiclesComponent } from './vehicles/vehicles.component';
 import { VehicleAddComponent } from './vehicles/vehicle-add/vehicle-add.component';
 import { TripAddComponent } from './trips/trip-add/trip-add.component';
 import { TripModifyComponent } from './trips/trip-modify/trip-modify.component';
@@ -49,7 +48,6 @@ import { ToastrModule } from 'ngx-toastr';
     TripAddComponent,
     TripModifyComponent,
     TripsOverviewComponent,
-    VehiclesComponent,
     VehicleAddComponent,
     VehicleOverviewComponent,
     LicensePlateValidatorDirective,
