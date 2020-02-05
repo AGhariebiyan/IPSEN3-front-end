@@ -22,13 +22,11 @@ export class TripsOverviewComponent implements OnInit {
   checked = false;
   displayedColumns: string[];
   dataSource1: MatTableDataSource<Trip> = new MatTableDataSource<Trip>();
-  result: EventEmitter = new EventEmitter();
-
-  selectedIdsArray: Array<number> = [];
   data = Object.assign(this.tripsArray);
   selection = new SelectionModel<Trip>(true, []);
 
-
+  result: EventEmitter = new EventEmitter();
+  selectedIdsArray: Array<number> = [];
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
@@ -56,12 +54,26 @@ export class TripsOverviewComponent implements OnInit {
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
+    if (this.isAllSelected()) {
+      for (let i = 0; i <= this.selectedIdsArray.length; i++) {
+        this.dataSource1.data.forEach(row => {
+          if (this.selectedIdsArray[i] === row.tripId) {
+            this.selectedIdsArray.splice(i, 1);
+          }
+        });
+      }
+      this.selection.clear();
+    } else {
       this.dataSource1.data.forEach(row => this.selection.select(row));
+      this.dataSource1.data.forEach(row => this.selectedIdsArray.push(row.tripId));
+    }
+
   }
 
-  select(event, tripId: number) {
+  select(event, tripId
+    :
+    number
+  ) {
     if (event.checked) {
       this.selectedIdsArray.push(tripId);
     } else {
@@ -102,7 +114,8 @@ export class TripsOverviewComponent implements OnInit {
   }
 
 
-  deleteTrip(tripId: number) {
+  deleteTrip(tripId: number
+  ) {
     this.httpClientService.onDelete('/trips/delete/' + tripId).subscribe(() => {
       this.result.emit('refreshTripsTable');
     });
@@ -115,7 +128,8 @@ export class TripsOverviewComponent implements OnInit {
     });
   }
 
-  editTrip(tripId: number) {
+  editTrip(tripId: number
+  ) {
     this.router.navigate(['ritten/wijzigen/' + tripId]);
     return tripId;
   }

@@ -17,7 +17,6 @@ import {Router} from '@angular/router';
 export class VehicleOverviewComponent implements OnInit {
 
 
-
   selectedVehiclesIdsArray: Array<number> = [];
 
   result: EventEmitter = new EventEmitter();
@@ -56,38 +55,34 @@ export class VehicleOverviewComponent implements OnInit {
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
+    if (this.isAllSelected()) {
+      for (let i = 0; i <= this.selectedVehiclesIdsArray.length; i++) {
+        this.dataSource1.data.forEach(row => {
+          if (this.selectedVehiclesIdsArray[i] === row.vehicleId) {
+            this.selectedVehiclesIdsArray.splice(i, 1);
+          }
+        });
+      }
+      this.selection.clear();
+    } else {
       this.dataSource1.data.forEach(row => this.selection.select(row));
-  }
-
-  deleteSelected(selectedID: number, event) {
-
-    if (event.checked) {
-      this.selectedVehiclesIdsArray.push(selectedID);
+      this.dataSource1.data.forEach(row => this.selectedVehiclesIdsArray.push(row.vehicleId));
     }
-    // console.log(selectedID);
+
   }
 
-  select(event, vehicleId: number, index: number) {
-    // console.log(vehicleId);
+
+  select(event, vehicleId: number) {
     console.log(this.selectedVehiclesIdsArray);
     if (event.checked) {
       this.selectedVehiclesIdsArray.push(vehicleId);
     } else {
-      // this.selectedVehiclesIdsArray.splice(index, 1);
       for (let i = 0; i <= this.selectedVehiclesIdsArray.length; i++) {
         if (this.selectedVehiclesIdsArray[i] === vehicleId) {
           this.selectedVehiclesIdsArray.splice(i, 1);
         }
       }
     }
-    // console.log(this.selectedVehiclesIdsArray);
-  }
-
-  editVehicle(id: number) {
-
-    return id;
   }
 
   deleteVehicle(id: number) {
