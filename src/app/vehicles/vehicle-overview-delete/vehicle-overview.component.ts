@@ -100,7 +100,7 @@ export class VehicleOverviewComponent implements OnInit {
 
   getVehicles() {
 
-    this.httpClientService.onGet('/vehicles/user/1')
+    this.httpClientService.onGet('/vehicles/user/' +   localStorage.getItem('userid'))
       .subscribe(
         data => {
           console.log(this.vehiclesArray);
