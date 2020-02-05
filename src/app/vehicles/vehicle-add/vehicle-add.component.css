@@ -1,4 +1,4 @@
-.content {
+.vehicle-add-page {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,15 +9,15 @@
   background-size: cover;
 }
 
-.cardwrapper {
+.vehicle-add-page .cardwrapper {
   padding: 25px 0;
 }
 
-.mat-card{
+.vehicle-add-page .mat-card{
   border-top-left-radius:0;
   border-top-right-radius:0;
 }
-.title{
+.vehicle-add-page .title{
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -28,7 +28,7 @@
   border-top-right-radius: 4px;
 }
 
-.top-left {
+.vehicle-add-page .top-left {
   display: flex;
   flex-direction: row;
   font-size: 14pt;
@@ -36,21 +36,21 @@
   width: fit-content;
 }
 
-form {
+.vehicle-add-page form {
     min-width: 150px;
     max-width: 500px;
     width: 100%;
   }
 
-  .form-full-width {
+.vehicle-add-page .form-full-width {
     width: 100%;
   }
 
-.button-row button,
-.button-row a {
+.vehicle-add-page .button-row button,
+.vehicle-add-page .button-row a {
   margin-right: 8px;
 }
-.image-container{
+.vehicle-add-page .image-container{
   width: 532px;
   height: 320px;
   border-top-left-radius:4px;
@@ -58,12 +58,13 @@ form {
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
   position:relative;
 }
-.card-image{
+
+.vehicle-add-page .card-image{
   width:100%;
   height:100%;
 }
 
-.text-container{
+.vehicle-add-page .text-container{
   position: absolute;
   z-index: 10;
   bottom: 40px;
@@ -75,7 +76,7 @@ form {
   padding-right:20px;
 }
 
-.text-container span{
+.vehicle-add-page .text-container span{
   color: white;
   font-weight: 600;
   text-transform: uppercase;
@@ -86,7 +87,7 @@ form {
 }
 
 
-.animation-slide-left {
+.vehicle-add-page .animation-slide-left {
   -webkit-animation-name: slide-left;
   -o-animation-name: slide-left;
   animation-name: slide-left;
@@ -95,7 +96,7 @@ form {
   animation-duration: 1s;
 }
 
-.animation-fade-in {
+.vehicle-add-page .animation-fade-in {
   -webkit-animation-name: fade-in;
   -o-animation-name: fade-in;
   animation-name: fade-in;
@@ -116,7 +117,7 @@ form {
   animation-fill-mode: both;
 }
 
-.terugKnop {
+.vehicle-add-page .terugKnop {
   color: black;
   font-size: 20px;
 }
@@ -144,32 +145,32 @@ form {
 }
 
 @media screen and (max-width: 480px) {
-  h2{
+  .vehicle-add-page h2{
     font-size: 20px;
   }
-  .cardwrapper {
+  .vehicle-add-page .cardwrapper {
     width: 80vw;
   }
-  .title {
+  .vehicle-add-page .title {
     width: 80vw;
   }
-  .image-container{
+  .vehicle-add-page .image-container{
     width: 80vw;
   }
-  .terugKnop {
+  .vehicle-add-page .terugKnop {
     color: black;
     font-size: 15px;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .cardwrapper {
+  .vehicle-add-page .cardwrapper {
     width: 65vw;
   }
-  .title {
+  .vehicle-add-page .title {
     width: 65vw;
   }
-  .image-container{
+  .vehicle-add-page .image-container{
     width: 65vw;
   }
 }
