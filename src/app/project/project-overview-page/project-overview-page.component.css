@@ -1,4 +1,4 @@
-.content {
+.project-overview-page {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,7 +21,7 @@
   background-color: #EBEDEE;
 }
 
-.table-size{
+.projectOverviewTable{
   width:50vw;
 }
 .projectOverviewTable tr{
@@ -126,7 +126,6 @@
   }
 }
 
-
 .deleteIcon {
   cursor: pointer;
 }
@@ -157,27 +156,7 @@
 .shadowcontainer {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background-image: url("/assets/imgs/homepageBackground.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 
-.overlay {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 50px;
-  background-color: #EBEDEE;
-}
 .optionLabel {
   position: relative;
   top: 4px;
