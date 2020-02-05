@@ -2,20 +2,15 @@ import {Injectable} from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from './user';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthService {
   private httpHeaders = new HttpHeaders({
     'Content-Type' : 'application/json'
   });
-
   private urlStart = 'http://localhost:8080';
   
-  constructor(
-    private router: Router,
-    private http: HttpClient
-  ) {
+  constructor(private router: Router, private http: HttpClient) {
     if (localStorage.getItem('jwtoken') !== null && this.httpHeaders.get('Token') === null) {
       this.httpHeaders = this.httpHeaders.append('Token', localStorage.getItem('jwtoken'));
     }

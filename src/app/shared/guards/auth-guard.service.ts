@@ -2,7 +2,6 @@ import { Injectable, Inject } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable, BehaviorSubject, empty } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
-import { HttpClientService } from '../http-client.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -34,9 +33,8 @@ export class AuthGuardService implements CanActivate {
             this.httpHeaders = this.httpHeaders.append('Token', localStorage.getItem('jwtoken'));
           }
 
-          this.http.post('http://localhost:8080/auth', null, {headers: this.httpHeaders}).subscribe(
+          this.http.post(this.urlStart + '/auth', null, {headers: this.httpHeaders}).subscribe(
             data => {
-              console.log("data: " + data);
               if(data) {
                 resolve(true);
               } else {
