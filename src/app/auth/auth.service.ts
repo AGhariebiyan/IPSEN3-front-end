@@ -9,7 +9,7 @@ export class AuthService {
     'Content-Type' : 'application/json'
   });
   private urlStart = 'http://localhost:8080';
-  
+
   constructor(private router: Router, private http: HttpClient) {
     if (localStorage.getItem('jwtoken') !== null && this.httpHeaders.get('Token') === null) {
       this.httpHeaders = this.httpHeaders.append('Token', localStorage.getItem('jwtoken'));
@@ -18,9 +18,9 @@ export class AuthService {
 
   login(user: User) {
     if (user.userName !== '' && user.password !== '') {
-      const userToBeLoggedIn = { 
-        username: user.userName, 
-        password: user.password 
+      const userToBeLoggedIn = {
+        username: user.userName,
+        password: user.password
       };
 
       this.http.post<any>(this.urlStart + '/auth/login', userToBeLoggedIn, {headers: this.httpHeaders}).subscribe(
@@ -29,7 +29,7 @@ export class AuthService {
           localStorage.setItem('username', data.username);
           localStorage.setItem('userid', data.userId);
           localStorage.setItem('loggedIn', 'true');
-  
+
           dispatchEvent(new Event('loginEvent'));
           this.router.navigate(['/dashboard']);
         },
@@ -48,7 +48,7 @@ export class AuthService {
 
   isLoggedIn() {
     return new Promise(
-      (resolve, reject) => {
+      (resolve) => {
         if (localStorage.getItem('loggedIn') === 'true') {
           resolve(true);
         } else {
