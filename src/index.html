@@ -11,7 +11,7 @@
       }
 
       .background {
-        background-color: rgba(47, 66, 86, 0.75);
+        background-color: #2f4256;
       }
 
       .loader {
@@ -28,7 +28,6 @@
         align-items: center;
         justify-content: center;
         height: 100%;
-        background-color: #E0E0E0;
       }
 
       .app-loading .spinner {
@@ -47,7 +46,7 @@
       .app-loading .spinner .path {
         animation: dash 1.5s ease-in-out infinite;
         stroke-linecap: round;
-        stroke: #;
+        stroke: #ddd;
       }
 
       @keyframes rotate {
@@ -63,11 +62,11 @@
         }
         50% {
           stroke-dasharray: 33, 150;
-          stroke-dashoffset: -35px;
+          stroke-dashoffset: 0;
         }
         100% {
           stroke-dasharray: 33, 150;
-          stroke-dashoffset: -124px;
+          stroke-dashoffset: 0;
         }
       }
     </style>
@@ -85,14 +84,14 @@
   >
 </head>
 <body class="background">
-  <app-root>
-    <div class="app-loading">
-      <img class="loader" src="assets/imgs/logo.png">
-      <svg class="spinner" viewBox="25 25 50 50">
-        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
-      </svg>
-    </div>
-  </app-root>
+<app-root>
+  <div class="app-loading background">
+    <img class="loader" src="assets/imgs/logo.png">
+    <svg class="spinner" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+    </svg>
+  </div>
+</app-root>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyozfs6imtqXQB4fTez-leDxvLoZHDJCs&libraries=places&language=nl&region=NL"  type="text/javascript"></script>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
