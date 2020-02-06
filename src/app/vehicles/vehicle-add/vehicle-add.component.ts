@@ -82,7 +82,7 @@ export class VehicleAddComponent implements OnInit {
     return this.licensePlateService.checkRdwLicensePlate(control.value.toUpperCase())
       .pipe(
         map(res => {
-        if (!res) {
+        if (!res[0]) {
           return {invalidRDW: true};
         } else {
           this.brand = res[0].merk;
