@@ -28,7 +28,6 @@
           </mat-checkbox>
         </mat-header-cell>
         <mat-cell *matCellDef="let row;">
-          <!-- TODO -->
           <mat-checkbox (click)="$event.stopPropagation()"
                        (change)= "select($event, row)"
                         [checked]="selection.isSelected(row)"
