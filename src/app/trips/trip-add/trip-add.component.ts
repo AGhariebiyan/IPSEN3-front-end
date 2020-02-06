@@ -27,7 +27,8 @@ export class TripAddComponent implements OnInit {
               private cdr: ChangeDetectorRef,
               private mapService: GmapsService,
               private toaster: ToastrService,
-              private router: Router) {
+              private router: Router
+  ) {
 
     this.httpClientService.onGet('/vehicles/fetch/unique-licenseplates/' + localStorage.getItem('userid')).pipe()
       .subscribe(
