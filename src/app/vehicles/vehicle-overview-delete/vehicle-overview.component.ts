@@ -7,6 +7,7 @@ import {HttpClientService} from '../../shared/http-client.service';
 import {Vehicle} from './vehicle.model';
 import {SelectionModel} from '@angular/cdk/collections';
 import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-vehicle-delete',
@@ -32,7 +33,10 @@ export class VehicleOverviewComponent implements OnInit {
   value = '';
 
 
-  constructor(private httpClientService: HttpClientService, private router: Router) {
+  constructor(private httpClientService: HttpClientService,
+              private router: Router,
+              private toaster: ToastrService
+  ) {
     this.displayedColumns = ['select', 'licensePlate', 'vehicleName', 'vehicleType', 'verwijderen'];
     this.getVehicles();
   }
@@ -85,6 +89,9 @@ export class VehicleOverviewComponent implements OnInit {
 
   deleteVehicle(id: number) {
     this.httpClientService.onDelete('/vehicles/delete/' + id).subscribe(() => {
+      this.toaster.success('Het voertuig is succesvol verwijderd.', 'Voertuig verwijderd!', {
+        positionClass: 'toast-bottom-left'
+      });
       this.result.emit('refreshVehiclesTable');
     });
   }
