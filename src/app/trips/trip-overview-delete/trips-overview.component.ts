@@ -8,6 +8,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {SelectionModel} from '@angular/cdk/collections';
 import {Router} from '@angular/router';
 import {Trip} from './trip.model';
+import {ToastrService} from 'ngx-toastr';
 
 
 @Component({
@@ -33,7 +34,9 @@ export class TripsOverviewComponent implements OnInit {
   value = '';
 
 
-  constructor(private httpClientService: HttpClientService, private router: Router) {
+  constructor(private httpClientService: HttpClientService,
+              private router: Router,
+              private toaster: ToastrService) {
     this.displayedColumns = ['select', 'startLocation', 'endLocation', 'KM', 'licensePlate', 'project', 'wijzigen', 'verwijderen'];
     this.getTrips();
   }
@@ -113,9 +116,11 @@ export class TripsOverviewComponent implements OnInit {
   }
 
 
-  deleteTrip(tripId: number
-  ) {
+  deleteTrip(tripId: number) {
     this.httpClientService.onDelete('/trips/delete/' + tripId).subscribe(() => {
+      this.toaster.success('De rit is succesvol verwijderd.', 'Rit verwijderd!', {
+        positionClass: 'toast-bottom-left'
+      });
       this.result.emit('refreshTripsTable');
     });
   }

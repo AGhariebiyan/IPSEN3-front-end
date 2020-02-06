@@ -6,6 +6,7 @@ import {HttpClientService} from '../../shared/http-client.service';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {EventEmitter} from 'events';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-vehicle-trips-overview',
@@ -22,7 +23,11 @@ export class VehicleTripsOverviewComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  constructor(private router: Router, private httpClientService: HttpClientService, private activatedRoute: ActivatedRoute) {
+  constructor(private router: Router,
+              private httpClientService: HttpClientService,
+              private activatedRoute: ActivatedRoute,
+              private toaster: ToastrService
+  ) {
     this.displayedColumns = ['startLocation', 'endLocation', 'drivenKm', 'project', 'wijzigen', 'verwijderen'];
   }
 
@@ -66,6 +71,9 @@ export class VehicleTripsOverviewComponent implements OnInit {
 
   deleteTrip(tripId: number) {
     this.httpClientService.onDelete('/trips/delete/' + tripId).subscribe(() => {
+      this.toaster.success('De rit is succesvol verwijderd.', 'Rit verwijderd!', {
+        positionClass: 'toast-bottom-left'
+      });
       this.result.emit('refreshTripsTable');
     });
   }
