@@ -22,12 +22,12 @@ export class VehicleAddComponent implements OnInit {
   public vehicleAddForm: FormGroup;
   public body: string;
   private year: string;
+  public isLoading = false;
 
   constructor(private httpClientService: HttpClientService,
               private http: HttpClient,
               private fb: FormBuilder,
               private licensePlateService: LicensePlateService,
-              private spinner: NgxSpinnerService,
               private toaster: ToastrService,
               private router: Router) { }
 
@@ -50,7 +50,7 @@ export class VehicleAddComponent implements OnInit {
       if ( this.vehicleAddForm.controls.licenseplate.status === 'VALID') {
         this.findImageByVehicle(this.brand + ' ' + this.type + ' ' + this.year );
       } else if ( this.vehicleAddForm.controls.licenseplate.status === 'PENDING') {
-        this.spinner.show();
+        this.isLoading = true;
       } else if ( this.vehicleAddForm.controls.licenseplate.status === 'INVALID' ) {
         this.removeFormData();
       }
@@ -113,11 +113,11 @@ export class VehicleAddComponent implements OnInit {
     this.http.get<any>('http://localhost:5000/image?term=' + searchUrl).pipe()
       .subscribe(
         data => {
-          this.spinner.hide();
+          this.isLoading = false;
           this.imageSource = data.result;
         },
         () => {
-          this.spinner.hide();
+          this.isLoading = false;
         });
   }
 
@@ -126,7 +126,7 @@ export class VehicleAddComponent implements OnInit {
     this.type = null;
     this.body = null;
     this.imageSource = null;
-    this.spinner.hide();
+    this.isLoading = false;
   }
 }
 
