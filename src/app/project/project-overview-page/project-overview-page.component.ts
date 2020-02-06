@@ -114,10 +114,8 @@ export class ProjectOverviewPageComponent implements OnInit {
     const minutes   = ('' + dateObj.getMinutes()).length === 1 ? '0' + dateObj.getMinutes() : dateObj.getMinutes();
     const hours     = ('' + dateObj.getHours()).length === 1  ? '0' + dateObj.getHours() : dateObj.getHours();
     const days      = ('' + dateObj.getDate()).length === 1  ? '0' + dateObj.getDate() : dateObj.getDate();
-    let month     = ('' + dateObj.getMonth()).length === 1  ? '0' + dateObj.getMonth() : dateObj.getMonth();
+    const month     = ('' + dateObj.getMonth()).length === 1  ? '0' + (dateObj.getMonth() + 1) : (dateObj.getMonth() + 1);
     const year      = dateObj.getFullYear();
-
-    month = month === '00' && '01';
 
     this.lastUpdate = days + '-' + month + '-' + year + ' ' + hours + ':' + minutes;
   }
