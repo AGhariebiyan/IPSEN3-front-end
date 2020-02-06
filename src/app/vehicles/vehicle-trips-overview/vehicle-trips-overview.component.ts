@@ -69,12 +69,13 @@ export class VehicleTripsOverviewComponent implements OnInit {
     return tripId;
   }
 
-  deleteTrip(tripId: number) {
+  deleteTrip(event, tripId: number) {
     this.httpClientService.onDelete('/trips/delete/' + tripId).subscribe(() => {
       this.toaster.success('De rit is succesvol verwijderd.', 'Rit verwijderd!', {
         positionClass: 'toast-bottom-left'
       });
       this.result.emit('refreshTripsTable');
     });
+    event.stopPropagation();
   }
 }

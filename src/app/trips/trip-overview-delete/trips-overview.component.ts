@@ -72,10 +72,7 @@ export class TripsOverviewComponent implements OnInit {
 
   }
 
-  select(event, tripId
-    :
-    number
-  ) {
+  select(event, tripId: number) {
     if (event.checked) {
       this.selectedIdsArray.push(tripId);
     } else {
