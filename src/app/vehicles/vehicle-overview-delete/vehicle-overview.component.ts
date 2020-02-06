@@ -98,8 +98,10 @@ export class VehicleOverviewComponent implements OnInit {
 
 
   removeSelectedRows() {
-    console.log('Removed:', this.selectedVehiclesIdsArray);
     this.httpClientService.onPost('/vehicles/delete', this.selectedVehiclesIdsArray).subscribe(() => {
+      this.toaster.success('De voertuigen zijn succesvol verwijderd.', 'Voertuigen verwijderd!', {
+        positionClass: 'toast-bottom-left'
+      });
       this.result.emit('refreshVehiclesTable');
     });
   }
@@ -109,7 +111,6 @@ export class VehicleOverviewComponent implements OnInit {
     this.httpClientService.onGet('/vehicles/user/' +   localStorage.getItem('userid'))
       .subscribe(
         data => {
-          console.log(this.vehiclesArray);
           this.vehiclesArray = [];
           data.forEach(dataE => {
               this.vehiclesArray.push({

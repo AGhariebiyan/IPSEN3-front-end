@@ -127,7 +127,9 @@ export class TripsOverviewComponent implements OnInit {
 
   removeSelectedRows() {
     this.httpClientService.onPost('/trips/delete', this.selectedIdsArray).subscribe(() => {
-
+      this.toaster.success('De ritten zijn succesvol verwijderd.', 'Ritten verwijderd!', {
+        positionClass: 'toast-bottom-left'
+      });
       this.result.emit('refreshTripsTable');
     });
   }
