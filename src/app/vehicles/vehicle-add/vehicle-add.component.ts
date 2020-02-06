@@ -6,6 +6,7 @@ import {map} from 'rxjs/operators';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-vehicle-add',
@@ -27,7 +28,8 @@ export class VehicleAddComponent implements OnInit {
               private fb: FormBuilder,
               private licensePlateService: LicensePlateService,
               private spinner: NgxSpinnerService,
-              private toaster: ToastrService) { }
+              private toaster: ToastrService,
+              private router: Router) { }
 
   ngOnInit() {
     this.vehicleAddForm = new FormGroup({
@@ -59,28 +61,28 @@ export class VehicleAddComponent implements OnInit {
     const licensplate = this.vehicleAddForm.value.licenseplate;
 
     const vehicleToAdd = {
-      'vehicle_id': null,
-      'userId': localStorage.getItem('userid'),
-      'licensePlate': licensplate.toUpperCase(),
-      'vehicleName': this.brand,
-      'vehicleType': this.type,
-      'vehicleBody': this.body
+      vehicle_id: null,
+      userId: localStorage.getItem('userid'),
+      licensePlate: licensplate.toUpperCase(),
+      vehicleName: this.brand,
+      vehicleType: this.type,
+      vehicleBody: this.body
     };
 
-    this.httpClientService.onPost('/vehicles/vehicle/add/for-user/', vehicleToAdd).subscribe();
-
-    this.formSubmitted = true;
-    this.toaster.success('Het voertuig is succesvol toegevoegd.', 'Voertuig toegevoegd!', {
-      positionClass: 'toast-bottom-left'
+    this.httpClientService.onPost('/vehicles/vehicle/add/for-user/', vehicleToAdd).subscribe(() => {
+      this.formSubmitted = true;
+      this.toaster.success('Het voertuig is succesvol toegevoegd.', 'Voertuig toegevoegd!', {
+        positionClass: 'toast-bottom-left'
+      });
+      this.router.navigate(['/voertuigenOverzicht']);
     });
-    // this.vehicleAddForm.reset();
   }
 
   private getVehicleData(control: AbstractControl) {
     return this.licensePlateService.checkRdwLicensePlate(control.value.toUpperCase())
       .pipe(
         map(res => {
-        if (!res) {
+        if (!res[0]) {
           return {invalidRDW: true};
         } else {
           this.brand = res[0].merk;

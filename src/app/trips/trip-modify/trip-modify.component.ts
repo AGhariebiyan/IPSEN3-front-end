@@ -2,7 +2,7 @@ import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import {HttpClientService} from 'src/app/shared/http-client.service';
 import {GmapsService} from 'src/app/gmaps/gmaps.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Trip} from '../trip-overview-delete/trip.model';
 import {ToastrService} from 'ngx-toastr';
 
@@ -28,7 +28,8 @@ export class TripModifyComponent implements OnInit {
               private cdr: ChangeDetectorRef,
               private mapService: GmapsService,
               private activatedRoute: ActivatedRoute,
-              private toaster: ToastrService
+              private toaster: ToastrService,
+              private router: Router
   ) {
     this.httpClientService.onGet('/vehicles/fetch/unique-licenseplates/' + localStorage.getItem('userid')).pipe()
       .subscribe(
@@ -89,27 +90,28 @@ export class TripModifyComponent implements OnInit {
 
   onSubmit() {
     const licenseplate =  this.tripUpdateForm.value.licenseplate;
-    const drivenKm = this.tripUpdateForm.value.drivenKm;
+    const drivKm = this.tripUpdateForm.value.drivenKm;
     const startKmGauge = this.tripUpdateForm.value.startKmGauge;
     const endKmGauge = this.tripUpdateForm.value.endKmGauge;
-    const projectId = this.tripUpdateForm.value.projectID;
+    const projId = this.tripUpdateForm.value.projectID;
     const tripToModify = {
-      'id': this.tripId,
-      'projectId': projectId,
-      'userId': localStorage.getItem('userid'),
-      'licensePlate': licenseplate,
-      'startLocation': this.destination.location[0],
-      'endLocation': this.destination.location[1],
-      'startKilometergauge': startKmGauge,
-      'endKilometergauge': endKmGauge,
-      'drivenKm': drivenKm
+      id: this.tripId,
+      projectId: projId,
+      userId: localStorage.getItem('userid'),
+      licensePlate: licenseplate,
+      startLocation: this.destination.location[0],
+      endLocation: this.destination.location[1],
+      startKilometergauge: startKmGauge,
+      endKilometergauge: endKmGauge,
+      drivenKm: drivKm
     };
 
-    this.httpClientService.onPut('/trips/trip/update/for-project', tripToModify).subscribe();
-
-    this.formSubmitted = true;
-    this.toaster.success('De rit is succesvol gewijzigd.', 'Rit gewijzigd!', {
-      positionClass: 'toast-bottom-left'
+    this.httpClientService.onPut('/trips/trip/update/for-project', tripToModify).subscribe(() => {
+      this.formSubmitted = true;
+      this.toaster.success('De rit is succesvol gewijzigd.', 'Rit gewijzigd!', {
+        positionClass: 'toast-bottom-left'
+      });
+      this.router.navigate(['/rittenOverzicht']);
     });
   }
 
