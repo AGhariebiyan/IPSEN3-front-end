@@ -72,12 +72,13 @@ export class TripsOverviewComponent implements OnInit {
 
   }
 
-  select(event, tripId: number) {
+  select(event, row) {
+    this.selection.toggle(row);
     if (event.checked) {
-      this.selectedIdsArray.push(tripId);
+      this.selectedIdsArray.push(row.tripId);
     } else {
       for (let i = 0; i <= this.selectedIdsArray.length; i++) {
-        if (this.selectedIdsArray[i] === tripId) {
+        if (this.selectedIdsArray[i] === row.tripId) {
           this.selectedIdsArray.splice(i, 1);
         }
       }
