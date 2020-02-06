@@ -3,6 +3,7 @@ import {FormGroup, FormControl} from '@angular/forms';
 import {HttpClientService} from 'src/app/shared/http-client.service';
 import {GmapsService} from 'src/app/gmaps/gmaps.service';
 import {ToastrService} from 'ngx-toastr';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-trip-add',
@@ -25,7 +26,8 @@ export class TripAddComponent implements OnInit {
   constructor(private httpClientService: HttpClientService,
               private cdr: ChangeDetectorRef,
               private mapService: GmapsService,
-              private toaster: ToastrService) {
+              private toaster: ToastrService,
+              private router: Router) {
 
     this.httpClientService.onGet('/vehicles/fetch/unique-licenseplates/' + localStorage.getItem('userid')).pipe()
       .subscribe(
@@ -76,28 +78,28 @@ export class TripAddComponent implements OnInit {
 
   onSubmit() {
     const licenseplate = this.tripAddForm.value.licenseplate;
-    const drivenKm = this.drivenKilometers;
+    const drivKm = this.drivenKilometers;
     const startKmGauge = this.startKilometerGauge;
     const endKmGauge = this.endKilometerGauge;
-    const projectId = this.tripAddForm.value.projectID.split('#')[1];
+    const projId = this.tripAddForm.value.projectID.split('#')[1];
     const tripToAdd = {
-      'id': null,
-      'projectId': projectId,
-      'userId': localStorage.getItem('userid'),
-      'licensePlate': licenseplate,
-      'startLocation': this.destination.location[0],
-      'endLocation': this.destination.location[1],
-      'startKilometergauge': startKmGauge,
-      'endKilometergauge': endKmGauge,
-      'drivenKm': drivenKm
+      id: null,
+      projectId: projId,
+      userId: localStorage.getItem('userid'),
+      licensePlate: licenseplate,
+      startLocation: this.destination.location[0],
+      endLocation: this.destination.location[1],
+      startKilometergauge: startKmGauge,
+      endKilometergauge: endKmGauge,
+      drivenKm: drivKm
     };
 
-    this.httpClientService.onPost('/trips/trip/add/for-project', tripToAdd).subscribe();
-
-
-    this.formSubmitted = true;
-    this.toaster.success('De rit is succesvol toegevoegd.', 'Rit toegevoegd!', {
-      positionClass: 'toast-bottom-left'
+    this.httpClientService.onPost('/trips/trip/add/for-project', tripToAdd).subscribe(() => {
+      this.formSubmitted = true;
+      this.toaster.success('De rit is succesvol toegevoegd.', 'Rit toegevoegd!', {
+        positionClass: 'toast-bottom-left'
+      });
+      this.router.navigate(['/rittenOverzicht']);
     });
   }
 
