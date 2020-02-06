@@ -75,12 +75,13 @@ export class VehicleOverviewComponent implements OnInit {
   }
 
 
-  select(event, vehicleId: number) {
+  select(event, row) {
+    this.selection.toggle(row);
     if (event.checked) {
-      this.selectedVehiclesIdsArray.push(vehicleId);
+      this.selectedVehiclesIdsArray.push(row.vehicleId);
     } else {
       for (let i = 0; i <= this.selectedVehiclesIdsArray.length; i++) {
-        if (this.selectedVehiclesIdsArray[i] === vehicleId) {
+        if (this.selectedVehiclesIdsArray[i] === row.vehicleId) {
           this.selectedVehiclesIdsArray.splice(i, 1);
         }
       }

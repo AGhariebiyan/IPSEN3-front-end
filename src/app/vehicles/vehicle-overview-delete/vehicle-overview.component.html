@@ -31,10 +31,8 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row; let rowNumber = index">
           <mat-checkbox (click)="$event.stopPropagation()"
-                        (change)="$event ? selection.toggle(row) : null"
                         [checked]="selection.isSelected(row)"
-                        [checked] = "row.selectedState"
-                        (change)="select($event, row.vehicleId)">
+                        (change)="select($event, row)">
           </mat-checkbox>
         </mat-cell>
       </ng-container>
